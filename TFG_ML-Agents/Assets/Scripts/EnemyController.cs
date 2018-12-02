@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour {
     public bool isDead;
     public float health;
 
+    
 	// Use this for initialization
 	void Start () {
         transform = GetComponent<Transform>().transform;

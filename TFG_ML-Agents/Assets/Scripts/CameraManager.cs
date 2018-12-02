@@ -7,7 +7,7 @@ public class CameraManager : MonoBehaviour {
     public bool lockOn;
     public float followSpeed = 9.0f;
     public float mouseSpeed = 2.0f;
-    public float controllerSpeed = 7.0f;
+    public float controllerSpeed = 5.0f;
 
     public Transform target;
     public EnemyController lockOnTarget;

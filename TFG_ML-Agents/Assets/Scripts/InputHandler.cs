@@ -12,12 +12,11 @@ public class InputHandler : MonoBehaviour {
 
     bool leftAxis_down, rightAxis_down;
 
-    float b_timer;
     float rt_timer;
     float lt_timer;
 
     public PlayerController pController;
-    public CameraManager camController;
+    public CameraManager camManager;
 
     float delta;
 
@@ -27,8 +26,8 @@ public class InputHandler : MonoBehaviour {
         pController = GetComponent<PlayerController>();
         pController.Init();
 
-        camController = CameraManager.singleton;
-        camController.Init(this.transform);
+        camManager = CameraManager.singleton;
+        camManager.Init(this.transform);
     }
 
     // Update is called once per frame
@@ -38,7 +37,7 @@ public class InputHandler : MonoBehaviour {
         GetInput();
         UpdateStates();
         pController.FixedTick(delta);
-        camController.Tick(delta);
+        camManager.Tick(delta);
 
     }
 
@@ -78,8 +77,8 @@ public class InputHandler : MonoBehaviour {
         pController.horizontal = horizontal;
         pController.vertical = vertical;
 
-        Vector3 v = vertical * camController.transform.forward;
-        Vector3 h = horizontal * camController.transform.right;
+        Vector3 v = vertical * camManager.transform.forward;
+        Vector3 h = horizontal * camManager.transform.right;
         pController.moveDir = (v + h).normalized;
         float m = Mathf.Abs(horizontal) + Mathf.Abs(vertical);
         pController.moveAmount = Mathf.Clamp01(m);
@@ -87,10 +86,9 @@ public class InputHandler : MonoBehaviour {
         if (x_input) b_input = false;
 
         //run
-        if (b_input)
-        {
-            pController.run = (pController.moveAmount > 0);
-        }
+        
+        pController.running = b_input;
+        
 
         pController.itemInput = x_input;
         pController.rb = rb_input;
@@ -101,14 +99,12 @@ public class InputHandler : MonoBehaviour {
         
 
         //Lock on target
-        if (camController.lockOnTarget != null)
+        if (camManager.lockOnTarget != null)
         {
-            if (camController.lockOnTarget.isDead)
+            if (camManager.lockOnTarget.isDead)
             {
-                //pController.lockOn = false;
-                //pController.lockOnTarget = null;
-                camController.lockOn = false;
-                camController.lockOnTarget = null;
+                camManager.lockOn = false;
+                camManager.lockOnTarget = null;
             }
         }
 
@@ -116,10 +112,10 @@ public class InputHandler : MonoBehaviour {
         if (rightAxis_down)
         {
 
-            camController.lockOn = !camController.lockOn;
-            if (camController.lockOnTarget == null)
+            camManager.lockOn = !camManager.lockOn;
+            if (camManager.lockOnTarget == null)
             {
-                camController.lockOn = false;
+                camManager.lockOn = false;
             }
         }
 
@@ -128,8 +124,6 @@ public class InputHandler : MonoBehaviour {
 
     void ResetInputAndStates()
     {
-
-        if (!b_input) b_timer = 0;
-        if (pController.run) pController.run = false;
+        if (pController.running) pController.running = false;
     }
 }

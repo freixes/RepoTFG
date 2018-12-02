@@ -485,27 +485,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: 03330268eeaa51e4189861a54f79e430,
     type: 3}
   m_PrefabInternal: {fileID: 1253265459}
---- !u!114 &874502217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 874502214}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4555896735fe5df4889d6df52bcd963e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vertical: 0
-  horizontal: 0
-  playAnim: 0
-  oh_attacks: []
-  enableRootMotion: 0
-  lockon: 0
-  canMove: 0
-  isBlocking: 0
-  running: 0
-  item: 0
 --- !u!4 &905611803 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400048, guid: e5cc1318afebc3a4eb290805c34745af,
@@ -677,7 +656,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04174ed805f90e34b9c9c9c80c3c32b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeModel: {fileID: 0}
+  activeModel: {fileID: 874502214}
+  camManager: {fileID: 665825279}
   vertical: 0
   horizontal: 0
   moveAmount: 0
@@ -687,20 +667,21 @@ MonoBehaviour:
   lb: 0
   itemInput: 0
   moveDir: {x: 0, y: 0, z: 0}
-  moveSpeed: 2
-  runSpeed: 3.5
+  moveSpeed: 3.5
+  runSpeed: 5
   rotateSpeed: 5
   distanceToGround: 0.5
-  run: 0
+  running: 0
   inAction: 0
   canMove: 0
   usingItem: 0
   anim: {fileID: 0}
-  rigidBody: {fileID: 0}
+  rigidBody: {fileID: 2055963701}
   delta: 0
   ignoreLayers:
     serializedVersion: 2
     m_Bits: 0
+  targetSpeed: 0
 --- !u!114 &2055963704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -712,5 +693,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccbb038acc570b94084fe73f702827b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pController: {fileID: 2055963703}
-  camController: {fileID: 665825279}
+  pController: {fileID: 0}
+  camManager: {fileID: 665825279}
