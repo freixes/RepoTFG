@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
     [Header("Init")]
     public GameObject activeModel;
     public CameraManager camManager;
+    public GameObject weapon;
 
     [Header("Inputs")]
     public float vertical;
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour {
     public bool inAction;
     public bool canMove;
     public bool usingItem;
+    public bool isBlocking;
 
     
     public Animator anim;
@@ -79,6 +81,8 @@ public class PlayerController : MonoBehaviour {
         delta = d;
 
         usingItem = anim.GetBool("item");
+        weapon.SetActive(!usingItem);
+
 
         DetectItemAction();
         DetectAction();
@@ -127,6 +131,7 @@ public class PlayerController : MonoBehaviour {
 
         anim.SetBool("lockOn", camManager.lockOn);
         anim.SetBool("running", running);
+        anim.SetBool("isBlocking", isBlocking);
         if (!camManager.lockOn)
         {
             
@@ -140,23 +145,29 @@ public class PlayerController : MonoBehaviour {
 
     public void DetectItemAction()
     {
+        if (usingItem)
+        {
+            isBlocking = false;
+            running = false;
+        }
         
         if (!canMove || usingItem) return;
 
         if (!itemInput) return;
 
-        string targetAnim = "bestus";
+        //string targetAnim = "bestus";
 
-        if (string.IsNullOrEmpty(targetAnim))
-            return;
+        //if (string.IsNullOrEmpty(targetAnim))
+           // return;
 
         usingItem = true;
         anim.SetBool("item", usingItem);
-        anim.CrossFade(targetAnim, 0.2f);
+        //anim.CrossFade(targetAnim, 0.2f);
     }
 
     public void DetectAction()
     {
+        if (running) isBlocking = false;
         if (!canMove || usingItem) return;
 
         if (!rb && !rt && !lb && !lt)
@@ -165,7 +176,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         string targetAnim = null;
-
+        
        // Action slot = actionManager.GetActionSlot(this);
         //if (slot == null) return;
         //targetAnim = slot.targetAnimation;

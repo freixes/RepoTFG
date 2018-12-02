@@ -88,9 +88,9 @@ public class InputHandler : MonoBehaviour {
         //run
         
         pController.running = b_input;
-        
-
+        pController.isBlocking = lb_input;
         pController.itemInput = x_input;
+
         pController.rb = rb_input;
         pController.lb = lb_input;
         pController.rt = rt_input;
