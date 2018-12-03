@@ -757,6 +757,8 @@ MonoBehaviour:
   isDead: 0
   maxHP: 150
   curHP: 0
+  animEvents: {fileID: 0}
+  activeModel: {fileID: 1530655376}
 --- !u!1001 &1253265459
 Prefab:
   m_ObjectHideFlags: 0
@@ -811,6 +813,10 @@ Prefab:
     - target: {fileID: 400146, guid: 03330268eeaa51e4189861a54f79e430, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.076
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 03330268eeaa51e4189861a54f79e430, type: 3}
+      propertyPath: m_Name
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03330268eeaa51e4189861a54f79e430, type: 3}
@@ -996,6 +1002,11 @@ Transform:
   m_Father: {fileID: 114861320}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1530655376 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100048, guid: e5cc1318afebc3a4eb290805c34745af,
+    type: 3}
+  m_PrefabInternal: {fileID: 779031296}
 --- !u!1001 &1859597374
 Prefab:
   m_ObjectHideFlags: 0
@@ -1402,6 +1413,7 @@ MonoBehaviour:
   heavyAttacks:
   - gs_oh_attack_1
   - gs_oh_attack_2
+  animEvents: {fileID: 0}
   vertical: 0
   horizontal: 0
   moveAmount: 0
@@ -1436,7 +1448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccbb038acc570b94084fe73f702827b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pController: {fileID: 0}
+  pController: {fileID: 2055963703}
   camManager: {fileID: 665825279}
 --- !u!1 &2079056389
 GameObject:

@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour {
     public string[] ligthAttacks;
     public string[] heavyAttacks;
 
+    public AnimationEvents animEvents;
     int laCount, haCount;
 
     [HideInInspector]
@@ -58,7 +59,10 @@ public class PlayerController : MonoBehaviour {
 
         gameObject.layer = 8;
         ignoreLayers = ~(1 << 9);
+
         
+        animEvents = activeModel.AddComponent<AnimationEvents>();
+        animEvents.Init(this, null);
     }
 	
 	// Update is called once per frame
@@ -87,24 +91,23 @@ public class PlayerController : MonoBehaviour {
         usingItem = anim.GetBool("item");
         weapon.SetActive(!usingItem);
 
-
         DetectItemAction();
         DetectAction();
 
         if (inAction)
         {
             anim.applyRootMotion = true;
-            _actionDelay += delta;
+            //_actionDelay += delta;
 
-            if (_actionDelay > .3f)
-            {
-                inAction = false;
-                _actionDelay = 0.0f;
-            }
-            else
-            {
-                return;
-            }
+            //if (_actionDelay > .3f)
+            //{
+            //    inAction = false;
+            //    _actionDelay = 0.0f;
+            //}
+            //else
+            //{
+            //    return;
+            //}
 
         }
 
@@ -128,19 +131,22 @@ public class PlayerController : MonoBehaviour {
             targetSpeed = runSpeed;
         }
 
-        rigidBody.velocity = moveDir * (targetSpeed * moveAmount);
-
-        Vector3 targetDir = (camManager.lockOn == false) ?
-            moveDir : camManager.lockOnTarget.transform.position - transform.position;
-        targetDir.y = 0;
-        if (targetDir == Vector3.zero) targetDir = transform.forward;
-        Quaternion tr = Quaternion.LookRotation(targetDir);
-        Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, delta * moveAmount * rotateSpeed);
-        transform.rotation = targetRotation;
+        if (!inAction && canMove)
+        {
+            rigidBody.velocity = moveDir * (targetSpeed * moveAmount);
+            Vector3 targetDir = (camManager.lockOn == false) ?
+                moveDir : camManager.lockOnTarget.transform.position - transform.position;
+            targetDir.y = 0;
+            if (targetDir == Vector3.zero) targetDir = transform.forward;
+            Quaternion tr = Quaternion.LookRotation(targetDir);
+            Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, delta * moveAmount * rotateSpeed);
+            transform.rotation = targetRotation;
+        }
 
         anim.SetBool("lockOn", camManager.lockOn);
         anim.SetBool("running", running);
         anim.SetBool("isBlocking", isBlocking);
+
         if (!camManager.lockOn)
         {
             
@@ -164,14 +170,9 @@ public class PlayerController : MonoBehaviour {
 
         if (!itemInput) return;
 
-        //string targetAnim = "bestus";
-
-        //if (string.IsNullOrEmpty(targetAnim))
-           // return;
-
         usingItem = true;
         anim.SetBool("item", usingItem);
-        //anim.CrossFade(targetAnim, 0.2f);
+        
     }
 
     public void DetectAction()
@@ -186,20 +187,22 @@ public class PlayerController : MonoBehaviour {
 
         string targetAnim = null;
 
-        if (rb && canMove)
+        if (rb && !inAction)
         {
+            inAction = true;
             targetAnim = ligthAttacks[laCount];
             laCount++;
             laCount = laCount % 3;
-           // canMove = false;
+            canMove = false;
         }
 
-        if (rt && canMove)
+        if (rt && !inAction)
         {
+            inAction = true;
             targetAnim = heavyAttacks[haCount];
             haCount++;
             haCount = haCount % 2;
-            //canMove = false;
+            canMove = false;
         }
 
         if (string.IsNullOrEmpty(targetAnim))
@@ -217,31 +220,39 @@ public class PlayerController : MonoBehaviour {
 
     void HandleMovementAnimations()
     {
-
-        anim.SetFloat("vertical", moveAmount, 0.2f, delta);
-        anim.SetFloat("horizontal", moveAmount, .2f, delta);
+        if (canMove) {
+            anim.SetFloat("vertical", moveAmount, 0.2f, delta);
+            anim.SetFloat("horizontal", moveAmount, .2f, delta);
+        }
+        
 
     }
 
     void HandleLockOnAnimations(Vector3 moveDir)
     {
+        if (canMove) { 
         Vector3 relativeDir = transform.InverseTransformDirection(moveDir);
         float h = relativeDir.x;
         float v = relativeDir.z;
 
         anim.SetFloat("vertical", v, .2f, delta);
         anim.SetFloat("horizontal", h, .2f, delta);
+        }
     }
 
     public void OpenDamageColliders()
     {
         Debug.Log("open");
         wCollider.SetActive(true);
+        canMove = true;
+        inAction = false;
     }
 
     public void CloseDamageColliders()
     {
+        Debug.Log("close");
         wCollider.SetActive(false);
         canMove = true;
+        inAction = false;
     }
 }
