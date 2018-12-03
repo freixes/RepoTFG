@@ -4,24 +4,32 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+    [Header("Player info")]
+    public float maxHP = 150;
+    public float curHP;
+    public float maxStamina = 100;
+    public float curStamina;
+
     [Header("Init")]
     public GameObject activeModel;
     public CameraManager camManager;
     public GameObject weapon;
+    public GameObject wCollider;
+    public Animator anim;
+    public Rigidbody rigidBody;
+    public string[] ligthAttacks;
+    public string[] heavyAttacks;
 
-    [Header("Inputs")]
-    public float vertical;
-    public float horizontal;
-    public float moveAmount;
-    public bool rt, rb, lt, lb;
-    public bool itemInput;
+    int laCount, haCount;
+
+    [HideInInspector]
+    public float vertical, horizontal,moveAmount;
+    [HideInInspector]
+    public bool rt, rb, lt, lb, itemInput;
+    [HideInInspector]
     public Vector3 moveDir;
-
-    [Header("Stats")]
-    public float moveSpeed = 5;
-    public float runSpeed = 8;
-    public float rotateSpeed = 5.0f;
-    public float distanceToGround = 0.5f;
+    [HideInInspector]
+    public float moveSpeed = 3.5f,runSpeed = 5, rotateSpeed = 5.0f, distanceToGround = 0.5f;
 
     [Header("Player States")]
     public bool running = false;
@@ -29,23 +37,19 @@ public class PlayerController : MonoBehaviour {
     public bool canMove;
     public bool usingItem;
     public bool isBlocking;
-
-    
-    public Animator anim;
-    public Rigidbody rigidBody;
-    
-
+   
     [HideInInspector]
     public float delta;
     [HideInInspector]
     public LayerMask ignoreLayers;
-
-
+    [HideInInspector]
     public float targetSpeed;
     float _actionDelay;
-
+    float attackTime;
            // Use this for initialization
     public void Init () {
+        curHP = maxHP;
+        curStamina = maxStamina;
         SetUpAnimator();
         rigidBody = GetComponent<Rigidbody>();
         rigidBody.angularDrag = 999;
@@ -106,7 +110,12 @@ public class PlayerController : MonoBehaviour {
 
         canMove = anim.GetBool("canMove");
 
-        if (!canMove) return;
+        if (!canMove)
+        {
+            attackTime += delta;
+            if (attackTime > 3) attackTime = 0;
+            return;
+        }
 
         anim.applyRootMotion = false;
         rigidBody.drag = (moveAmount > 0) ? 0 : 4;
@@ -176,10 +185,22 @@ public class PlayerController : MonoBehaviour {
         }
 
         string targetAnim = null;
-        
-       // Action slot = actionManager.GetActionSlot(this);
-        //if (slot == null) return;
-        //targetAnim = slot.targetAnimation;
+
+        if (rb && canMove)
+        {
+            targetAnim = ligthAttacks[laCount];
+            laCount++;
+            laCount = laCount % 3;
+           // canMove = false;
+        }
+
+        if (rt && canMove)
+        {
+            targetAnim = heavyAttacks[haCount];
+            haCount++;
+            haCount = haCount % 2;
+            //canMove = false;
+        }
 
         if (string.IsNullOrEmpty(targetAnim))
             return;
@@ -210,5 +231,17 @@ public class PlayerController : MonoBehaviour {
 
         anim.SetFloat("vertical", v, .2f, delta);
         anim.SetFloat("horizontal", h, .2f, delta);
+    }
+
+    public void OpenDamageColliders()
+    {
+        Debug.Log("open");
+        wCollider.SetActive(true);
+    }
+
+    public void CloseDamageColliders()
+    {
+        wCollider.SetActive(false);
+        canMove = true;
     }
 }
