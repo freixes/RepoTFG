@@ -210,6 +210,7 @@ public class PlayerController : MonoBehaviour {
 
         canMove = false;
         inAction = true;
+        anim.SetBool("inAction", inAction);
         anim.CrossFade(targetAnim, 0.2f);
     }
 
@@ -254,5 +255,6 @@ public class PlayerController : MonoBehaviour {
         wCollider.SetActive(false);
         canMove = true;
         inAction = false;
+        anim.SetBool("inAction", inAction);
     }
 }
