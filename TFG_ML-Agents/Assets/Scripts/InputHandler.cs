@@ -15,6 +15,7 @@ public class InputHandler : MonoBehaviour {
     float rt_timer;
     float lt_timer;
 
+    public float dist;
     public PlayerController pController;
     public CameraManager camManager;
 
@@ -100,7 +101,7 @@ public class InputHandler : MonoBehaviour {
 
         
 
-        //Lock on target
+        //Lock of target
         if (camManager.lockOnTarget != null)
         {
             if (camManager.lockOnTarget.isDead)
@@ -120,8 +121,10 @@ public class InputHandler : MonoBehaviour {
                 camManager.lockOn = false;
             }
         }
+        dist = Vector3.Distance(pController.transform.position, camManager.lockOnTarget.transform.position);
+        if (dist > 15) camManager.lockOn = false;
 
-        
+
     }
 
     void ResetInputAndStates()

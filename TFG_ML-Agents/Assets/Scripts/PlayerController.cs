@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour {
     public float curHP;
     public float maxStamina = 100;
     public float curStamina;
+    public float recSpeed = 5;
+    public float runStam = 7;
 
     [Header("Init")]
     public GameObject activeModel;
@@ -38,7 +40,9 @@ public class PlayerController : MonoBehaviour {
     public bool canMove;
     public bool usingItem;
     public bool isBlocking;
-   
+    public bool isInvincible;
+    public bool hardAttack;
+
     [HideInInspector]
     public float delta;
     [HideInInspector]
@@ -87,7 +91,8 @@ public class PlayerController : MonoBehaviour {
     public void FixedTick(float d)
     {
         delta = d;
-
+        if (curStamina < maxStamina && !inAction && !running) curStamina += delta * recSpeed;
+        
         usingItem = anim.GetBool("item");
         weapon.SetActive(!usingItem);
 
@@ -112,6 +117,12 @@ public class PlayerController : MonoBehaviour {
         }
 
         canMove = anim.GetBool("canMove");
+
+        if (isInvincible)
+        {
+            isInvincible = !canMove;
+
+        }
 
         if (!canMove)
         {
@@ -177,7 +188,11 @@ public class PlayerController : MonoBehaviour {
 
     public void DetectAction()
     {
-        if (running) isBlocking = false;
+        if (running)
+        {
+            isBlocking = false;
+            curStamina -= delta*runStam;
+        }
         if (!canMove || usingItem) return;
 
         if (!rb && !rt && !lb && !lt)
@@ -187,22 +202,26 @@ public class PlayerController : MonoBehaviour {
 
         string targetAnim = null;
 
-        if (rb && !inAction)
+        if (rb && !inAction && curStamina >=10)
         {
+            hardAttack = false;
             inAction = true;
             targetAnim = ligthAttacks[laCount];
             laCount++;
             laCount = laCount % 3;
             canMove = false;
+            curStamina -= 10; 
         }
 
-        if (rt && !inAction)
+        if (rt && !inAction && curStamina >= 20)
         {
+            hardAttack = true;
             inAction = true;
             targetAnim = heavyAttacks[haCount];
             haCount++;
             haCount = haCount % 2;
             canMove = false;
+            curStamina -= 20;
         }
 
         if (string.IsNullOrEmpty(targetAnim))
@@ -243,7 +262,7 @@ public class PlayerController : MonoBehaviour {
 
     public void OpenDamageColliders()
     {
-        Debug.Log("open");
+        
         wCollider.SetActive(true);
         canMove = true;
         inAction = false;
@@ -251,10 +270,21 @@ public class PlayerController : MonoBehaviour {
 
     public void CloseDamageColliders()
     {
-        Debug.Log("close");
+        
         wCollider.SetActive(false);
         canMove = true;
         inAction = false;
         anim.SetBool("inAction", inAction);
+    }
+
+    public void DoDamage(float v)
+    {
+        if (isInvincible || isBlocking) return;
+
+        curHP -= v;
+        isInvincible = true;
+        anim.Play("damage");
+        anim.applyRootMotion = true;
+        anim.SetBool("canMove", false);
     }
 }
