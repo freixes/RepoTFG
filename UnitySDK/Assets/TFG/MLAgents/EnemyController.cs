@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour {
     public bool isDead;
     public bool canMove;
     public float maxHP = 150, curHP;
+    public float maxStam = 100, currStam; 
     public AnimationEvents animEvents;
     public GameObject activeModel;
     public Animator anim;
@@ -23,6 +24,7 @@ public class EnemyController : MonoBehaviour {
     void Start () {
         transform = GetComponent<Transform>().transform;
         curHP = maxHP;
+        currStam = maxStam;
 
         SetUpAnimator();
 
