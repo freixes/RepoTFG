@@ -264,8 +264,8 @@ public class PlayerController : MonoBehaviour {
     {
         
         wCollider.SetActive(true);
-        canMove = true;
-        inAction = false;
+        canMove = false;
+        inAction = true;
     }
 
     public void CloseDamageColliders()
