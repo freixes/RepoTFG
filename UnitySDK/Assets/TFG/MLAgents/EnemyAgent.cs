@@ -7,6 +7,10 @@ public class EnemyAgent : Agent {
 
     public EnemyController enemy;
     public PlayerController player;
+    float prevHP;
+    float prevPlayerHP;
+    float prevDistance;
+
     Vector3 initPos;
     // Start is called before the first frame update
     void Start()
@@ -19,6 +23,7 @@ public class EnemyAgent : Agent {
     {
         enemy.curHP = enemy.maxHP;
         player.curHP = player.maxHP;
+        prevHP = enemy.maxHP;
         enemy.transform.position = initPos;
     }
 
@@ -31,9 +36,11 @@ public class EnemyAgent : Agent {
         AddVectorObs(relativePosition.x / 50);
         AddVectorObs(relativePosition.y / 50);
 
-        //
+        //Own stats
         AddVectorObs(enemy.curHP);
+        AddVectorObs(enemy.currStam);
         AddVectorObs(player.curHP);
+        
 
 
     }
@@ -42,10 +49,41 @@ public class EnemyAgent : Agent {
     {
         float distToPlayer = Vector3.Distance(enemy.transform.position,
                                                 player.transform.position);
-
+        /*
         if(distToPlayer < 1)
         {
             AddReward(0.3f);
+            Done();
+        }*/
+
+        //own damage penalty
+        if (prevHP > enemy.curHP)
+        {
+            AddReward(-0.3f);
+            prevHP = enemy.curHP;
+        }
+        //damage player reward
+        if(prevPlayerHP > player.curHP)
+        {
+            AddReward(0.3f);
+            prevPlayerHP = player.curHP;
+        }
+        //getting closer reward
+        if (prevDistance > distToPlayer)
+        {
+            AddReward(0.01f);
+            prevDistance = distToPlayer;
+        }
+        //punish for getting farther
+        if(prevDistance < distToPlayer)
+        {
+            AddReward(-0.02f);
+            prevDistance = distToPlayer;
+        }
+        //objective reached
+        if(player.curHP <= 0)
+        {
+            AddReward(1.0f);
             Done();
         }
     }
