@@ -46,7 +46,7 @@ public class InputHandler : MonoBehaviour {
         delta = Time.deltaTime;
         pController.Tick(delta);
         ResetInputAndStates();
- 
+        
     }
 
     void GetInput()

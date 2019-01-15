@@ -11,12 +11,19 @@ public class EnemyAgent : Agent {
     float prevPlayerHP;
     float prevDistance;
 
+    
+
     Vector3 initPos;
     // Start is called before the first frame update
     void Start()
     {
         initPos = enemy.transform.position;
       
+    }
+
+    private void Update()
+    {
+        
     }
 
     public override void AgentReset()
@@ -31,22 +38,30 @@ public class EnemyAgent : Agent {
     {
         Vector3 relativePosition = player.transform.position - enemy.transform.position;
 
+        //own position
+        AddVectorObs(transform.position);
+        //player pos
+        AddVectorObs(player.transform.position);
+
         //relative pos to player
         //floor plane 100x100
         AddVectorObs(relativePosition.x / 50);
         AddVectorObs(relativePosition.y / 50);
 
-        //Own stats
+        //stats
         AddVectorObs(enemy.curHP);
         AddVectorObs(enemy.currStam);
+        AddVectorObs(enemy.isBlocking);
         AddVectorObs(player.curHP);
-        
+        AddVectorObs(player.isBlocking);
+
 
 
     }
 
     public override void AgentAction(float[] vectorAction, string textAction)
     {
+        
         float distToPlayer = Vector3.Distance(enemy.transform.position,
                                                 player.transform.position);
         /*
@@ -57,6 +72,14 @@ public class EnemyAgent : Agent {
         }*/
 
         //own damage penalty
+        if (vectorAction[0] == 1) Debug.Log("Right");
+        if (vectorAction[0] == -1) Debug.Log("Left");
+        if (vectorAction[1] == 1) Debug.Log("Forward");
+        if (vectorAction[1] == -1) Debug.Log("Backward");
+        if (vectorAction[2] == 1) Debug.Log("HeavyAttack");
+        if (vectorAction[3] == 1) Debug.Log("LightAttack");
+        if (vectorAction[4] == 1) Debug.Log("Block");
+
         if (prevHP > enemy.curHP)
         {
             AddReward(-0.3f);

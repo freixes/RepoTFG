@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
 
+    //inputs
+    float vertical, horizontal;
+    public bool rt, rb, lb;
+
 
     public Transform transform;
     public GameObject wCollider;
