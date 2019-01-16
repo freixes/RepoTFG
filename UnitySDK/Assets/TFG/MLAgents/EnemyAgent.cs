@@ -10,7 +10,7 @@ public class EnemyAgent : Agent {
     float prevHP;
     float prevPlayerHP;
     float prevDistance;
-
+    float delta;
     
 
     Vector3 initPos;
@@ -30,8 +30,10 @@ public class EnemyAgent : Agent {
     {
         enemy.curHP = enemy.maxHP;
         player.curHP = player.maxHP;
-        prevHP = enemy.maxHP;
+        prevHP = enemy.curHP;
         enemy.transform.position = initPos;
+        prevDistance = Vector3.Distance(enemy.transform.position,
+                                                player.transform.position);
     }
 
     public override void CollectObservations()
@@ -61,7 +63,7 @@ public class EnemyAgent : Agent {
 
     public override void AgentAction(float[] vectorAction, string textAction)
     {
-        
+        delta = Time.fixedDeltaTime;
         float distToPlayer = Vector3.Distance(enemy.transform.position,
                                                 player.transform.position);
         /*
@@ -72,13 +74,23 @@ public class EnemyAgent : Agent {
         }*/
 
         //own damage penalty
-        if (vectorAction[0] == 1) Debug.Log("Right");
-        if (vectorAction[0] == -1) Debug.Log("Left");
-        if (vectorAction[1] == 1) Debug.Log("Forward");
-        if (vectorAction[1] == -1) Debug.Log("Backward");
-        if (vectorAction[2] == 1) Debug.Log("HeavyAttack");
-        if (vectorAction[3] == 1) Debug.Log("LightAttack");
-        if (vectorAction[4] == 1) Debug.Log("Block");
+        enemy.horizontal = vectorAction[0];
+        enemy.vertical = vectorAction[1];
+        enemy.rt = vectorAction[2] == 1.0f ? true : false; //heavy attack
+        enemy.rb = vectorAction[3] == 1.0f ? true : false; //light attack
+        enemy.lb = vectorAction[4] == 1.0f ? true : false; //block
+
+        /*
+        if (vectorAction[0] == 1) enemy.horizontal = 1;
+        if (vectorAction[0] == -1) enemy.horizontal = -1;
+        if (vectorAction[1] == 1) enemy.vertical = 1;
+        if (vectorAction[1] == -1) enemy.vertical = -1;
+        if (vectorAction[2] == 1) enemy.rt = true;
+        if (vectorAction[3] == 1) enemy.rb = true;
+        if (vectorAction[4] == 1) enemy.lb = true;
+        */
+
+        enemy.FixedTick(delta);
 
         if (prevHP > enemy.curHP)
         {

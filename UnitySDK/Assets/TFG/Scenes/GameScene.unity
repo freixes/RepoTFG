@@ -6070,21 +6070,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f8e985721a26c24cae60cd8b0239c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transform: {fileID: 905611803}
-  wCollider: {fileID: 1984585880}
-  isDead: 0
-  canMove: 0
+  vertical: 0
+  horizontal: 0
+  rt: 0
+  rb: 0
+  lb: 0
   maxHP: 150
   curHP: 0
   maxStam: 100
   currStam: 0
+  recSpeed: 5
+  moveSpeed: 3.5
+  rotateSpeed: 5
+  transform: {fileID: 905611803}
+  wCollider: {fileID: 1984585880}
   animEvents: {fileID: 0}
   activeModel: {fileID: 1530655376}
   anim: {fileID: 0}
+  rigidBody: {fileID: 0}
+  player: {fileID: 2055963699}
   isInvincible: 0
   isBlocking: 0
+  isDead: 0
+  canMove: 0
   hardAttack: 0
   inAction: 0
+  ligthAttacks:
+  - oh_attack_1
+  - oh_attack_2
+  - oh_attack_3
+  heavyAttacks:
+  - gs_oh_attack_1
+  - gs_oh_attack_2
+  moveAmount: 0
+  moveDir: {x: 0, y: 0, z: 0}
+  delta: 0
 --- !u!54 &949983595
 Rigidbody:
   m_ObjectHideFlags: 0
