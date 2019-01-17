@@ -51,7 +51,7 @@ public class RollerAgent : Agent {
     }
 
     public float speed = 10;
-    private float previousDistance = float.MaxValue;
+    //private float previousDistance = float.MaxValue;
 
     public override void AgentAction(float[] vectorAction, string textAction)
     {

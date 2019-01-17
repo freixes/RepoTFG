@@ -43,11 +43,16 @@ public class EnemyAgent : Agent {
         float angle = Vector3.Angle(lookDir, relativePosition);
        
         //own position
-        AddVectorObs(transform.position);
+        AddVectorObs(transform.position.x);
+        AddVectorObs(transform.position.z);
         //player pos
-        AddVectorObs(player.transform.position);
+        AddVectorObs(player.transform.position.x);
+        AddVectorObs(player.transform.position.z);
+        //enemy rotation
+        AddVectorObs(enemy.transform.rotation.y);
         //look direction
-        AddVectorObs(lookDir);
+        AddVectorObs(lookDir.x);
+        AddVectorObs(lookDir.z);
         //look angle diference
         AddVectorObs(angle);
 
@@ -86,15 +91,17 @@ public class EnemyAgent : Agent {
         }*/
 
         //own damage penalty
-        /*
+        
         enemy.horizontal = vectorAction[0];
         enemy.vertical = vectorAction[1];
+        /*
         enemy.rt = vectorAction[2] == 1.0f ? true : false; //heavy attack
         enemy.rb = vectorAction[3] == 1.0f ? true : false; //light attack
         enemy.lb = vectorAction[4] == 1.0f ? true : false; //block
         */
 
         if (vectorAction[0] == 1) enemy.horizontal = 1;
+        Debug.Log(vectorAction[0] +  "+" + enemy.horizontal);
         if (vectorAction[0] == -1) enemy.horizontal = -1;
         if (vectorAction[1] == 1) enemy.vertical = 1;
         if (vectorAction[1] == -1) enemy.vertical = -1;
@@ -104,6 +111,10 @@ public class EnemyAgent : Agent {
         if (vectorAction[3] == 0) enemy.rb = false;
         if (vectorAction[4] == 1) enemy.lb = true;
         if (vectorAction[4] == 0) enemy.lb = false;
+        //if (vectorAction[5] == 1) enemy.c_h = 1;
+        //if (vectorAction[5] == -1) enemy.c_h = -1;
+
+        enemy.c_h = vectorAction[5];
 
 
         enemy.FixedTick(delta);

@@ -6,14 +6,15 @@ public class EnemyController : MonoBehaviour {
 
     //inputs
     public float vertical, horizontal;
+    public float c_h, lookAngle, rotateSpeed = 5.0f; //cam rotation
     public bool rt, rb, lb;
 
     public float maxHP = 150, curHP;
     public float maxStam = 100, currStam;
     public float recSpeed = 5;
-    public float moveSpeed = 3.5f, rotateSpeed = 5.0f;
+    public float moveSpeed = 3.5f;
 
-    public Transform transform;
+    public Transform trans;
     public GameObject wCollider;
     
     
@@ -48,7 +49,7 @@ public class EnemyController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        transform = GetComponent<Transform>().transform;
+        trans = GetComponent<Transform>().transform;
         curHP = maxHP;
         currStam = maxStam;
 
@@ -114,7 +115,7 @@ public class EnemyController : MonoBehaviour {
         anim.applyRootMotion = false;
         rigidBody.drag = (vertical != 0 || horizontal != 0) ? 0 : 4;
 
-        
+
         /*
         if (running)
         {
@@ -122,6 +123,8 @@ public class EnemyController : MonoBehaviour {
             targetSpeed = runSpeed;
         }
         */
+        lookAngle += c_h * rotateSpeed;
+        trans.rotation = Quaternion.Euler(0, lookAngle, 0);
 
         if (!inAction && canMove)
         {
