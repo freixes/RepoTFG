@@ -39,11 +39,18 @@ public class EnemyAgent : Agent {
     public override void CollectObservations()
     {
         Vector3 relativePosition = player.transform.position - enemy.transform.position;
-
+        Vector3 lookDir = enemy.transform.forward;
+        float angle = Vector3.Angle(lookDir, relativePosition);
+       
         //own position
         AddVectorObs(transform.position);
         //player pos
         AddVectorObs(player.transform.position);
+        //look direction
+        AddVectorObs(lookDir);
+        //look angle diference
+        AddVectorObs(angle);
+
 
         //relative pos to player
         //floor plane 100x100
@@ -59,6 +66,7 @@ public class EnemyAgent : Agent {
 
 
 
+
     }
 
     public override void AgentAction(float[] vectorAction, string textAction)
@@ -66,6 +74,10 @@ public class EnemyAgent : Agent {
         delta = Time.fixedDeltaTime;
         float distToPlayer = Vector3.Distance(enemy.transform.position,
                                                 player.transform.position);
+        Vector3 lookDir = enemy.transform.forward;
+        Vector3 lookAtPlayer = player.transform.position - enemy.transform.position;
+
+        float angle = Vector3.Angle(lookDir, lookAtPlayer);
         /*
         if(distToPlayer < 1)
         {
@@ -74,21 +86,25 @@ public class EnemyAgent : Agent {
         }*/
 
         //own damage penalty
+        /*
         enemy.horizontal = vectorAction[0];
         enemy.vertical = vectorAction[1];
         enemy.rt = vectorAction[2] == 1.0f ? true : false; //heavy attack
         enemy.rb = vectorAction[3] == 1.0f ? true : false; //light attack
         enemy.lb = vectorAction[4] == 1.0f ? true : false; //block
+        */
 
-        /*
         if (vectorAction[0] == 1) enemy.horizontal = 1;
         if (vectorAction[0] == -1) enemy.horizontal = -1;
         if (vectorAction[1] == 1) enemy.vertical = 1;
         if (vectorAction[1] == -1) enemy.vertical = -1;
         if (vectorAction[2] == 1) enemy.rt = true;
+        if (vectorAction[2] == 0) enemy.rt = false;
         if (vectorAction[3] == 1) enemy.rb = true;
+        if (vectorAction[3] == 0) enemy.rb = false;
         if (vectorAction[4] == 1) enemy.lb = true;
-        */
+        if (vectorAction[4] == 0) enemy.lb = false;
+
 
         enemy.FixedTick(delta);
 
@@ -120,6 +136,15 @@ public class EnemyAgent : Agent {
         {
             AddReward(1.0f);
             Done();
+        }
+
+        if(angle < 10)
+        {
+            AddReward(0.3f);
+        }
+        else
+        {
+            AddReward(-0.3f);
         }
     }
 }

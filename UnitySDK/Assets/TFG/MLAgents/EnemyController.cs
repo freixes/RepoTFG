@@ -132,14 +132,14 @@ public class EnemyController : MonoBehaviour {
 
             float m = Mathf.Abs(horizontal) + Mathf.Abs(vertical);
             moveAmount = Mathf.Clamp01(m);
-
             rigidBody.velocity = transform.forward*(moveSpeed * moveAmount);
+            /*
             Vector3 targetDir =  player.transform.position - transform.position;
             targetDir.y = 0;
             if (targetDir == Vector3.zero) targetDir = transform.forward;
             Quaternion tr = Quaternion.LookRotation(targetDir);
             Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, delta * moveAmount * rotateSpeed);
-            transform.rotation = targetRotation;
+            transform.rotation = targetRotation;*/
         }
 
         //anim.SetBool("lockOn", camManager.lockOn);
