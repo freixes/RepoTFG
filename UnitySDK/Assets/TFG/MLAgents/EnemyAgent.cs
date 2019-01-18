@@ -16,11 +16,13 @@ public class EnemyAgent : Agent {
 
 
     Vector3 initPos;
+    Vector3 playerInitPos;
     // Start is called before the first frame update
     void Start()
     {
         initPos = enemy.transform.position;
-      
+        playerInitPos = player.transform.position;
+
     }
 
     private void Update()
@@ -33,7 +35,20 @@ public class EnemyAgent : Agent {
         enemy.curHP = enemy.maxHP;
         player.curHP = player.maxHP;
         prevHP = enemy.curHP;
-        enemy.transform.position = initPos;
+
+        //agent new pos
+        float x = Random.Range(-45, 46);
+        float z = Random.Range(-45, 46);     
+        enemy.transform.position = new Vector3(x,enemy.transform.position.y, z);
+        float newAngle = Random.Range(0, 360);
+        enemy.trans.rotation = Quaternion.Euler(0, newAngle, 0);
+
+        //player new pos
+        x = Random.Range(-45, 45);
+        z = Random.Range(-45, 45);
+        player.transform.position = new Vector3(x, player.transform.position.y, z);
+        
+        //new distance
         prevDistance = Vector3.Distance(enemy.transform.position,
                                                 player.transform.position);
     }
@@ -42,7 +57,7 @@ public class EnemyAgent : Agent {
     {
         Vector3 relativePosition = player.transform.position - enemy.transform.position;
         Vector3 lookDir = enemy.transform.forward;
-        float angle = Vector3.Angle(lookDir, relativePosition);
+        float lookDirAngle = Vector3.Angle(lookDir, relativePosition);
        
         //own position
         AddVectorObs(transform.position.x);
@@ -56,13 +71,13 @@ public class EnemyAgent : Agent {
         AddVectorObs(lookDir.x);
         AddVectorObs(lookDir.z);
         //look angle diference
-        AddVectorObs(angle);
+        AddVectorObs(lookDirAngle);
 
 
         //relative pos to player
         //floor plane 100x100
-        AddVectorObs(relativePosition.x / 50);
-        AddVectorObs(relativePosition.y / 50);
+        //AddVectorObs(relativePosition.x / 50);
+        //AddVectorObs(relativePosition.y / 50);
 
         //stats
         AddVectorObs(enemy.curHP);
@@ -81,6 +96,7 @@ public class EnemyAgent : Agent {
         delta = Time.fixedDeltaTime;
         float distToPlayer = Vector3.Distance(enemy.transform.position,
                                                 player.transform.position);
+        
         Vector3 lookDir = enemy.transform.forward;
         Vector3 lookAtPlayer = player.transform.position - enemy.transform.position;
 
@@ -108,55 +124,74 @@ public class EnemyAgent : Agent {
         //if (vectorAction[5] == 1) enemy.c_h = 1;
         //if (vectorAction[5] == -1) enemy.c_h = -1;
 
-        enemy.FixedTick(delta);
+        //prevDistance = distToPlayer;
+        prevHP = enemy.curHP;
+        prevPlayerHP = player.curHP;
 
+
+        enemy.FixedTick(delta);
+        //distToPlayer = Vector3.Distance(enemy.transform.position,
+        //                                       player.transform.position);
+        
 
         //Rewards and punishments
-        
+
         //damage
         if (prevHP > enemy.curHP)
         {
             AddReward(-1.0f);
             prevHP = enemy.curHP;
+            //Done();
         }
         //damage player reward
         if(prevPlayerHP > player.curHP)
         {
             AddReward(1.0f);
             prevPlayerHP = player.curHP;
+            //Done();
         }
         //getting closer reward
         if (prevDistance > distToPlayer)
         {
             AddReward(0.1f);
             prevDistance = distToPlayer;
+            //Done();
+            
         }
         //punish for getting farther
         if(prevDistance < distToPlayer)
         {
             AddReward(-0.2f);
             prevDistance = distToPlayer;
+            //Done();
+        }
+        if(distToPlayer < 2)
+        {
+            AddReward(3.0f);
+            //Done();
         }
         //objective reached
         if(player.curHP <= 0)
         {
             AddReward(5.0f);
-            Done();
+            //Done();
         }
 
         if(enemy.curHP <= 0)
         {
             AddReward(-5.0f);
-            Done();
+            //Done();
         }
         
-        if(angle < 10)
+        if(angle < 20)
         {
-            AddReward(0.1f);
+            AddReward(0.3f);
+            //Done();
         }
         else
         {
-            AddReward(-0.12f);
+            AddReward(-0.3f);
+            
         }
         
     }
