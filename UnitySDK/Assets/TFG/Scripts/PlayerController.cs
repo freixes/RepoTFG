@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
     public float curStamina;
     public float recSpeed = 5;
     public float runStam = 7;
+    
 
     [Header("Init")]
     public GameObject activeModel;
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour {
 
     public AnimationEvents animEvents;
     int laCount, haCount;
+    float attackTime, resetAtackCount = 3;
 
     [HideInInspector]
     public float vertical, horizontal, moveAmount;
@@ -43,6 +45,10 @@ public class PlayerController : MonoBehaviour {
     public bool isInvincible;
     public bool hardAttack;
 
+    public bool regenStam;
+    public float regenStam_count = 0;
+    public float regenTime = 3;
+
     [HideInInspector]
     public float delta;
     [HideInInspector]
@@ -50,7 +56,7 @@ public class PlayerController : MonoBehaviour {
     [HideInInspector]
     public float targetSpeed;
     float _actionDelay;
-    float attackTime;
+    
            // Use this for initialization
     public void Init () {
         curHP = maxHP;
@@ -91,7 +97,14 @@ public class PlayerController : MonoBehaviour {
     public void FixedTick(float d)
     {
         delta = d;
-        if (curStamina < maxStamina && !inAction && !running) curStamina += delta * recSpeed;
+
+        if (!regenStam) regenStam_count += delta;
+        if (regenStam_count > regenTime) {
+            regenStam_count = 0;
+            regenStam = true;
+        }
+        
+        if (curStamina < maxStamina && !inAction && !running && regenStam) curStamina += delta * recSpeed;
         
         usingItem = anim.GetBool("item");
         weapon.SetActive(!usingItem);
@@ -127,7 +140,12 @@ public class PlayerController : MonoBehaviour {
         if (!canMove)
         {
             attackTime += delta;
-            if (attackTime > 3) attackTime = 0;
+            if (attackTime > resetAtackCount)
+            {
+                attackTime = 0;
+                laCount = 0;
+                haCount = 0;
+            }
             return;
         }
 
@@ -193,12 +211,13 @@ public class PlayerController : MonoBehaviour {
             isBlocking = false;
             curStamina -= delta*runStam;
         }
-        if (!canMove || usingItem) return;
+        if (!canMove /*|| usingItem*/) return;
 
         if (!rb && !rt && !lb && !lt)
         {
             return;
         }
+        if (inAction) isBlocking = false;
 
         string targetAnim = null;
 
@@ -206,6 +225,7 @@ public class PlayerController : MonoBehaviour {
         {
             hardAttack = false;
             inAction = true;
+            regenStam = false;
             targetAnim = ligthAttacks[laCount];
             laCount++;
             laCount = laCount % 3;
@@ -217,6 +237,7 @@ public class PlayerController : MonoBehaviour {
         {
             hardAttack = true;
             inAction = true;
+            regenStam = false;
             targetAnim = heavyAttacks[haCount];
             haCount++;
             haCount = haCount % 2;
@@ -227,10 +248,11 @@ public class PlayerController : MonoBehaviour {
         if (string.IsNullOrEmpty(targetAnim))
             return;
 
-        canMove = false;
-        inAction = true;
+        
         anim.SetBool("inAction", inAction);
         anim.CrossFade(targetAnim, 0.2f);
+        //canMove = false;
+        //inAction = true;
     }
 
     public void Tick(float d)
@@ -265,7 +287,7 @@ public class PlayerController : MonoBehaviour {
         
         wCollider.SetActive(true);
         canMove = true;
-        inAction = false;
+        //inAction = false;
     }
 
     public void CloseDamageColliders()
@@ -275,6 +297,7 @@ public class PlayerController : MonoBehaviour {
         canMove = true;
         inAction = false;
         anim.SetBool("inAction", inAction);
+        
     }
 
     public void DoDamage(float v)

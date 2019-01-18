@@ -9,9 +9,11 @@ public class EnemyAgent : Agent {
     public PlayerController player;
     float prevHP;
     float prevPlayerHP;
-    float prevDistance;
+    public float prevDistance;
     float delta;
-    
+    public float angle;
+
+
 
     Vector3 initPos;
     // Start is called before the first frame update
@@ -82,7 +84,7 @@ public class EnemyAgent : Agent {
         Vector3 lookDir = enemy.transform.forward;
         Vector3 lookAtPlayer = player.transform.position - enemy.transform.position;
 
-        float angle = Vector3.Angle(lookDir, lookAtPlayer);
+        angle = Vector3.Angle(lookDir, lookAtPlayer);
         
         
         //actions to enemy stats
@@ -114,31 +116,31 @@ public class EnemyAgent : Agent {
         //damage
         if (prevHP > enemy.curHP)
         {
-            AddReward(-0.3f);
+            AddReward(-1.0f);
             prevHP = enemy.curHP;
         }
         //damage player reward
         if(prevPlayerHP > player.curHP)
         {
-            AddReward(0.3f);
+            AddReward(1.0f);
             prevPlayerHP = player.curHP;
         }
         //getting closer reward
         if (prevDistance > distToPlayer)
         {
-            AddReward(0.01f);
+            AddReward(0.1f);
             prevDistance = distToPlayer;
         }
         //punish for getting farther
         if(prevDistance < distToPlayer)
         {
-            AddReward(-0.02f);
+            AddReward(-0.2f);
             prevDistance = distToPlayer;
         }
         //objective reached
         if(player.curHP <= 0)
         {
-            AddReward(2.0f);
+            AddReward(5.0f);
             Done();
         }
 
@@ -150,11 +152,11 @@ public class EnemyAgent : Agent {
         
         if(angle < 10)
         {
-            AddReward(0.05f);
+            AddReward(0.1f);
         }
         else
         {
-            AddReward(-0.08f);
+            AddReward(-0.12f);
         }
         
     }

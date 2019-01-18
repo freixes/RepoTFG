@@ -13,6 +13,7 @@ public class EnemyController : MonoBehaviour {
     public float maxStam = 100, currStam;
     public float recSpeed = 5;
     public float moveSpeed = 3.5f;
+    
 
     public Transform trans;
     public GameObject wCollider;
@@ -33,17 +34,19 @@ public class EnemyController : MonoBehaviour {
     public bool hardAttack;
     public bool inAction;
 
+    public bool regenStam;
+    float regenStam_count = 0;
+    public float regenTime = 3;
+
     //attack animations and combo counters
     public string[] ligthAttacks;
     public string[] heavyAttacks;
     int laCount, haCount;
-
+    float attackTime, resetAtackCount = 3;
 
     public float moveAmount;
     public Vector3 moveDir;
-    [HideInInspector]
     
-
 
     public float delta;
 
@@ -88,11 +91,19 @@ public class EnemyController : MonoBehaviour {
 
     public void FixedTick(float d)
     {
+        delta = d;
+
+        if (!regenStam) regenStam_count += delta;
+        if (regenStam_count > 2)
+        {
+            regenStam_count = 0;
+            regenStam = true;
+        }
 
         if (!inAction) isBlocking = lb;
         else isBlocking = false;
-        delta = d;
-        if (currStam < maxStam && !inAction ) currStam += delta * recSpeed;
+        
+        if (currStam < maxStam && !inAction && regenStam) currStam += delta * recSpeed;
 
         DetectAction();
 
@@ -107,8 +118,13 @@ public class EnemyController : MonoBehaviour {
 
         if (!canMove)
         {
-            //attackTime += delta;
-            //if (attackTime > 3) attackTime = 0;
+            attackTime += delta;
+            if (attackTime > resetAtackCount)
+            {
+                attackTime = 0;
+                laCount = 0;
+                haCount = 0;
+            }
             return;
         }
         
@@ -124,6 +140,7 @@ public class EnemyController : MonoBehaviour {
         }
         */
         lookAngle += c_h * rotateSpeed;
+        lookAngle=lookAngle % 360;
         trans.rotation = Quaternion.Euler(0, lookAngle, 0);
 
         if (!inAction && canMove)
@@ -187,12 +204,15 @@ public class EnemyController : MonoBehaviour {
             return;
         }
 
+        if (inAction) isBlocking = false;
+
         string targetAnim = null;
 
         if (rb && !inAction && currStam >= 10)
         {
             hardAttack = false;
             inAction = true;
+            regenStam = false;
             targetAnim = ligthAttacks[laCount];
             laCount++;
             laCount = laCount % 3;
@@ -204,6 +224,7 @@ public class EnemyController : MonoBehaviour {
         {
             hardAttack = true;
             inAction = true;
+            regenStam = false;
             targetAnim = heavyAttacks[haCount];
             haCount++;
             haCount = haCount % 2;
@@ -214,10 +235,11 @@ public class EnemyController : MonoBehaviour {
         if (string.IsNullOrEmpty(targetAnim))
             return;
 
-        canMove = false;
-        inAction = true;
+        
+        
         anim.SetBool("inAction", inAction);
         anim.CrossFade(targetAnim, 0.2f);
+        
     }
 
 
@@ -228,7 +250,7 @@ public class EnemyController : MonoBehaviour {
 
         wCollider.SetActive(true);
         canMove = true;
-        inAction = false;
+        
     }
 
     public void CloseDamageColliders()
@@ -247,7 +269,7 @@ public class EnemyController : MonoBehaviour {
         curHP -= v;
         isInvincible = true;
         anim.Play("damage");
-        anim.applyRootMotion = true;
+        //anim.applyRootMotion = true;
         anim.SetBool("canMove", false);
     }
 }
