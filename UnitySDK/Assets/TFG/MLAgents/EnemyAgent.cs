@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using MLAgents;
 
+
 public class EnemyAgent : Agent {
 
     public EnemyController enemy;
-    public PlayerController player;
+    public EnemyController player;
     float prevHP;
     float prevPlayerHP;
     public float prevDistance;
     float delta;
     public float angle;
-
+    int max = 20, min = -20;
+    float reward = 0;
 
 
     Vector3 initPos;
@@ -37,15 +39,15 @@ public class EnemyAgent : Agent {
         prevHP = enemy.curHP;
 
         //agent new pos
-        float x = Random.Range(-45, 46);
-        float z = Random.Range(-45, 46);     
+        float x = Random.Range(min, max);
+        float z = Random.Range(min, max);     
         enemy.transform.position = new Vector3(x,enemy.transform.position.y, z);
         float newAngle = Random.Range(0, 360);
         enemy.trans.rotation = Quaternion.Euler(0, newAngle, 0);
 
         //player new pos
-        x = Random.Range(-45, 45);
-        z = Random.Range(-45, 45);
+        x = Random.Range(min, max);
+        z = Random.Range(min, max);
         player.transform.position = new Vector3(x, player.transform.position.y, z);
         
         //new distance
@@ -56,7 +58,7 @@ public class EnemyAgent : Agent {
     public override void CollectObservations()
     {
         Vector3 relativePosition = player.transform.position - enemy.transform.position;
-        Vector3 lookDir = enemy.transform.forward;
+        Vector3 lookDir = enemy.transform.right;
         float lookDirAngle = Vector3.Angle(lookDir, relativePosition);
        
         //own position
@@ -97,7 +99,7 @@ public class EnemyAgent : Agent {
         float distToPlayer = Vector3.Distance(enemy.transform.position,
                                                 player.transform.position);
         
-        Vector3 lookDir = enemy.transform.forward;
+        Vector3 lookDir = enemy.transform.right;
         Vector3 lookAtPlayer = player.transform.position - enemy.transform.position;
 
         angle = Vector3.Angle(lookDir, lookAtPlayer);
@@ -140,20 +142,23 @@ public class EnemyAgent : Agent {
         if (prevHP > enemy.curHP)
         {
             AddReward(-1.0f);
+            reward += -1;
             prevHP = enemy.curHP;
             //Done();
         }
         //damage player reward
         if(prevPlayerHP > player.curHP)
         {
-            AddReward(1.0f);
+            AddReward(100.0f);
+            reward += 1;
             prevPlayerHP = player.curHP;
             //Done();
         }
         //getting closer reward
         if (prevDistance > distToPlayer)
         {
-            AddReward(0.1f);
+            AddReward(10.0f);
+            reward += 10;
             prevDistance = distToPlayer;
             //Done();
             
@@ -161,37 +166,45 @@ public class EnemyAgent : Agent {
         //punish for getting farther
         if(prevDistance < distToPlayer)
         {
-            AddReward(-0.2f);
+            AddReward(-2.0f);
+            reward += -2;
             prevDistance = distToPlayer;
             //Done();
         }
+        /*
         if(distToPlayer < 2)
         {
             AddReward(3.0f);
             //Done();
         }
+        */
         //objective reached
         if(player.curHP <= 0)
         {
             AddReward(5.0f);
-            //Done();
+            reward += 5;
+            Done();
         }
 
         if(enemy.curHP <= 0)
         {
             AddReward(-5.0f);
-            //Done();
+            reward += 5;
+            Done();
         }
+        angle = Mathf.Abs(angle);
         
         if(angle < 20)
         {
-            AddReward(0.3f);
+            AddReward(3.0f);
+            reward += 3;
             //Done();
         }
         else
         {
-            AddReward(-0.3f);
-            
+            AddReward(-4.0f);
+            reward += -4;
+
         }
         
     }

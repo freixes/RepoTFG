@@ -6,8 +6,8 @@ public class EnemyWeaponCollider : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-     
-        PlayerController player = other.transform.GetComponentInParent<PlayerController>();
+
+        EnemyController player = other.transform.GetComponentInParent<EnemyController>();
         EnemyController enemy = other.transform.GetComponentInParent<EnemyController>();
         if (player == null)
         {
