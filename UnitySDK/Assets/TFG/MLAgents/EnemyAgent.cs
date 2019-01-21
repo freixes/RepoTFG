@@ -13,8 +13,8 @@ public class EnemyAgent : Agent {
     public float prevDistance;
     float delta;
     public float angle;
-    int max = 20, min = -20;
-    float reward = 0;
+    int max = 20, min = -20, area= 23;
+    public float score = 0;
 
 
     Vector3 initPos;
@@ -78,8 +78,8 @@ public class EnemyAgent : Agent {
 
         //relative pos to player
         //floor plane 100x100
-        //AddVectorObs(relativePosition.x / 50);
-        //AddVectorObs(relativePosition.y / 50);
+        AddVectorObs(relativePosition.x / area);
+        AddVectorObs(relativePosition.z / area);
 
         //stats
         AddVectorObs(enemy.curHP);
@@ -87,6 +87,8 @@ public class EnemyAgent : Agent {
         AddVectorObs(enemy.isBlocking);
         AddVectorObs(player.curHP);
         AddVectorObs(player.isBlocking);
+        AddVectorObs(prevHP);
+        AddVectorObs(prevPlayerHP);
 
 
 
@@ -136,13 +138,13 @@ public class EnemyAgent : Agent {
         //                                       player.transform.position);
         
 
-        //Rewards and punishments
+        //score and punishments
 
         //damage
         if (prevHP > enemy.curHP)
         {
-            AddReward(-1.0f);
-            reward += -1;
+            AddReward(-50.0f);
+            score += -50;
             prevHP = enemy.curHP;
             //Done();
         }
@@ -150,7 +152,7 @@ public class EnemyAgent : Agent {
         if(prevPlayerHP > player.curHP)
         {
             AddReward(100.0f);
-            reward += 1;
+            score += 1;
             prevPlayerHP = player.curHP;
             //Done();
         }
@@ -158,7 +160,7 @@ public class EnemyAgent : Agent {
         if (prevDistance > distToPlayer)
         {
             AddReward(10.0f);
-            reward += 10;
+            score += 10;
             prevDistance = distToPlayer;
             //Done();
             
@@ -167,7 +169,7 @@ public class EnemyAgent : Agent {
         if(prevDistance < distToPlayer)
         {
             AddReward(-2.0f);
-            reward += -2;
+            score += -2;
             prevDistance = distToPlayer;
             //Done();
         }
@@ -182,14 +184,14 @@ public class EnemyAgent : Agent {
         if(player.curHP <= 0)
         {
             AddReward(5.0f);
-            reward += 5;
+            score += 5;
             Done();
         }
 
         if(enemy.curHP <= 0)
         {
             AddReward(-5.0f);
-            reward += 5;
+            score += 5;
             Done();
         }
         angle = Mathf.Abs(angle);
@@ -197,13 +199,13 @@ public class EnemyAgent : Agent {
         if(angle < 20)
         {
             AddReward(3.0f);
-            reward += 3;
+            score += 3;
             //Done();
         }
         else
         {
             AddReward(-4.0f);
-            reward += -4;
+            score += -4;
 
         }
         

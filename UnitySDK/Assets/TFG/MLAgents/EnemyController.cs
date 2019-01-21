@@ -269,7 +269,7 @@ public class EnemyController : MonoBehaviour {
         curHP -= v;
         isInvincible = true;
         anim.Play("damage");
-        //anim.applyRootMotion = true;
+        anim.applyRootMotion = true;
         anim.SetBool("canMove", false);
     }
 }
