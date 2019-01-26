@@ -37,6 +37,8 @@ public class EnemyAgent : Agent {
         enemy.curHP = enemy.maxHP;
         player.curHP = player.maxHP;
         prevHP = enemy.curHP;
+        enemy.isDead = false;
+        player.isDead = false;
 
         //agent new pos
         float x = Random.Range(min, max);
@@ -115,18 +117,7 @@ public class EnemyAgent : Agent {
         enemy.lb = vectorAction[4] == 1.0f ? true : false; //block
         enemy.c_h = vectorAction[5];  //rotation
 
-        //if (vectorAction[0] == 1) enemy.horizontal = 1;
-        //if (vectorAction[0] == -1) enemy.horizontal = -1;
-        //if (vectorAction[1] == 1) enemy.vertical = 1;
-        //if (vectorAction[1] == -1) enemy.vertical = -1;
-        //if (vectorAction[2] == 1) enemy.rt = true;
-        //if (vectorAction[2] == 0) enemy.rt = false;
-        //if (vectorAction[3] == 1) enemy.rb = true;
-        //if (vectorAction[3] == 0) enemy.rb = false;
-        //if (vectorAction[4] == 1) enemy.lb = true;
-        //if (vectorAction[4] == 0) enemy.lb = false;
-        //if (vectorAction[5] == 1) enemy.c_h = 1;
-        //if (vectorAction[5] == -1) enemy.c_h = -1;
+        
 
         //prevDistance = distToPlayer;
         prevHP = enemy.curHP;
@@ -134,10 +125,7 @@ public class EnemyAgent : Agent {
 
 
         enemy.FixedTick(delta);
-        //distToPlayer = Vector3.Distance(enemy.transform.position,
-        //                                       player.transform.position);
         
-
         //score and punishments
 
         //damage

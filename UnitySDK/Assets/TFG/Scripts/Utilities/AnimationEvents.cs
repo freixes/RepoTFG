@@ -24,4 +24,10 @@ public class AnimationEvents : MonoBehaviour {
         if (player != null) player.CloseDamageColliders();
         if (enemy != null) enemy.CloseDamageColliders();
     }
+
+    public void SetBlockingState()
+    {
+        if (player != null) player.SetBlockingState(); 
+        if (enemy != null) enemy.SetBlockingState();
+    }
 }

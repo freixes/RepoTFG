@@ -300,6 +300,11 @@ public class PlayerController : MonoBehaviour {
         
     }
 
+    public void SetBlockingState()
+    {
+        isBlocking = true;
+    }
+
     public void DoDamage(float v)
     {
         if (isInvincible || isBlocking) return;

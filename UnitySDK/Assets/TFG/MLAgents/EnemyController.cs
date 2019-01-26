@@ -12,8 +12,9 @@ public class EnemyController : MonoBehaviour {
     public float maxHP = 150, curHP;
     public float maxStam = 100, currStam;
     public float recSpeed = 5;
+    public float maxSpeed = 3.5f;
     public float moveSpeed = 3.5f;
-    
+    public int slowingRadius = 15;
 
     public Transform trans;
     public GameObject wCollider;
@@ -49,7 +50,7 @@ public class EnemyController : MonoBehaviour {
     
 
     public float delta;
-
+    public float dist;
     // Use this for initialization
     void Start () {
         trans = GetComponent<Transform>().transform;
@@ -91,17 +92,20 @@ public class EnemyController : MonoBehaviour {
 
     public void FixedTick(float d)
     {
+        dist = Vector3.Distance(trans.position, player.transform.position);
+        activeModel.transform.localPosition = new Vector3(0, 0, 0);
+        activeModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
         delta = d;
 
-        if (!regenStam) regenStam_count += delta;
-        if (regenStam_count > 2)
+        if (!regenStam && !inAction) regenStam_count += delta;
+        if (regenStam_count > regenTime)
         {
             regenStam_count = 0;
             regenStam = true;
         }
 
-        if (!inAction) isBlocking = lb;
-        else isBlocking = false;
+        if (!lb) isBlocking = false;
+        //else isBlocking = false;
         
         if (currStam < maxStam && !inAction && regenStam) currStam += delta * recSpeed;
 
@@ -131,20 +135,17 @@ public class EnemyController : MonoBehaviour {
         anim.applyRootMotion = false;
         rigidBody.drag = (vertical != 0 || horizontal != 0) ? 0 : 4;
 
-
-        /*
-        if (running)
-        {
-            camManager.lockOn = false;
-            targetSpeed = runSpeed;
-        }
-        */
         lookAngle += c_h * rotateSpeed;
         lookAngle=lookAngle % 360;
         trans.rotation = Quaternion.Euler(0, lookAngle, 0);
 
         if (!inAction && canMove)
         {
+            if (dist < slowingRadius)
+            {
+                moveSpeed = maxSpeed * dist / slowingRadius;
+            }
+            else moveSpeed = maxSpeed;
             //transform.LookAt(player.transform);
             Vector3 v = vertical * transform.forward;
             Vector3 h = horizontal * transform.right;
@@ -153,21 +154,14 @@ public class EnemyController : MonoBehaviour {
             float m = Mathf.Abs(horizontal) + Mathf.Abs(vertical);
             moveAmount = Mathf.Clamp01(m);
             rigidBody.velocity = transform.forward*(moveSpeed * moveAmount);
-            /*
-            Vector3 targetDir =  player.transform.position - transform.position;
-            targetDir.y = 0;
-            if (targetDir == Vector3.zero) targetDir = transform.forward;
-            Quaternion tr = Quaternion.LookRotation(targetDir);
-            Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, delta * moveAmount * rotateSpeed);
-            transform.rotation = targetRotation;*/
+            
         }
 
-        //anim.SetBool("lockOn", camManager.lockOn);
-        //anim.SetBool("running", running);
-        anim.SetBool("isBlocking", isBlocking);
+        anim.SetBool("isBlocking", lb);
 
         if (canMove)
         {
+            inAction = false;
             anim.SetFloat("vertical", moveAmount, 0.2f, delta);
             anim.SetFloat("horizontal", moveAmount, .2f, delta);
         }
@@ -271,5 +265,10 @@ public class EnemyController : MonoBehaviour {
         anim.Play("damage");
         anim.applyRootMotion = true;
         anim.SetBool("canMove", false);
+    }
+
+    public void SetBlockingState()
+    {
+        isBlocking = true;
     }
 }
