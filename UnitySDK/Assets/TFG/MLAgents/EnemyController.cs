@@ -12,9 +12,9 @@ public class EnemyController : MonoBehaviour {
     public float maxHP = 150, curHP;
     public float maxStam = 100, currStam;
     public float recSpeed = 5;
-    public float maxSpeed = 3.5f;
-    public float moveSpeed = 3.5f;
-    public int slowingRadius = 15;
+    public float moveSpeed;
+    float maxSpeed = 3.5f;
+    int slowingRadius = 5;
 
     public Transform trans;
     public GameObject wCollider;
@@ -146,6 +146,7 @@ public class EnemyController : MonoBehaviour {
                 moveSpeed = maxSpeed * dist / slowingRadius;
             }
             else moveSpeed = maxSpeed;
+            Debug.Log(dist/slowingRadius + " + " + moveSpeed);
             //transform.LookAt(player.transform);
             Vector3 v = vertical * transform.forward;
             Vector3 h = horizontal * transform.right;
@@ -262,6 +263,7 @@ public class EnemyController : MonoBehaviour {
 
         curHP -= v;
         isInvincible = true;
+        canMove = false;
         anim.Play("damage");
         anim.applyRootMotion = true;
         anim.SetBool("canMove", false);

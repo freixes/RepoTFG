@@ -2201,9 +2201,7 @@ MonoBehaviour:
   maxStam: 100
   currStam: 0
   recSpeed: 5
-  maxSpeed: 3.5
   moveSpeed: 3
-  slowingRadius: 2
   trans: {fileID: 0}
   wCollider: {fileID: 1670997605}
   animEvents: {fileID: 0}
@@ -2744,9 +2742,7 @@ MonoBehaviour:
   maxStam: 100
   currStam: 0
   recSpeed: 5
-  maxSpeed: 3.5
   moveSpeed: 3
-  slowingRadius: 2
   trans: {fileID: 0}
   wCollider: {fileID: 521013995}
   animEvents: {fileID: 0}
