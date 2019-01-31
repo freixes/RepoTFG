@@ -66,12 +66,13 @@ public class EnemyController : MonoBehaviour {
 
         animEvents = activeModel.AddComponent<AnimationEvents>();
         animEvents.Init(null, this);
+        canMove = true;
     }
 	
 	// Update is called once per frame
 	void Update () {
         //delta = Time.deltaTime;
-        canMove = anim.GetBool("canMove");
+        //canMove = anim.GetBool("canMove");
 
         if (curHP <= 0)
         {
@@ -81,11 +82,11 @@ public class EnemyController : MonoBehaviour {
             }
         }
 
-        if (isInvincible)
-        {
-            isInvincible = !canMove;
+        //if (isInvincible)
+        //{
+        //    isInvincible = !canMove;
 
-        }
+        //}
         if (canMove) anim.applyRootMotion = false;
     }
 
@@ -109,15 +110,22 @@ public class EnemyController : MonoBehaviour {
         
         if (currStam < maxStam && !inAction && regenStam) currStam += delta * recSpeed;
 
-        DetectAction();
-
         if (inAction)
         {
             anim.applyRootMotion = true;
+            canMove = false;
+            return;
         }
+        else
+        {
+            canMove = true;
+        }
+        DetectAction();
 
-        canMove = anim.GetBool("canMove");
 
+
+        //canMove = anim.GetBool("canMove");
+        //canMove = !inAction;
         if (isInvincible) isInvincible = !canMove;
 
         if (!canMove)
@@ -146,15 +154,14 @@ public class EnemyController : MonoBehaviour {
                 moveSpeed = maxSpeed * dist / slowingRadius;
             }
             else moveSpeed = maxSpeed;
-            Debug.Log(dist/slowingRadius + " + " + moveSpeed);
-            //transform.LookAt(player.transform);
             Vector3 v = vertical * transform.forward;
             Vector3 h = horizontal * transform.right;
             moveDir = (v + h).normalized;
 
             float m = Mathf.Abs(horizontal) + Mathf.Abs(vertical);
             moveAmount = Mathf.Clamp01(m);
-            rigidBody.velocity = transform.forward*(moveSpeed * moveAmount);
+            rigidBody.velocity = moveDir * (moveSpeed * moveAmount);
+            //transform.LookAt(player.transform.position);
             
         }
 
@@ -163,8 +170,8 @@ public class EnemyController : MonoBehaviour {
         if (canMove)
         {
             inAction = false;
-            anim.SetFloat("vertical", moveAmount, 0.2f, delta);
-            anim.SetFloat("horizontal", moveAmount, .2f, delta);
+            anim.SetFloat("vertical", vertical, 0.2f, delta);
+            anim.SetFloat("horizontal", horizontal, .2f, delta);
         }
 
     }
@@ -208,10 +215,10 @@ public class EnemyController : MonoBehaviour {
             hardAttack = false;
             inAction = true;
             regenStam = false;
+            canMove = false;
             targetAnim = ligthAttacks[laCount];
             laCount++;
             laCount = laCount % 3;
-            canMove = false;
             currStam -= 10;
         }
 
@@ -220,11 +227,12 @@ public class EnemyController : MonoBehaviour {
             hardAttack = true;
             inAction = true;
             regenStam = false;
+            canMove = false;
             targetAnim = heavyAttacks[haCount];
             haCount++;
             haCount = haCount % 2;
-            canMove = false;
             currStam -= 20;
+            
         }
 
         if (string.IsNullOrEmpty(targetAnim))
@@ -244,7 +252,7 @@ public class EnemyController : MonoBehaviour {
     {
 
         wCollider.SetActive(true);
-        canMove = true;
+        //canMove = true;
         
     }
 
@@ -264,6 +272,7 @@ public class EnemyController : MonoBehaviour {
         curHP -= v;
         isInvincible = true;
         canMove = false;
+        inAction = false;
         anim.Play("damage");
         anim.applyRootMotion = true;
         anim.SetBool("canMove", false);

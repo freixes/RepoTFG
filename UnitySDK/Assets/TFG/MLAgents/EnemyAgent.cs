@@ -60,7 +60,7 @@ public class EnemyAgent : Agent {
     public override void CollectObservations()
     {
         Vector3 relativePosition = player.transform.position - enemy.transform.position;
-        Vector3 lookDir = enemy.transform.right;
+        Vector3 lookDir = enemy.transform.forward;
         float lookDirAngle = Vector3.Angle(lookDir, relativePosition);
        
         //own position
@@ -103,7 +103,7 @@ public class EnemyAgent : Agent {
         float distToPlayer = Vector3.Distance(enemy.transform.position,
                                                 player.transform.position);
         
-        Vector3 lookDir = enemy.transform.right;
+        Vector3 lookDir = enemy.transform.forward;
         Vector3 lookAtPlayer = player.transform.position - enemy.transform.position;
 
         angle = Vector3.Angle(lookDir, lookAtPlayer);
@@ -131,24 +131,24 @@ public class EnemyAgent : Agent {
         //damage
         if (prevHP > enemy.curHP)
         {
-            AddReward(-50.0f);
-            score += -50;
+            AddReward(-10.0f);
+            score += -10;
             prevHP = enemy.curHP;
             //Done();
         }
         //damage player reward
         if(prevPlayerHP > player.curHP)
         {
-            AddReward(100.0f);
-            score += 1;
+            AddReward(10.0f);
+            score += 10;
             prevPlayerHP = player.curHP;
             //Done();
         }
         //getting closer reward
         if (prevDistance > distToPlayer)
         {
-            AddReward(10.0f);
-            score += 10;
+            AddReward(.1f);
+            score += .1f;
             prevDistance = distToPlayer;
             //Done();
             
@@ -156,8 +156,8 @@ public class EnemyAgent : Agent {
         //punish for getting farther
         if(prevDistance < distToPlayer)
         {
-            AddReward(-2.0f);
-            score += -2;
+            AddReward(-.1f);
+            score += -.1f;
             prevDistance = distToPlayer;
             //Done();
         }
@@ -171,15 +171,15 @@ public class EnemyAgent : Agent {
         //objective reached
         if(player.curHP <= 0)
         {
-            AddReward(5.0f);
-            score += 5;
+            AddReward(50.0f);
+            score += 50;
             Done();
         }
-
+        //Death
         if(enemy.curHP <= 0)
         {
-            AddReward(-5.0f);
-            score += 5;
+            AddReward(-50.0f);
+            score += 50;
             Done();
         }
         angle = Mathf.Abs(angle);
@@ -192,8 +192,8 @@ public class EnemyAgent : Agent {
         }
         else
         {
-            AddReward(-4.0f);
-            score += -4;
+            AddReward(-.2f);
+            score += -.0f;
 
         }
         
