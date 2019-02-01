@@ -61,19 +61,19 @@ public class EnemyAgent : Agent {
     {
         Vector3 relativePosition = player.transform.position - enemy.transform.position;
         Vector3 lookDir = enemy.transform.forward;
-        float lookDirAngle = Vector3.Angle(lookDir, relativePosition);
+        float lookDirAngle = Vector3.SignedAngle(lookDir, relativePosition, Vector3.up);
        
         //own position
-        AddVectorObs(transform.position.x);
-        AddVectorObs(transform.position.z);
+        //AddVectorObs(transform.position.x);
+        //AddVectorObs(transform.position.z);
         //player pos
-        AddVectorObs(player.transform.position.x);
-        AddVectorObs(player.transform.position.z);
+        //AddVectorObs(player.transform.position.x);
+        //AddVectorObs(player.transform.position.z);
         //enemy rotation
         AddVectorObs(enemy.transform.rotation.y);
         //look direction
-        AddVectorObs(lookDir.x);
-        AddVectorObs(lookDir.z);
+        //AddVectorObs(lookDir.x);
+        //AddVectorObs(lookDir.z);
         //look angle diference
         AddVectorObs(lookDirAngle);
 
@@ -106,7 +106,7 @@ public class EnemyAgent : Agent {
         Vector3 lookDir = enemy.transform.forward;
         Vector3 lookAtPlayer = player.transform.position - enemy.transform.position;
 
-        angle = Vector3.Angle(lookDir, lookAtPlayer);
+        angle = Vector3.SignedAngle(lookDir, lookAtPlayer, Vector3.up);
         
         
         //actions to enemy stats
@@ -128,27 +128,35 @@ public class EnemyAgent : Agent {
         
         //score and punishments
 
-        //damage
+        //getting hit
         if (prevHP > enemy.curHP)
         {
-            AddReward(-10.0f);
-            score += -10;
+            AddReward(-.8f);
+            score += -.8f;
             prevHP = enemy.curHP;
             //Done();
         }
-        //damage player reward
+        //hitting player
         if(prevPlayerHP > player.curHP)
         {
-            AddReward(10.0f);
-            score += 10;
+            AddReward(.8f);
+            score += .8f;
             prevPlayerHP = player.curHP;
             //Done();
         }
+        if(prevPlayerHP == player.curHP)
+        {
+            AddReward(-.001f);
+            score += -.001f;
+        }
+
+
+
         //getting closer reward
         if (prevDistance > distToPlayer)
         {
-            AddReward(.1f);
-            score += .1f;
+            AddReward(.05f);
+            score += .05f;
             prevDistance = distToPlayer;
             //Done();
             
@@ -156,46 +164,44 @@ public class EnemyAgent : Agent {
         //punish for getting farther
         if(prevDistance < distToPlayer)
         {
-            AddReward(-.1f);
-            score += -.1f;
+            AddReward(-.02f);
+            score += -.02f;
             prevDistance = distToPlayer;
             //Done();
         }
-        /*
-        if(distToPlayer < 2)
-        {
-            AddReward(3.0f);
-            //Done();
-        }
-        */
-        //objective reached
-        if(player.curHP <= 0)
-        {
-            AddReward(50.0f);
-            score += 50;
-            Done();
-        }
-        //Death
-        if(enemy.curHP <= 0)
-        {
-            AddReward(-50.0f);
-            score += 50;
-            Done();
-        }
-        angle = Mathf.Abs(angle);
         
-        if(angle < 20)
+        
+
+
+        //angle = Mathf.Abs(angle);
+        if(angle < 20 && angle > -20)
         {
-            AddReward(3.0f);
-            score += 3;
+            AddReward(.3f);
+            score += .3f;
             //Done();
         }
         else
         {
-            AddReward(-.2f);
-            score += -.0f;
+            AddReward(-.02f);
+            score += -.02f;
 
         }
-        
+
+
+        //objective reached
+        if (player.curHP <= 0)
+        {
+            AddReward(1.0f);
+            score += 1.0f;
+            Done();
+        }
+        //Death
+        if (enemy.curHP <= 0)
+        {
+            AddReward(-1.0f);
+            score += -1.0f;
+            Done();
+        }
+
     }
 }
