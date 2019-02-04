@@ -14,7 +14,8 @@ public class EnemyController : MonoBehaviour {
     public float recSpeed = 5;
     public float moveSpeed;
     float maxSpeed = 3.5f;
-    int slowingRadius = 5;
+    public int slowingRadius = 5;
+    public float stopRadius = 1.5f;
 
     public Transform trans;
     public GameObject wCollider;
@@ -67,6 +68,7 @@ public class EnemyController : MonoBehaviour {
         animEvents = activeModel.AddComponent<AnimationEvents>();
         animEvents.Init(null, this);
         canMove = true;
+        moveSpeed = maxSpeed;
     }
 	
 	// Update is called once per frame
@@ -149,11 +151,14 @@ public class EnemyController : MonoBehaviour {
 
         if (!inAction && canMove)
         {
-            if (dist < slowingRadius)
-            {
-                moveSpeed = maxSpeed * dist / slowingRadius;
-            }
-            else moveSpeed = maxSpeed;
+            ////slowing radius
+            //if (dist < slowingRadius)
+            //{
+            //    moveSpeed = maxSpeed * dist / slowingRadius;
+            //}
+            //else moveSpeed = maxSpeed;
+
+
             Vector3 v = vertical * transform.forward;
             Vector3 h = horizontal * transform.right;
             moveDir = (v + h).normalized;
