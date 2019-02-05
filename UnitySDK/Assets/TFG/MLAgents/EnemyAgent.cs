@@ -8,6 +8,8 @@ public class EnemyAgent : Agent {
 
     public EnemyController enemy;
     public EnemyController player;
+    public GameObject Arena;
+
     float prevHP;
     float prevPlayerHP;
     public float prevDistance;
@@ -43,15 +45,15 @@ public class EnemyAgent : Agent {
         score = 0;
 
         //agent new pos
-        float x = Random.Range(min, max);
-        float z = Random.Range(min, max);     
+        float x = Random.Range(Arena.transform.position.x + min, Arena.transform.position.x + max);
+        float z = Random.Range(Arena.transform.position.z + min, Arena.transform.position.z + max);
         enemy.transform.position = new Vector3(x,enemy.transform.position.y, z);
         float newAngle = Random.Range(0, 360);
         enemy.trans.rotation = Quaternion.Euler(0, newAngle, 0);
 
         //player new pos
-        x = Random.Range(min, max);
-        z = Random.Range(min, max);
+        x = Random.Range(Arena.transform.position.x + min, Arena.transform.position.x + max);
+        z = Random.Range(Arena.transform.position.z + min, Arena.transform.position.z + max);
         player.transform.position = new Vector3(x, player.transform.position.y, z);
         
         //new distance
@@ -167,8 +169,8 @@ public class EnemyAgent : Agent {
         {
             if (prevDistance > distToPlayer)
             {
-                AddReward(.05f);
-                score += .05f;
+                AddReward(.5f);
+                score += .5f;
                 prevDistance = distToPlayer;
                 //Done();
 
@@ -176,16 +178,16 @@ public class EnemyAgent : Agent {
             //punish for getting farther
             if (prevDistance < distToPlayer)
             {
-                AddReward(-.07f);
-                score += -.07f;
+                AddReward(-.55f);
+                score += -.55f;
                 prevDistance = distToPlayer;
                 //Done();
             }
         }
         else
         {
-            AddReward(.005f);
-            score += .005f;
+            AddReward(.001f);
+            score += .001f;
         }
        
         //if(distToPlayer < enemy.slowingRadius)
