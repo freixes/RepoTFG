@@ -29,19 +29,26 @@ public class BaseCharacter : MonoBehaviour
     public Vector3 moveDir;
 
 
-    public bool running = false;
+    
     public bool inAction;
     public bool canMove;
     public bool usingItem;
     public bool isBlocking;
     public bool isInvincible;
     public bool hardAttack;
+    public bool isDead;
 
     public bool regenStam;
     public float regenStam_count = 0;
     public float regenTime = 3;
+
+
+    public string[] ligthAttacks;
+    public string[] heavyAttacks;
+    public int laCount, haCount;
+    public float attackTime, resetAtackCount = 3;
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         curHP = maxHP;
         currStam = maxStam;
@@ -54,14 +61,30 @@ public class BaseCharacter : MonoBehaviour
         rigidBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
         animEvents = activeModel.AddComponent<AnimationEvents>();
-   
-   
+
+        canMove = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //delta = Time.deltaTime;
+        //canMove = anim.GetBool("canMove");
+
+        if (curHP <= 0)
+        {
+            if (!isDead)
+            {
+                isDead = true;
+            }
+        }
+
+        //if (isInvincible)
+        //{
+        //    isInvincible = !canMove;
+
+        //}
+        if (canMove) anim.applyRootMotion = false;
     }
 
     void SetUpAnimator()
@@ -81,5 +104,40 @@ public class BaseCharacter : MonoBehaviour
         if (anim == null) anim = activeModel.GetComponent<Animator>();
 
         anim.applyRootMotion = false;
+    }
+
+    public void OpenDamageColliders()
+    {
+
+        wCollider.SetActive(true);
+        //canMove = true;
+
+    }
+
+    public void CloseDamageColliders()
+    {
+
+        wCollider.SetActive(false);
+        canMove = true;
+        inAction = false;
+        anim.SetBool("inAction", inAction);
+    }
+
+    public void DoDamage(float v)
+    {
+        if (isInvincible || isDead || isBlocking) return;
+
+        curHP -= v;
+        isInvincible = true;
+        canMove = false;
+        inAction = false;
+        anim.Play("damage");
+        anim.applyRootMotion = true;
+        anim.SetBool("canMove", false);
+    }
+
+    public void SetBlockingState()
+    {
+        isBlocking = true;
     }
 }

@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         HPBar.GetComponent<RectTransform>().localScale = new Vector3(player.curHP / player.maxHP, 1,1);
-        staminaBar.GetComponent<RectTransform>().localScale = new Vector3(player.curStamina / player.maxStamina, 1, 1);
+        staminaBar.GetComponent<RectTransform>().localScale = new Vector3(player.currStam / player.maxStam, 1, 1);
         enemyHP.GetComponent<RectTransform>().localScale = new Vector3(enemy.curHP / enemy.maxHP, 1, 1);
         enemyStamina.GetComponent<Text>().text = enemy.currStam.ToString();
     }

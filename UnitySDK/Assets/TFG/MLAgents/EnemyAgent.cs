@@ -7,7 +7,7 @@ using MLAgents;
 public class EnemyAgent : Agent {
 
     public EnemyController enemy;
-    public EnemyController player;
+    public BaseCharacter player;
     public GameObject Arena;
 
     float prevHP;

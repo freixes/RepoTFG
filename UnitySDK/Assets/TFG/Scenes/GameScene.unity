@@ -1237,8 +1237,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vertical: 0
   horizontal: 0
-  c_h: 0
-  lookAngle: 0
   rotateSpeed: 5
   rt: 0
   rb: 0
@@ -1251,20 +1249,22 @@ MonoBehaviour:
   moveSpeed: 3
   slowingRadius: 5
   stopRadius: 1.5
-  trans: {fileID: 0}
   wCollider: {fileID: 143719044}
   animEvents: {fileID: 0}
   activeModel: {fileID: 2026527261}
   anim: {fileID: 0}
   rigidBody: {fileID: 0}
-  player: {fileID: 1324387192}
-  isInvincible: 0
-  isBlocking: 0
-  isDead: 0
-  canMove: 0
-  hardAttack: 0
+  moveAmount: 0
+  moveDir: {x: 0, y: 0, z: 0}
   inAction: 0
+  canMove: 0
+  usingItem: 0
+  isBlocking: 0
+  isInvincible: 0
+  hardAttack: 0
+  isDead: 0
   regenStam: 0
+  regenStam_count: 0
   regenTime: 3
   ligthAttacks:
   - oh_attack_1
@@ -1273,8 +1273,14 @@ MonoBehaviour:
   heavyAttacks:
   - gs_oh_attack_1
   - gs_oh_attack_2
-  moveAmount: 0
-  moveDir: {x: 0, y: 0, z: 0}
+  laCount: 0
+  haCount: 0
+  attackTime: 0
+  resetAtackCount: 3
+  c_h: 0
+  lookAngle: 0
+  trans: {fileID: 0}
+  player: {fileID: 1324387192}
   delta: 0
   dist: 0
 --- !u!4 &53463991 stripped
@@ -1440,13 +1446,13 @@ MonoBehaviour:
     - q
     - e
     vectorActionSpaceType: 1
-  brainType: 0
+  brainType: 3
   CoreBrains:
-  - {fileID: 1987661123}
-  - {fileID: 1457695991}
-  - {fileID: 518033243}
-  - {fileID: 1008976468}
-  instanceID: 5158
+  - {fileID: 1890638339}
+  - {fileID: 1903178342}
+  - {fileID: 358730110}
+  - {fileID: 1465622168}
+  instanceID: 5162
 --- !u!1 &70712326
 GameObject:
   m_ObjectHideFlags: 0
@@ -2316,7 +2322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &111252537
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2881,8 +2887,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vertical: 0
   horizontal: 0
-  c_h: 0
-  lookAngle: 0
   rotateSpeed: 5
   rt: 0
   rb: 0
@@ -2895,20 +2899,22 @@ MonoBehaviour:
   moveSpeed: 3
   slowingRadius: 5
   stopRadius: 1.5
-  trans: {fileID: 0}
   wCollider: {fileID: 908375863}
   animEvents: {fileID: 0}
   activeModel: {fileID: 592253786}
   anim: {fileID: 0}
   rigidBody: {fileID: 0}
-  player: {fileID: 1921682363}
-  isInvincible: 0
-  isBlocking: 0
-  isDead: 0
-  canMove: 0
-  hardAttack: 0
+  moveAmount: 0
+  moveDir: {x: 0, y: 0, z: 0}
   inAction: 0
+  canMove: 0
+  usingItem: 0
+  isBlocking: 0
+  isInvincible: 0
+  hardAttack: 0
+  isDead: 0
   regenStam: 0
+  regenStam_count: 0
   regenTime: 3
   ligthAttacks:
   - oh_attack_1
@@ -2917,8 +2923,14 @@ MonoBehaviour:
   heavyAttacks:
   - gs_oh_attack_1
   - gs_oh_attack_2
-  moveAmount: 0
-  moveDir: {x: 0, y: 0, z: 0}
+  laCount: 0
+  haCount: 0
+  attackTime: 0
+  resetAtackCount: 3
+  c_h: 0
+  lookAngle: 0
+  trans: {fileID: 0}
+  player: {fileID: 1921682363}
   delta: 0
   dist: 0
 --- !u!1 &144446385
@@ -6609,6 +6621,19 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 617200890}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &358730110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35813a1be64e144f887d7d5f15b963fa, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  brain: {fileID: 69552476}
 --- !u!1 &372635144
 GameObject:
   m_ObjectHideFlags: 0
@@ -6850,8 +6875,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vertical: 0
   horizontal: 0
-  c_h: 0
-  lookAngle: 0
   rotateSpeed: 5
   rt: 0
   rb: 0
@@ -6864,20 +6887,22 @@ MonoBehaviour:
   moveSpeed: 3
   slowingRadius: 5
   stopRadius: 1.5
-  trans: {fileID: 0}
   wCollider: {fileID: 398791194}
   animEvents: {fileID: 0}
   activeModel: {fileID: 1819628352}
   anim: {fileID: 0}
   rigidBody: {fileID: 0}
-  player: {fileID: 2129500358}
-  isInvincible: 0
-  isBlocking: 0
-  isDead: 0
-  canMove: 0
-  hardAttack: 0
+  moveAmount: 0
+  moveDir: {x: 0, y: 0, z: 0}
   inAction: 0
+  canMove: 0
+  usingItem: 0
+  isBlocking: 0
+  isInvincible: 0
+  hardAttack: 0
+  isDead: 0
   regenStam: 0
+  regenStam_count: 0
   regenTime: 3
   ligthAttacks:
   - oh_attack_1
@@ -6886,8 +6911,14 @@ MonoBehaviour:
   heavyAttacks:
   - gs_oh_attack_1
   - gs_oh_attack_2
-  moveAmount: 0
-  moveDir: {x: 0, y: 0, z: 0}
+  laCount: 0
+  haCount: 0
+  attackTime: 0
+  resetAtackCount: 3
+  c_h: 0
+  lookAngle: 0
+  trans: {fileID: 0}
+  player: {fileID: 2129500358}
   delta: 0
   dist: 0
 --- !u!1 &385442584
@@ -8806,19 +8837,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 517360133}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &518033243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35813a1be64e144f887d7d5f15b963fa, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  brain: {fileID: 69552476}
 --- !u!1 &521013995
 GameObject:
   m_ObjectHideFlags: 0
@@ -10888,7 +10906,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &665825278
 Transform:
   m_ObjectHideFlags: 0
@@ -11731,8 +11749,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vertical: 0
   horizontal: 0
-  c_h: 0
-  lookAngle: 0
   rotateSpeed: 5
   rt: 0
   rb: 0
@@ -11745,20 +11761,22 @@ MonoBehaviour:
   moveSpeed: 3
   slowingRadius: 5
   stopRadius: 1.5
-  trans: {fileID: 0}
   wCollider: {fileID: 1670997605}
   animEvents: {fileID: 0}
   activeModel: {fileID: 1753259887}
   anim: {fileID: 0}
   rigidBody: {fileID: 0}
-  player: {fileID: 949983592}
-  isInvincible: 0
-  isBlocking: 0
-  isDead: 0
-  canMove: 0
-  hardAttack: 0
+  moveAmount: 0
+  moveDir: {x: 0, y: 0, z: 0}
   inAction: 0
+  canMove: 0
+  usingItem: 0
+  isBlocking: 0
+  isInvincible: 0
+  hardAttack: 0
+  isDead: 0
   regenStam: 0
+  regenStam_count: 0
   regenTime: 3
   ligthAttacks:
   - oh_attack_1
@@ -11767,8 +11785,14 @@ MonoBehaviour:
   heavyAttacks:
   - gs_oh_attack_1
   - gs_oh_attack_2
-  moveAmount: 0
-  moveDir: {x: 0, y: 0, z: 0}
+  laCount: 0
+  haCount: 0
+  attackTime: 0
+  resetAtackCount: 3
+  c_h: 0
+  lookAngle: 0
+  trans: {fileID: 0}
+  player: {fileID: 949983592}
   delta: 0
   dist: 0
 --- !u!4 &702446862
@@ -13529,8 +13553,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vertical: 0
   horizontal: 0
-  c_h: 0
-  lookAngle: 0
   rotateSpeed: 5
   rt: 0
   rb: 0
@@ -13543,20 +13565,22 @@ MonoBehaviour:
   moveSpeed: 3
   slowingRadius: 5
   stopRadius: 1.5
-  trans: {fileID: 0}
   wCollider: {fileID: 112300895}
   animEvents: {fileID: 0}
   activeModel: {fileID: 1966625956}
   anim: {fileID: 0}
   rigidBody: {fileID: 0}
-  player: {fileID: 1014276717}
-  isInvincible: 0
-  isBlocking: 0
-  isDead: 0
-  canMove: 0
-  hardAttack: 0
+  moveAmount: 0
+  moveDir: {x: 0, y: 0, z: 0}
   inAction: 0
+  canMove: 0
+  usingItem: 0
+  isBlocking: 0
+  isInvincible: 0
+  hardAttack: 0
+  isDead: 0
   regenStam: 0
+  regenStam_count: 0
   regenTime: 3
   ligthAttacks:
   - oh_attack_1
@@ -13565,8 +13589,14 @@ MonoBehaviour:
   heavyAttacks:
   - gs_oh_attack_1
   - gs_oh_attack_2
-  moveAmount: 0
-  moveDir: {x: 0, y: 0, z: 0}
+  laCount: 0
+  haCount: 0
+  attackTime: 0
+  resetAtackCount: 3
+  c_h: 0
+  lookAngle: 0
+  trans: {fileID: 0}
+  player: {fileID: 1014276717}
   delta: 0
   dist: 0
 --- !u!114 &817507822
@@ -13857,8 +13887,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vertical: 0
   horizontal: 0
-  c_h: 0
-  lookAngle: 0
   rotateSpeed: 5
   rt: 0
   rb: 0
@@ -13871,20 +13899,22 @@ MonoBehaviour:
   moveSpeed: 3
   slowingRadius: 5
   stopRadius: 1.5
-  trans: {fileID: 0}
   wCollider: {fileID: 594402187}
   animEvents: {fileID: 0}
   activeModel: {fileID: 1052466633}
   anim: {fileID: 0}
   rigidBody: {fileID: 0}
-  player: {fileID: 1743149626}
-  isInvincible: 0
-  isBlocking: 0
-  isDead: 0
-  canMove: 0
-  hardAttack: 0
+  moveAmount: 0
+  moveDir: {x: 0, y: 0, z: 0}
   inAction: 0
+  canMove: 0
+  usingItem: 0
+  isBlocking: 0
+  isInvincible: 0
+  hardAttack: 0
+  isDead: 0
   regenStam: 0
+  regenStam_count: 0
   regenTime: 3
   ligthAttacks:
   - oh_attack_1
@@ -13893,8 +13923,14 @@ MonoBehaviour:
   heavyAttacks:
   - gs_oh_attack_1
   - gs_oh_attack_2
-  moveAmount: 0
-  moveDir: {x: 0, y: 0, z: 0}
+  laCount: 0
+  haCount: 0
+  attackTime: 0
+  resetAtackCount: 3
+  c_h: 0
+  lookAngle: 0
+  trans: {fileID: 0}
+  player: {fileID: 1743149626}
   delta: 0
   dist: 0
 --- !u!114 &817943901
@@ -15897,8 +15933,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vertical: 0
   horizontal: 0
-  c_h: 0
-  lookAngle: 0
   rotateSpeed: 5
   rt: 0
   rb: 0
@@ -15911,20 +15945,22 @@ MonoBehaviour:
   moveSpeed: 3
   slowingRadius: 5
   stopRadius: 1.5
-  trans: {fileID: 0}
   wCollider: {fileID: 88366733}
   animEvents: {fileID: 0}
   activeModel: {fileID: 204730482}
   anim: {fileID: 0}
   rigidBody: {fileID: 0}
-  player: {fileID: 1937543730}
-  isInvincible: 0
-  isBlocking: 0
-  isDead: 0
-  canMove: 0
-  hardAttack: 0
+  moveAmount: 0
+  moveDir: {x: 0, y: 0, z: 0}
   inAction: 0
+  canMove: 0
+  usingItem: 0
+  isBlocking: 0
+  isInvincible: 0
+  hardAttack: 0
+  isDead: 0
   regenStam: 0
+  regenStam_count: 0
   regenTime: 3
   ligthAttacks:
   - oh_attack_1
@@ -15933,8 +15969,14 @@ MonoBehaviour:
   heavyAttacks:
   - gs_oh_attack_1
   - gs_oh_attack_2
-  moveAmount: 0
-  moveDir: {x: 0, y: 0, z: 0}
+  laCount: 0
+  haCount: 0
+  attackTime: 0
+  resetAtackCount: 3
+  c_h: 0
+  lookAngle: 0
+  trans: {fileID: 0}
+  player: {fileID: 1937543730}
   delta: 0
   dist: 0
 --- !u!1 &938823633
@@ -16266,8 +16308,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vertical: 0
   horizontal: 0
-  c_h: 0
-  lookAngle: 0
   rotateSpeed: 5
   rt: 0
   rb: 0
@@ -16280,20 +16320,22 @@ MonoBehaviour:
   moveSpeed: 3
   slowingRadius: 5
   stopRadius: 1.5
-  trans: {fileID: 0}
   wCollider: {fileID: 521013995}
   animEvents: {fileID: 0}
   activeModel: {fileID: 206206936}
   anim: {fileID: 0}
   rigidBody: {fileID: 0}
-  player: {fileID: 702446857}
-  isInvincible: 0
-  isBlocking: 0
-  isDead: 0
-  canMove: 0
-  hardAttack: 0
+  moveAmount: 0
+  moveDir: {x: 0, y: 0, z: 0}
   inAction: 0
+  canMove: 0
+  usingItem: 0
+  isBlocking: 0
+  isInvincible: 0
+  hardAttack: 0
+  isDead: 0
   regenStam: 0
+  regenStam_count: 0
   regenTime: 3
   ligthAttacks:
   - oh_attack_1
@@ -16302,8 +16344,14 @@ MonoBehaviour:
   heavyAttacks:
   - gs_oh_attack_1
   - gs_oh_attack_2
-  moveAmount: 0
-  moveDir: {x: 0, y: 0, z: 0}
+  laCount: 0
+  haCount: 0
+  attackTime: 0
+  resetAtackCount: 3
+  c_h: 0
+  lookAngle: 0
+  trans: {fileID: 0}
+  player: {fileID: 702446857}
   delta: 0
   dist: 0
 --- !u!54 &949983595
@@ -17194,30 +17242,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdde384a95c12904489f4f268f5ee7bf, type: 3}
---- !u!114 &1008976468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b23992c8eb17439887f5e944bf04a40, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  broadcast: 1
-  graphModel: {fileID: 4900000, guid: 4bbaf7b83e9a22a4e982dbd2f13c6d0f, type: 3}
-  graphScope: 
-  graphPlaceholders: []
-  BatchSizePlaceholderName: batch_size
-  VectorObservationPlacholderName: vector_observation
-  RecurrentInPlaceholderName: recurrent_in
-  RecurrentOutPlaceholderName: recurrent_out
-  VisualObservationPlaceholderName: []
-  ActionPlaceholderName: action
-  PreviousActionPlaceholderName: prev_action
-  brain: {fileID: 69552476}
 --- !u!1 &1012986193
 GameObject:
   m_ObjectHideFlags: 0
@@ -17415,8 +17439,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vertical: 0
   horizontal: 0
-  c_h: 0
-  lookAngle: 0
   rotateSpeed: 5
   rt: 0
   rb: 0
@@ -17429,20 +17451,22 @@ MonoBehaviour:
   moveSpeed: 3
   slowingRadius: 5
   stopRadius: 1.5
-  trans: {fileID: 0}
   wCollider: {fileID: 1040034134}
   animEvents: {fileID: 0}
   activeModel: {fileID: 1953256513}
   anim: {fileID: 0}
   rigidBody: {fileID: 0}
-  player: {fileID: 817507820}
-  isInvincible: 0
-  isBlocking: 0
-  isDead: 0
-  canMove: 0
-  hardAttack: 0
+  moveAmount: 0
+  moveDir: {x: 0, y: 0, z: 0}
   inAction: 0
+  canMove: 0
+  usingItem: 0
+  isBlocking: 0
+  isInvincible: 0
+  hardAttack: 0
+  isDead: 0
   regenStam: 0
+  regenStam_count: 0
   regenTime: 3
   ligthAttacks:
   - oh_attack_1
@@ -17451,8 +17475,14 @@ MonoBehaviour:
   heavyAttacks:
   - gs_oh_attack_1
   - gs_oh_attack_2
-  moveAmount: 0
-  moveDir: {x: 0, y: 0, z: 0}
+  laCount: 0
+  haCount: 0
+  attackTime: 0
+  resetAtackCount: 3
+  c_h: 0
+  lookAngle: 0
+  trans: {fileID: 0}
+  player: {fileID: 817507820}
   delta: 0
   dist: 0
 --- !u!1 &1017654038
@@ -22069,8 +22099,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vertical: 0
   horizontal: 0
-  c_h: 0
-  lookAngle: 0
   rotateSpeed: 5
   rt: 0
   rb: 0
@@ -22083,20 +22111,22 @@ MonoBehaviour:
   moveSpeed: 3
   slowingRadius: 5
   stopRadius: 1.5
-  trans: {fileID: 0}
   wCollider: {fileID: 1732177833}
   animEvents: {fileID: 0}
   activeModel: {fileID: 662926147}
   anim: {fileID: 0}
   rigidBody: {fileID: 0}
-  player: {fileID: 47975323}
-  isInvincible: 0
-  isBlocking: 0
-  isDead: 0
-  canMove: 0
-  hardAttack: 0
+  moveAmount: 0
+  moveDir: {x: 0, y: 0, z: 0}
   inAction: 0
+  canMove: 0
+  usingItem: 0
+  isBlocking: 0
+  isInvincible: 0
+  hardAttack: 0
+  isDead: 0
   regenStam: 0
+  regenStam_count: 0
   regenTime: 3
   ligthAttacks:
   - oh_attack_1
@@ -22105,8 +22135,14 @@ MonoBehaviour:
   heavyAttacks:
   - gs_oh_attack_1
   - gs_oh_attack_2
-  moveAmount: 0
-  moveDir: {x: 0, y: 0, z: 0}
+  laCount: 0
+  haCount: 0
+  attackTime: 0
+  resetAtackCount: 3
+  c_h: 0
+  lookAngle: 0
+  trans: {fileID: 0}
+  player: {fileID: 47975323}
   delta: 0
   dist: 0
 --- !u!114 &1324387194
@@ -24030,20 +24066,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1455315360}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1457695991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 943466ab374444748a364f9d6c3e2fe2, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  broadcast: 1
-  brain: {fileID: 69552476}
 --- !u!1 &1459565813
 GameObject:
   m_ObjectHideFlags: 0
@@ -24233,6 +24255,30 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 969889680}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1465622168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b23992c8eb17439887f5e944bf04a40, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  broadcast: 1
+  graphModel: {fileID: 4900000, guid: 4bbaf7b83e9a22a4e982dbd2f13c6d0f, type: 3}
+  graphScope: 
+  graphPlaceholders: []
+  BatchSizePlaceholderName: batch_size
+  VectorObservationPlacholderName: vector_observation
+  RecurrentInPlaceholderName: recurrent_in
+  RecurrentOutPlaceholderName: recurrent_out
+  VisualObservationPlaceholderName: []
+  ActionPlaceholderName: action
+  PreviousActionPlaceholderName: prev_action
+  brain: {fileID: 69552476}
 --- !u!1 &1469476109
 GameObject:
   m_ObjectHideFlags: 0
@@ -27008,8 +27054,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vertical: 0
   horizontal: 0
-  c_h: 0
-  lookAngle: 0
   rotateSpeed: 5
   rt: 0
   rb: 0
@@ -27022,20 +27066,22 @@ MonoBehaviour:
   moveSpeed: 3
   slowingRadius: 5
   stopRadius: 1.5
-  trans: {fileID: 0}
   wCollider: {fileID: 1119387618}
   animEvents: {fileID: 0}
   activeModel: {fileID: 497364619}
   anim: {fileID: 0}
   rigidBody: {fileID: 0}
-  player: {fileID: 1878871193}
-  isInvincible: 0
-  isBlocking: 0
-  isDead: 0
-  canMove: 0
-  hardAttack: 0
+  moveAmount: 0
+  moveDir: {x: 0, y: 0, z: 0}
   inAction: 0
+  canMove: 0
+  usingItem: 0
+  isBlocking: 0
+  isInvincible: 0
+  hardAttack: 0
+  isDead: 0
   regenStam: 0
+  regenStam_count: 0
   regenTime: 3
   ligthAttacks:
   - oh_attack_1
@@ -27044,8 +27090,14 @@ MonoBehaviour:
   heavyAttacks:
   - gs_oh_attack_1
   - gs_oh_attack_2
-  moveAmount: 0
-  moveDir: {x: 0, y: 0, z: 0}
+  laCount: 0
+  haCount: 0
+  attackTime: 0
+  resetAtackCount: 3
+  c_h: 0
+  lookAngle: 0
+  trans: {fileID: 0}
+  player: {fileID: 1878871193}
   delta: 0
   dist: 0
 --- !u!114 &1710215428
@@ -27900,8 +27952,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vertical: 0
   horizontal: 0
-  c_h: 0
-  lookAngle: 0
   rotateSpeed: 5
   rt: 0
   rb: 0
@@ -27914,20 +27964,22 @@ MonoBehaviour:
   moveSpeed: 3
   slowingRadius: 5
   stopRadius: 1.5
-  trans: {fileID: 0}
   wCollider: {fileID: 255797646}
   animEvents: {fileID: 0}
   activeModel: {fileID: 1287236483}
   anim: {fileID: 0}
   rigidBody: {fileID: 0}
-  player: {fileID: 1791872093}
-  isInvincible: 0
-  isBlocking: 0
-  isDead: 0
-  canMove: 0
-  hardAttack: 0
+  moveAmount: 0
+  moveDir: {x: 0, y: 0, z: 0}
   inAction: 0
+  canMove: 0
+  usingItem: 0
+  isBlocking: 0
+  isInvincible: 0
+  hardAttack: 0
+  isDead: 0
   regenStam: 0
+  regenStam_count: 0
   regenTime: 3
   ligthAttacks:
   - oh_attack_1
@@ -27936,8 +27988,14 @@ MonoBehaviour:
   heavyAttacks:
   - gs_oh_attack_1
   - gs_oh_attack_2
-  moveAmount: 0
-  moveDir: {x: 0, y: 0, z: 0}
+  laCount: 0
+  haCount: 0
+  attackTime: 0
+  resetAtackCount: 3
+  c_h: 0
+  lookAngle: 0
+  trans: {fileID: 0}
+  player: {fileID: 1791872093}
   delta: 0
   dist: 0
 --- !u!1 &1734004328
@@ -28233,8 +28291,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vertical: 0
   horizontal: 0
-  c_h: 0
-  lookAngle: 0
   rotateSpeed: 5
   rt: 0
   rb: 0
@@ -28247,20 +28303,22 @@ MonoBehaviour:
   moveSpeed: 3
   slowingRadius: 5
   stopRadius: 1.5
-  trans: {fileID: 0}
   wCollider: {fileID: 1369966509}
   animEvents: {fileID: 0}
   activeModel: {fileID: 548776219}
   anim: {fileID: 0}
   rigidBody: {fileID: 0}
-  player: {fileID: 817943899}
-  isInvincible: 0
-  isBlocking: 0
-  isDead: 0
-  canMove: 0
-  hardAttack: 0
+  moveAmount: 0
+  moveDir: {x: 0, y: 0, z: 0}
   inAction: 0
+  canMove: 0
+  usingItem: 0
+  isBlocking: 0
+  isInvincible: 0
+  hardAttack: 0
+  isDead: 0
   regenStam: 0
+  regenStam_count: 0
   regenTime: 3
   ligthAttacks:
   - oh_attack_1
@@ -28269,8 +28327,14 @@ MonoBehaviour:
   heavyAttacks:
   - gs_oh_attack_1
   - gs_oh_attack_2
-  moveAmount: 0
-  moveDir: {x: 0, y: 0, z: 0}
+  laCount: 0
+  haCount: 0
+  attackTime: 0
+  resetAtackCount: 3
+  c_h: 0
+  lookAngle: 0
+  trans: {fileID: 0}
+  player: {fileID: 817943899}
   delta: 0
   dist: 0
 --- !u!1 &1753259887 stripped
@@ -29120,8 +29184,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vertical: 0
   horizontal: 0
-  c_h: 0
-  lookAngle: 0
   rotateSpeed: 5
   rt: 0
   rb: 0
@@ -29134,20 +29196,22 @@ MonoBehaviour:
   moveSpeed: 3
   slowingRadius: 5
   stopRadius: 1.5
-  trans: {fileID: 0}
   wCollider: {fileID: 1554419403}
   animEvents: {fileID: 0}
   activeModel: {fileID: 190727515}
   anim: {fileID: 0}
   rigidBody: {fileID: 0}
-  player: {fileID: 1733595116}
-  isInvincible: 0
-  isBlocking: 0
-  isDead: 0
-  canMove: 0
-  hardAttack: 0
+  moveAmount: 0
+  moveDir: {x: 0, y: 0, z: 0}
   inAction: 0
+  canMove: 0
+  usingItem: 0
+  isBlocking: 0
+  isInvincible: 0
+  hardAttack: 0
+  isDead: 0
   regenStam: 0
+  regenStam_count: 0
   regenTime: 3
   ligthAttacks:
   - oh_attack_1
@@ -29156,8 +29220,14 @@ MonoBehaviour:
   heavyAttacks:
   - gs_oh_attack_1
   - gs_oh_attack_2
-  moveAmount: 0
-  moveDir: {x: 0, y: 0, z: 0}
+  laCount: 0
+  haCount: 0
+  attackTime: 0
+  resetAtackCount: 3
+  c_h: 0
+  lookAngle: 0
+  trans: {fileID: 0}
+  player: {fileID: 1733595116}
   delta: 0
   dist: 0
 --- !u!114 &1791872095
@@ -30746,8 +30816,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vertical: 0
   horizontal: 0
-  c_h: 0
-  lookAngle: 0
   rotateSpeed: 5
   rt: 0
   rb: 0
@@ -30760,20 +30828,22 @@ MonoBehaviour:
   moveSpeed: 3
   slowingRadius: 5
   stopRadius: 1.5
-  trans: {fileID: 0}
   wCollider: {fileID: 839225846}
   animEvents: {fileID: 0}
   activeModel: {fileID: 749395781}
   anim: {fileID: 0}
   rigidBody: {fileID: 0}
-  player: {fileID: 1710215426}
-  isInvincible: 0
-  isBlocking: 0
-  isDead: 0
-  canMove: 0
-  hardAttack: 0
+  moveAmount: 0
+  moveDir: {x: 0, y: 0, z: 0}
   inAction: 0
+  canMove: 0
+  usingItem: 0
+  isBlocking: 0
+  isInvincible: 0
+  hardAttack: 0
+  isDead: 0
   regenStam: 0
+  regenStam_count: 0
   regenTime: 3
   ligthAttacks:
   - oh_attack_1
@@ -30782,8 +30852,14 @@ MonoBehaviour:
   heavyAttacks:
   - gs_oh_attack_1
   - gs_oh_attack_2
-  moveAmount: 0
-  moveDir: {x: 0, y: 0, z: 0}
+  laCount: 0
+  haCount: 0
+  attackTime: 0
+  resetAtackCount: 3
+  c_h: 0
+  lookAngle: 0
+  trans: {fileID: 0}
+  player: {fileID: 1710215426}
   delta: 0
   dist: 0
 --- !u!1 &1888611810
@@ -30878,6 +30954,71 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1888611810}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1890638339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41e9bda8f3cf1492fa74926a530f6f70, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  broadcast: 1
+  keyContinuousPlayerActions:
+  - key: 100
+    index: 0
+    value: 1
+  - key: 97
+    index: 0
+    value: -1
+  - key: 119
+    index: 1
+    value: 1
+  - key: 115
+    index: 1
+    value: -1
+  - key: 114
+    index: 2
+    value: 1
+  - key: 306
+    index: 3
+    value: 1
+  - key: 122
+    index: 4
+    value: 1
+  - key: 113
+    index: 5
+    value: 1
+  - key: 101
+    index: 5
+    value: -1
+  axisContinuousPlayerActions: []
+  discretePlayerActions:
+  - key: 100
+    branchIndex: 0
+    value: 1
+  - key: 97
+    branchIndex: 0
+    value: -1
+  - key: 119
+    branchIndex: 1
+    value: 1
+  - key: 115
+    branchIndex: 1
+    value: -1
+  - key: 114
+    branchIndex: 2
+    value: 1
+  - key: 306
+    branchIndex: 3
+    value: 1
+  - key: 122
+    branchIndex: 4
+    value: 1
+  brain: {fileID: 69552476}
 --- !u!1 &1895196750
 GameObject:
   m_ObjectHideFlags: 0
@@ -31014,6 +31155,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1899691186}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1903178342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 943466ab374444748a364f9d6c3e2fe2, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  broadcast: 1
+  brain: {fileID: 69552476}
 --- !u!4 &1913239896 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400052, guid: e5cc1318afebc3a4eb290805c34745af,
@@ -31316,8 +31471,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vertical: 0
   horizontal: 0
-  c_h: 0
-  lookAngle: 0
   rotateSpeed: 5
   rt: 0
   rb: 0
@@ -31330,20 +31483,22 @@ MonoBehaviour:
   moveSpeed: 3
   slowingRadius: 5
   stopRadius: 1.5
-  trans: {fileID: 0}
   wCollider: {fileID: 729110267}
   animEvents: {fileID: 0}
   activeModel: {fileID: 1947554126}
   anim: {fileID: 0}
   rigidBody: {fileID: 0}
-  player: {fileID: 143922293}
-  isInvincible: 0
-  isBlocking: 0
-  isDead: 0
-  canMove: 0
-  hardAttack: 0
+  moveAmount: 0
+  moveDir: {x: 0, y: 0, z: 0}
   inAction: 0
+  canMove: 0
+  usingItem: 0
+  isBlocking: 0
+  isInvincible: 0
+  hardAttack: 0
+  isDead: 0
   regenStam: 0
+  regenStam_count: 0
   regenTime: 3
   ligthAttacks:
   - oh_attack_1
@@ -31352,8 +31507,14 @@ MonoBehaviour:
   heavyAttacks:
   - gs_oh_attack_1
   - gs_oh_attack_2
-  moveAmount: 0
-  moveDir: {x: 0, y: 0, z: 0}
+  laCount: 0
+  haCount: 0
+  attackTime: 0
+  resetAtackCount: 3
+  c_h: 0
+  lookAngle: 0
+  trans: {fileID: 0}
+  player: {fileID: 143922293}
   delta: 0
   dist: 0
 --- !u!114 &1921682365
@@ -31591,8 +31752,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vertical: 0
   horizontal: 0
-  c_h: 0
-  lookAngle: 0
   rotateSpeed: 5
   rt: 0
   rb: 0
@@ -31605,20 +31764,22 @@ MonoBehaviour:
   moveSpeed: 3
   slowingRadius: 5
   stopRadius: 1.5
-  trans: {fileID: 0}
   wCollider: {fileID: 267257262}
   animEvents: {fileID: 0}
   activeModel: {fileID: 706293490}
   anim: {fileID: 0}
   rigidBody: {fileID: 0}
-  player: {fileID: 936741869}
-  isInvincible: 0
-  isBlocking: 0
-  isDead: 0
-  canMove: 0
-  hardAttack: 0
+  moveAmount: 0
+  moveDir: {x: 0, y: 0, z: 0}
   inAction: 0
+  canMove: 0
+  usingItem: 0
+  isBlocking: 0
+  isInvincible: 0
+  hardAttack: 0
+  isDead: 0
   regenStam: 0
+  regenStam_count: 0
   regenTime: 3
   ligthAttacks:
   - oh_attack_1
@@ -31627,8 +31788,14 @@ MonoBehaviour:
   heavyAttacks:
   - gs_oh_attack_1
   - gs_oh_attack_2
-  moveAmount: 0
-  moveDir: {x: 0, y: 0, z: 0}
+  laCount: 0
+  haCount: 0
+  attackTime: 0
+  resetAtackCount: 3
+  c_h: 0
+  lookAngle: 0
+  trans: {fileID: 0}
+  player: {fileID: 936741869}
   delta: 0
   dist: 0
 --- !u!114 &1937543732
@@ -32161,71 +32328,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1980303836}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1987661123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41e9bda8f3cf1492fa74926a530f6f70, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  broadcast: 1
-  keyContinuousPlayerActions:
-  - key: 100
-    index: 0
-    value: 1
-  - key: 97
-    index: 0
-    value: -1
-  - key: 119
-    index: 1
-    value: 1
-  - key: 115
-    index: 1
-    value: -1
-  - key: 114
-    index: 2
-    value: 1
-  - key: 306
-    index: 3
-    value: 1
-  - key: 122
-    index: 4
-    value: 1
-  - key: 113
-    index: 5
-    value: 1
-  - key: 101
-    index: 5
-    value: -1
-  axisContinuousPlayerActions: []
-  discretePlayerActions:
-  - key: 100
-    branchIndex: 0
-    value: 1
-  - key: 97
-    branchIndex: 0
-    value: -1
-  - key: 119
-    branchIndex: 1
-    value: 1
-  - key: 115
-    branchIndex: 1
-    value: -1
-  - key: 114
-    branchIndex: 2
-    value: 1
-  - key: 306
-    branchIndex: 3
-    value: 1
-  - key: 122
-    branchIndex: 4
-    value: 1
-  brain: {fileID: 69552476}
 --- !u!4 &1990938871 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: cdde384a95c12904489f4f268f5ee7bf,
@@ -33614,7 +33716,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2055963700
 Transform:
   m_ObjectHideFlags: 0
@@ -33672,18 +33774,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04174ed805f90e34b9c9c9c80c3c32b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vertical: 0
+  horizontal: 0
+  rotateSpeed: 5
+  rt: 0
+  rb: 0
+  lb: 0
   maxHP: 150
   curHP: 0
-  maxStamina: 100
-  curStamina: 0
+  maxStam: 100
+  currStam: 0
   recSpeed: 20
-  runStam: 7
-  activeModel: {fileID: 874502214}
-  camManager: {fileID: 665825279}
-  weapon: {fileID: 114861317}
+  moveSpeed: 3.5
+  slowingRadius: 5
+  stopRadius: 1.5
   wCollider: {fileID: 1485594002}
+  animEvents: {fileID: 0}
+  activeModel: {fileID: 874502214}
   anim: {fileID: 0}
   rigidBody: {fileID: 2055963701}
+  moveAmount: 0
+  moveDir: {x: 0, y: 0, z: 0}
+  inAction: 0
+  canMove: 0
+  usingItem: 0
+  isBlocking: 0
+  isInvincible: 0
+  hardAttack: 0
+  isDead: 0
+  regenStam: 0
+  regenStam_count: 0
+  regenTime: 3
   ligthAttacks:
   - oh_attack_1
   - oh_attack_2
@@ -33691,30 +33812,18 @@ MonoBehaviour:
   heavyAttacks:
   - gs_oh_attack_1
   - gs_oh_attack_2
-  animEvents: {fileID: 0}
-  vertical: 0
-  horizontal: 0
-  moveAmount: 0
-  rt: 0
-  rb: 0
+  laCount: 0
+  haCount: 0
+  attackTime: 0
+  resetAtackCount: 3
+  runStam: 7
+  camManager: {fileID: 665825279}
+  weapon: {fileID: 114861317}
   lt: 0
-  lb: 0
   itemInput: 0
-  moveDir: {x: 0, y: 0, z: 0}
-  moveSpeed: 3.5
   runSpeed: 5
-  rotateSpeed: 5
   distanceToGround: 0.5
   running: 0
-  inAction: 0
-  canMove: 0
-  usingItem: 0
-  isBlocking: 0
-  isInvincible: 0
-  hardAttack: 0
-  regenStam: 0
-  regenStam_count: 0
-  regenTime: 3
   delta: 0
   ignoreLayers:
     serializedVersion: 2
@@ -34979,8 +35088,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vertical: 0
   horizontal: 0
-  c_h: 0
-  lookAngle: 0
   rotateSpeed: 5
   rt: 0
   rb: 0
@@ -34993,20 +35100,22 @@ MonoBehaviour:
   moveSpeed: 3
   slowingRadius: 5
   stopRadius: 1.5
-  trans: {fileID: 0}
   wCollider: {fileID: 1366689784}
   animEvents: {fileID: 0}
   activeModel: {fileID: 7749904}
   anim: {fileID: 0}
   rigidBody: {fileID: 0}
-  player: {fileID: 381974931}
-  isInvincible: 0
-  isBlocking: 0
-  isDead: 0
-  canMove: 0
-  hardAttack: 0
+  moveAmount: 0
+  moveDir: {x: 0, y: 0, z: 0}
   inAction: 0
+  canMove: 0
+  usingItem: 0
+  isBlocking: 0
+  isInvincible: 0
+  hardAttack: 0
+  isDead: 0
   regenStam: 0
+  regenStam_count: 0
   regenTime: 3
   ligthAttacks:
   - oh_attack_1
@@ -35015,8 +35124,14 @@ MonoBehaviour:
   heavyAttacks:
   - gs_oh_attack_1
   - gs_oh_attack_2
-  moveAmount: 0
-  moveDir: {x: 0, y: 0, z: 0}
+  laCount: 0
+  haCount: 0
+  attackTime: 0
+  resetAtackCount: 3
+  c_h: 0
+  lookAngle: 0
+  trans: {fileID: 0}
+  player: {fileID: 381974931}
   delta: 0
   dist: 0
 --- !u!114 &2129500360

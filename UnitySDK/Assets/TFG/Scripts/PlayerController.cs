@@ -2,52 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : BaseCharacter {
 
     [Header("Player info")]
-    public float maxHP = 150;
-    public float curHP;
-    public float maxStamina = 100;
-    public float curStamina;
-    public float recSpeed = 5;
     public float runStam = 7;
     
 
     [Header("Init")]
-    public GameObject activeModel;
+  
     public CameraManager camManager;
     public GameObject weapon;
-    public GameObject wCollider;
-    public Animator anim;
-    public Rigidbody rigidBody;
-    public string[] ligthAttacks;
-    public string[] heavyAttacks;
-
-    public AnimationEvents animEvents;
-    int laCount, haCount;
-    float attackTime, resetAtackCount = 3;
+   
+    
+    [HideInInspector]
+    public bool lt, itemInput;
 
     [HideInInspector]
-    public float vertical, horizontal, moveAmount;
-    [HideInInspector]
-    public bool rt, rb, lt, lb, itemInput;
-    [HideInInspector]
-    public Vector3 moveDir;
-    [HideInInspector]
-    public float moveSpeed = 3.5f,runSpeed = 5, rotateSpeed = 5.0f, distanceToGround = 0.5f;
+    public float runSpeed = 5, distanceToGround = 0.5f;
 
     [Header("Player States")]
     public bool running = false;
-    public bool inAction;
-    public bool canMove;
-    public bool usingItem;
-    public bool isBlocking;
-    public bool isInvincible;
-    public bool hardAttack;
+    
 
-    public bool regenStam;
-    public float regenStam_count = 0;
-    public float regenTime = 3;
+    
 
     [HideInInspector]
     public float delta;
@@ -59,42 +36,13 @@ public class PlayerController : MonoBehaviour {
     
            // Use this for initialization
     public void Init () {
-        curHP = maxHP;
-        curStamina = maxStamina;
-
-        SetUpAnimator();
-
-        rigidBody = GetComponent<Rigidbody>();
-        rigidBody.angularDrag = 999;
-        rigidBody.drag = 4;
-        rigidBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-
+        base.Start();
         gameObject.layer = 8;
         ignoreLayers = ~(1 << 9);
-
-        
-        animEvents = activeModel.AddComponent<AnimationEvents>();
         animEvents.Init(this, null);
     }
 	
-	// Update is called once per frame
-	void SetUpAnimator () {
-        if (activeModel == null)
-        {
-            anim = GetComponentInChildren<Animator>();
-            if (anim = null)
-            {
-                Debug.Log("No model found");
-            }
-            else
-            {
-                activeModel = anim.gameObject;
-            }
-        }
-        if (anim == null) anim = activeModel.GetComponent<Animator>();
-
-        anim.applyRootMotion = false;
-    }
+	
 
     public void FixedTick(float d)
     {
@@ -106,7 +54,7 @@ public class PlayerController : MonoBehaviour {
             regenStam = true;
         }
         
-        if (curStamina < maxStamina && !inAction && !running && regenStam) curStamina += delta * recSpeed;
+        if (currStam < maxStam && !inAction && !running && regenStam) currStam += delta * recSpeed;
         
         usingItem = anim.GetBool("item");
         weapon.SetActive(!usingItem);
@@ -117,21 +65,12 @@ public class PlayerController : MonoBehaviour {
         if (inAction)
         {
             anim.applyRootMotion = true;
-            //_actionDelay += delta;
-
-            //if (_actionDelay > .3f)
-            //{
-            //    inAction = false;
-            //    _actionDelay = 0.0f;
-            //}
-            //else
-            //{
-            //    return;
-            //}
+            canMove = false;
+            return;
 
         }
 
-        canMove = anim.GetBool("canMove");
+        //canMove = anim.GetBool("canMove");
 
         if (isInvincible)
         {
@@ -211,7 +150,7 @@ public class PlayerController : MonoBehaviour {
         if (running)
         {
             isBlocking = false;
-            curStamina -= delta*runStam;
+            currStam -= delta*runStam;
         }
         if (!canMove /*|| usingItem*/) return;
 
@@ -223,7 +162,7 @@ public class PlayerController : MonoBehaviour {
 
         string targetAnim = null;
 
-        if (rb && !inAction && curStamina >=10)
+        if (rb && !inAction && currStam >=10)
         {
             hardAttack = false;
             inAction = true;
@@ -232,10 +171,10 @@ public class PlayerController : MonoBehaviour {
             laCount++;
             laCount = laCount % 3;
             canMove = false;
-            curStamina -= 10; 
+            currStam -= 10; 
         }
 
-        if (rt && !inAction && curStamina >= 20)
+        if (rt && !inAction && currStam >= 20)
         {
             hardAttack = true;
             inAction = true;
@@ -244,7 +183,7 @@ public class PlayerController : MonoBehaviour {
             haCount++;
             haCount = haCount % 2;
             canMove = false;
-            curStamina -= 20;
+            currStam -= 20;
         }
 
         if (string.IsNullOrEmpty(targetAnim))
@@ -284,37 +223,5 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    public void OpenDamageColliders()
-    {
-        
-        wCollider.SetActive(true);
-        canMove = true;
-        //inAction = false;
-    }
-
-    public void CloseDamageColliders()
-    {
-        
-        wCollider.SetActive(false);
-        canMove = true;
-        inAction = false;
-        anim.SetBool("inAction", inAction);
-        
-    }
-
-    public void SetBlockingState()
-    {
-        isBlocking = true;
-    }
-
-    public void DoDamage(float v)
-    {
-        if (isInvincible || isBlocking) return;
-
-        curHP -= v;
-        isInvincible = true;
-        anim.Play("damage");
-        //anim.applyRootMotion = true;
-        anim.SetBool("canMove", false);
-    }
+ 
 }
