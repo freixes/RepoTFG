@@ -61,7 +61,9 @@ public class PlayerController : MonoBehaviour {
     public void Init () {
         curHP = maxHP;
         curStamina = maxStamina;
+
         SetUpAnimator();
+
         rigidBody = GetComponent<Rigidbody>();
         rigidBody.angularDrag = 999;
         rigidBody.drag = 4;

@@ -12,8 +12,7 @@ public class EnemyController : MonoBehaviour {
     public float maxHP = 150, curHP;
     public float maxStam = 100, currStam;
     public float recSpeed = 5;
-    public float moveSpeed;
-    float maxSpeed = 3.5f;
+    public float moveSpeed = 3.5f;
     public int slowingRadius = 5;
     public float stopRadius = 1.5f;
 
@@ -68,7 +67,6 @@ public class EnemyController : MonoBehaviour {
         animEvents = activeModel.AddComponent<AnimationEvents>();
         animEvents.Init(null, this);
         canMove = true;
-        moveSpeed = maxSpeed;
     }
 	
 	// Update is called once per frame
