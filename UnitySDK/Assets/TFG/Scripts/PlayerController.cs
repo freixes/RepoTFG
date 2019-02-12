@@ -46,6 +46,9 @@ public class PlayerController : BaseCharacter {
 
     public void FixedTick(float d)
     {
+        activeModel.transform.localPosition = new Vector3(0, 0, 0);
+        activeModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
+
         delta = d;
 
         if (!regenStam) regenStam_count += delta;

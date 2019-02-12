@@ -15,7 +15,7 @@ public class BaseCharacter : MonoBehaviour
     public float recSpeed = 5;
     public float moveSpeed = 3.5f;
     public int slowingRadius = 5;
-    public float stopRadius = 1.5f;
+    public float stopRadius = 2.0f;
 
     public GameObject wCollider;
 

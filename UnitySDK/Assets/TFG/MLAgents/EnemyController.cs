@@ -33,27 +33,29 @@ public class EnemyController : BaseCharacter {
 
     public void FixedTick(float d)
     {
+
         dist = Vector3.Distance(trans.position, player.transform.position);
         activeModel.transform.localPosition = new Vector3(0, 0, 0);
         activeModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
         delta = d;
 
+        //STAMINA REGENERATION
         if (!regenStam && !inAction) regenStam_count += delta;
         if (regenStam_count > regenTime)
         {
             regenStam_count = 0;
             regenStam = true;
         }
-
-        if (!lb) isBlocking = false;
-        //else isBlocking = false;
-        
         if (currStam < maxStam && !inAction && regenStam) currStam += delta * recSpeed;
+
+
+        isBlocking = lb;
 
         if (inAction)
         {
             anim.applyRootMotion = true;
             canMove = false;
+            if (inAction) isBlocking = false;
             return;
         }
         else
@@ -61,14 +63,10 @@ public class EnemyController : BaseCharacter {
             canMove = true;
         }
         DetectAction();
-
-
-
-        //canMove = anim.GetBool("canMove");
-        //canMove = !inAction;
+        
         if (isInvincible) isInvincible = !canMove;
 
-        if (!canMove)
+        if (!inAction)
         {
             attackTime += delta;
             if (attackTime > resetAtackCount)
@@ -83,10 +81,12 @@ public class EnemyController : BaseCharacter {
         anim.applyRootMotion = false;
         rigidBody.drag = (vertical != 0 || horizontal != 0) ? 0 : 4;
 
+        //ROTATE CHARACTER
         lookAngle += c_h * rotateSpeed;
         lookAngle=lookAngle % 360;
         trans.rotation = Quaternion.Euler(0, lookAngle, 0);
-
+        
+        //MOVEMENT
         if (!inAction && canMove)
         {
             Vector3 v = vertical * transform.forward;
@@ -98,7 +98,7 @@ public class EnemyController : BaseCharacter {
             rigidBody.velocity = moveDir * (moveSpeed * moveAmount);
         }
 
-        anim.SetBool("isBlocking", lb);
+        
 
         if (canMove)
         {
@@ -121,8 +121,6 @@ public class EnemyController : BaseCharacter {
         {
             return;
         }
-
-        if (inAction) isBlocking = false;
 
         string targetAnim = null;
 

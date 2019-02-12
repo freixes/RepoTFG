@@ -16,7 +16,7 @@ public class EnemyAgent : Agent {
     float delta;
     public float angle;
     public float moveAmount;
-    int max = 20, min = -20, area= 23;
+    int max = 20, min = -20, area;
     public float score = 0;
 
 
@@ -27,6 +27,7 @@ public class EnemyAgent : Agent {
     {
         initPos = enemy.transform.position;
         playerInitPos = player.transform.position;
+        area = 2 * max;
 
     }
 
@@ -66,26 +67,16 @@ public class EnemyAgent : Agent {
         Vector3 relativePosition = player.transform.position - enemy.transform.position;
         Vector3 lookDir = enemy.transform.forward;
         float lookDirAngle = Vector3.SignedAngle(lookDir, relativePosition, Vector3.up);
-       
-        //own position
-        //AddVectorObs(transform.position.x);
-        //AddVectorObs(transform.position.z);
-        //player pos
-        //AddVectorObs(player.transform.position.x);
-        //AddVectorObs(player.transform.position.z);
-        //enemy rotation
-        //AddVectorObs(enemy.transform.rotation.y);
-        //look direction
-        //AddVectorObs(lookDir.x);
-        //AddVectorObs(lookDir.z);
+        float distToPlayer = Vector3.Distance(enemy.transform.position,
+                                                player.transform.position);
+        
         //look angle diference
         AddVectorObs(lookDirAngle);
 
-
         //relative pos to player
-        //floor plane 100x100
         AddVectorObs(relativePosition.x / area);
         AddVectorObs(relativePosition.z / area);
+        AddVectorObs(distToPlayer);
 
         //stats
         AddVectorObs(enemy.curHP);
@@ -95,6 +86,7 @@ public class EnemyAgent : Agent {
 
         AddVectorObs(player.curHP);
         AddVectorObs(player.isBlocking);
+        AddVectorObs(player.inAction);
         AddVectorObs(prevHP);
         AddVectorObs(prevPlayerHP);
 
@@ -122,21 +114,16 @@ public class EnemyAgent : Agent {
         enemy.rb = vectorAction[3] == 1.0f ? true : false; //light attack
         enemy.lb = vectorAction[4] == 1.0f ? true : false; //block
         enemy.c_h = vectorAction[5];  //rotation
-        //if(vectorAction[5] < 0.05f && vectorAction[5] > -0.05f)
-        //{
-        //    enemy.c_h = 0;
-        //}
 
-        moveAmount = Mathf.Clamp01(Mathf.Abs(vectorAction[0]) + Mathf.Abs(vectorAction[1]));
+        //moveAmount = Mathf.Clamp01(Mathf.Abs(vectorAction[0]) + Mathf.Abs(vectorAction[1]));
        
 
         //prevDistance = distToPlayer;
         prevHP = enemy.curHP;
         prevPlayerHP = player.curHP;
 
-
         enemy.FixedTick(delta);
-        
+        moveAmount = enemy.moveAmount;
         //score and punishments
 
         //getting hit
@@ -156,16 +143,21 @@ public class EnemyAgent : Agent {
             //Done();
         }
 
-        //if(prevPlayerHP == player.curHP)
-        //{
-        //    AddReward(-.001f);
-        //    score += -.001f;
-        //}
-
+        
+        if(player.inAction && enemy.isBlocking)
+        {
+            AddReward(0.5f);
+            score += 0.5f;
+        }
+        if(player.inAction && !enemy.isBlocking)
+        {
+            AddReward(-0.5f);
+            score += -0.5f;
+        }
 
         //distance
         //getting closer reward
-        if(distToPlayer > 1.5f)
+        if(distToPlayer > 2.0f)
         {
             if (prevDistance > distToPlayer)
             {
@@ -181,7 +173,6 @@ public class EnemyAgent : Agent {
                 AddReward(-.55f);
                 score += -.55f;
                 prevDistance = distToPlayer;
-                //Done();
             }
         }
         else
@@ -189,19 +180,6 @@ public class EnemyAgent : Agent {
             AddReward(.001f);
             score += .001f;
         }
-       
-        //if(distToPlayer < enemy.slowingRadius)
-        //{
-        //    AddReward(0.1f);
-        //    score += 0.1f;
-        //}
-        //else
-        //{
-        //    AddReward(-0.01f);
-        //    score += -0.01f;
-        //}
-
-
 
         //speed
         if (distToPlayer < enemy.slowingRadius)
@@ -221,7 +199,7 @@ public class EnemyAgent : Agent {
             }
             else
             {
-                if(moveAmount < .8f && moveAmount > .2f)
+                if(moveAmount < .8f /*&& moveAmount > .2f*/)
                 {
                     AddReward(0.1f);
                     score += .1f;
@@ -239,7 +217,6 @@ public class EnemyAgent : Agent {
         {
             AddReward(.3f);
             score += .3f;
-            //Done();
         }
         else
         {
