@@ -45,7 +45,7 @@ public class EnemyController : BaseCharacter {
             regenStam = true;
         }
 
-        if (!lb) isBlocking = false;
+        isBlocking = lb;
         //else isBlocking = false;
         
         if (currStam < maxStam && !inAction && regenStam) currStam += delta * recSpeed;
