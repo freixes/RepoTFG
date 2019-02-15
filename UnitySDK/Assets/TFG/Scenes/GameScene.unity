@@ -1191,6 +1191,7 @@ MonoBehaviour:
   Arena: {fileID: 2089102081}
   prevDistance: 0
   angle: 0
+  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &47975326
@@ -1448,11 +1449,11 @@ MonoBehaviour:
     vectorActionSpaceType: 1
   brainType: 2
   CoreBrains:
-  - {fileID: 927182657}
-  - {fileID: 296882304}
-  - {fileID: 1562490607}
-  - {fileID: 1732333712}
-  instanceID: 5162
+  - {fileID: 570853762}
+  - {fileID: 1550230804}
+  - {fileID: 276774474}
+  - {fileID: 99417564}
+  instanceID: 12746
 --- !u!1 &70712326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1981,6 +1982,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 92377237}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &99417564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b23992c8eb17439887f5e944bf04a40, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  broadcast: 1
+  graphModel: {fileID: 4900000, guid: 2a212aee8a217d544be8fd967255d39a, type: 3}
+  graphScope: 
+  graphPlaceholders: []
+  BatchSizePlaceholderName: batch_size
+  VectorObservationPlacholderName: vector_observation
+  RecurrentInPlaceholderName: recurrent_in
+  RecurrentOutPlaceholderName: recurrent_out
+  VisualObservationPlaceholderName: []
+  ActionPlaceholderName: action
+  PreviousActionPlaceholderName: prev_action
+  brain: {fileID: 69552476}
 --- !u!1 &101129145
 GameObject:
   m_ObjectHideFlags: 0
@@ -2841,6 +2866,7 @@ MonoBehaviour:
   Arena: {fileID: 228402263}
   prevDistance: 0
   angle: 0
+  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &143922296
@@ -5450,6 +5476,19 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 14573049}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &276774474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35813a1be64e144f887d7d5f15b963fa, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  brain: {fileID: 69552476}
 --- !u!1 &278846783
 GameObject:
   m_ObjectHideFlags: 0
@@ -6104,20 +6143,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 293708145}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &296882304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 943466ab374444748a364f9d6c3e2fe2, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  broadcast: 1
-  brain: {fileID: 69552476}
 --- !u!1 &302735678
 GameObject:
   m_ObjectHideFlags: 0
@@ -6830,6 +6855,7 @@ MonoBehaviour:
   Arena: {fileID: 1129590589}
   prevDistance: 0
   angle: 0
+  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &381974934
@@ -9278,6 +9304,71 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1632388208}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &570853762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41e9bda8f3cf1492fa74926a530f6f70, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  broadcast: 1
+  keyContinuousPlayerActions:
+  - key: 100
+    index: 0
+    value: 1
+  - key: 97
+    index: 0
+    value: -1
+  - key: 119
+    index: 1
+    value: 1
+  - key: 115
+    index: 1
+    value: -1
+  - key: 114
+    index: 2
+    value: 1
+  - key: 306
+    index: 3
+    value: 1
+  - key: 122
+    index: 4
+    value: 1
+  - key: 113
+    index: 5
+    value: 1
+  - key: 101
+    index: 5
+    value: -1
+  axisContinuousPlayerActions: []
+  discretePlayerActions:
+  - key: 100
+    branchIndex: 0
+    value: 1
+  - key: 97
+    branchIndex: 0
+    value: -1
+  - key: 119
+    branchIndex: 1
+    value: 1
+  - key: 115
+    branchIndex: 1
+    value: -1
+  - key: 114
+    branchIndex: 2
+    value: 1
+  - key: 306
+    branchIndex: 3
+    value: 1
+  - key: 122
+    branchIndex: 4
+    value: 1
+  brain: {fileID: 69552476}
 --- !u!1001 &571037010
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11704,6 +11795,7 @@ MonoBehaviour:
   Arena: {fileID: 473718858}
   prevDistance: 0
   angle: 0
+  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &702446859
@@ -13624,6 +13716,7 @@ MonoBehaviour:
   Arena: {fileID: 1774238348}
   prevDistance: 0
   angle: 0
+  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &817507823
@@ -13958,6 +14051,7 @@ MonoBehaviour:
   Arena: {fileID: 1100226536}
   prevDistance: 0
   angle: 0
+  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &817943902
@@ -15601,71 +15695,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 924786477}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &927182657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41e9bda8f3cf1492fa74926a530f6f70, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  broadcast: 1
-  keyContinuousPlayerActions:
-  - key: 100
-    index: 0
-    value: 1
-  - key: 97
-    index: 0
-    value: -1
-  - key: 119
-    index: 1
-    value: 1
-  - key: 115
-    index: 1
-    value: -1
-  - key: 114
-    index: 2
-    value: 1
-  - key: 306
-    index: 3
-    value: 1
-  - key: 122
-    index: 4
-    value: 1
-  - key: 113
-    index: 5
-    value: 1
-  - key: 101
-    index: 5
-    value: -1
-  axisContinuousPlayerActions: []
-  discretePlayerActions:
-  - key: 100
-    branchIndex: 0
-    value: 1
-  - key: 97
-    branchIndex: 0
-    value: -1
-  - key: 119
-    branchIndex: 1
-    value: 1
-  - key: 115
-    branchIndex: 1
-    value: -1
-  - key: 114
-    branchIndex: 2
-    value: 1
-  - key: 306
-    branchIndex: 3
-    value: 1
-  - key: 122
-    branchIndex: 4
-    value: 1
-  brain: {fileID: 69552476}
 --- !u!1 &930406088
 GameObject:
   m_ObjectHideFlags: 0
@@ -15953,6 +15982,7 @@ MonoBehaviour:
   Arena: {fileID: 923847336}
   prevDistance: 0
   angle: 0
+  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &936741872
@@ -16474,6 +16504,7 @@ MonoBehaviour:
   Arena: {fileID: 473718858}
   prevDistance: 0
   angle: 0
+  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!1 &958173503
@@ -17459,6 +17490,7 @@ MonoBehaviour:
   Arena: {fileID: 1774238348}
   prevDistance: 0
   angle: 0
+  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &1014276720
@@ -22235,6 +22267,7 @@ MonoBehaviour:
   Arena: {fileID: 2089102081}
   prevDistance: 0
   angle: 0
+  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &1324387195
@@ -25401,6 +25434,20 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 806616596}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1550230804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 943466ab374444748a364f9d6c3e2fe2, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  broadcast: 1
+  brain: {fileID: 69552476}
 --- !u!1001 &1552549942
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25527,19 +25574,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2147986, y: 0.05317527, z: 1.0440626}
   m_Center: {x: -0.005992743, y: -0.00002566935, z: -0.08727213}
---- !u!114 &1562490607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35813a1be64e144f887d7d5f15b963fa, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  brain: {fileID: 69552476}
 --- !u!1 &1563116637
 GameObject:
   m_ObjectHideFlags: 0
@@ -27179,6 +27213,7 @@ MonoBehaviour:
   Arena: {fileID: 1324437445}
   prevDistance: 0
   angle: 0
+  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &1710215429
@@ -27902,30 +27937,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2147986, y: 0.05317527, z: 1.0440626}
   m_Center: {x: -0.005992743, y: -0.00002566935, z: -0.08727213}
---- !u!114 &1732333712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b23992c8eb17439887f5e944bf04a40, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  broadcast: 1
-  graphModel: {fileID: 4900000, guid: 2a212aee8a217d544be8fd967255d39a, type: 3}
-  graphScope: 
-  graphPlaceholders: []
-  BatchSizePlaceholderName: batch_size
-  VectorObservationPlacholderName: vector_observation
-  RecurrentInPlaceholderName: recurrent_in
-  RecurrentOutPlaceholderName: recurrent_out
-  VisualObservationPlaceholderName: []
-  ActionPlaceholderName: action
-  PreviousActionPlaceholderName: prev_action
-  brain: {fileID: 69552476}
 --- !u!1 &1733595116
 GameObject:
   m_ObjectHideFlags: 0
@@ -27985,6 +27996,7 @@ MonoBehaviour:
   Arena: {fileID: 2031322098}
   prevDistance: 0
   angle: 0
+  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &1733595119
@@ -28324,6 +28336,7 @@ MonoBehaviour:
   Arena: {fileID: 1100226536}
   prevDistance: 0
   angle: 0
+  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &1743149629
@@ -29333,6 +29346,7 @@ MonoBehaviour:
   Arena: {fileID: 2031322098}
   prevDistance: 0
   angle: 0
+  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &1791872096
@@ -30849,6 +30863,7 @@ MonoBehaviour:
   Arena: {fileID: 1324437445}
   prevDistance: 0
   angle: 0
+  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &1878871196
@@ -31541,6 +31556,7 @@ MonoBehaviour:
   Arena: {fileID: 228402263}
   prevDistance: 0
   angle: 0
+  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &1921682366
@@ -31822,6 +31838,7 @@ MonoBehaviour:
   Arena: {fileID: 923847336}
   prevDistance: 0
   angle: 0
+  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &1937543733
@@ -35158,6 +35175,7 @@ MonoBehaviour:
   Arena: {fileID: 1129590589}
   prevDistance: 0
   angle: 0
+  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &2129500361

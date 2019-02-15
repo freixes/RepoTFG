@@ -15,6 +15,7 @@ public class EnemyAgent : Agent {
     public float prevDistance;
     float delta;
     public float angle;
+    public float maxAngle = 30;
     public float moveAmount;
     int max = 20, min = -20, area= 23;
     public float score = 0;
@@ -146,21 +147,15 @@ public class EnemyAgent : Agent {
             //Done();
         }
 
-        //if(prevPlayerHP == rival.curHP)
-        //{
-        //    AddReward(-.001f);
-        //    score += -.001f;
-        //}
-
 
         //distance
         //getting closer reward
-        if(distToPlayer > 1.5f)
+        if (distToPlayer > 1.5f)
         {
             if (prevDistance > distToPlayer)
             {
-                AddReward(.5f);
-                score += .5f;
+                AddReward(.05f);
+                score += .05f;
                 prevDistance = distToPlayer;
                 //Done();
 
@@ -168,16 +163,16 @@ public class EnemyAgent : Agent {
             //punish for getting farther
             if (prevDistance < distToPlayer)
             {
-                AddReward(-.55f);
-                score += -.55f;
+                AddReward(-.055f);
+                score += -.055f;
                 prevDistance = distToPlayer;
                 //Done();
             }
         }
         else
         {
-            AddReward(.001f);
-            score += .001f;
+            AddReward(.0001f);
+            score += .0001f;
         }
 
         if (rival.inAction && self.isBlocking)
@@ -212,10 +207,10 @@ public class EnemyAgent : Agent {
             }
             else
             {
-                if(moveAmount < .8f /*&& moveAmount > .2f*/)
+                if (moveAmount < .8f /*&& moveAmount > .2f*/)
                 {
-                    AddReward(0.1f);
-                    score += .1f;
+                    AddReward(0.25f);
+                    score += .25f;
                 }
                 else
                 {
@@ -226,11 +221,11 @@ public class EnemyAgent : Agent {
         }
 
         //angle = Mathf.Abs(angle);
-        if(angle < 20 && angle > -20)
+        if (angle < maxAngle && angle > -maxAngle)
         {
             AddReward(.3f);
             score += .3f;
-            //Done();
+            
         }
         else
         {
