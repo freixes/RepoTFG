@@ -1,8 +1,9 @@
 anaconda commands
 
 new training
-mlagents-learn C:\Users\alumno\Desktop\MLAgentsRepo\config\trainer_config.yaml --save-freq=10000 --run-id=blocking --train
+mlagents-learn C:\Users\alumno\Desktop\MLAgentsRepo\config\trainer_config.yaml --save-freq=10000 --run-id=test --train
+mlagents-learn C:\Users\-\Desktop\RepoTFG\config\trainer_config.yaml --save-freq=10000 --run-id=test --train
 
 load training 
 mlagents-learn C:\Users\alumno\Desktop\MLAgentsRepo\config\trainer_config.yaml --save-freq=10000 --load --run-id=Training2 --train
-
+mlagents-learn C:\Users\-\Desktop\RepoTFG\config\trainer_config.yaml --save-freq=10000 --load --run-id=Training2 --train
