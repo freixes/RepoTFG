@@ -5,35 +5,27 @@ using UnityEngine;
 public class EnemyController : BaseCharacter {
 
     //inputs
-   
-    public float c_h, lookAngle; //cam rotation
+
+    public float c_h;
+    float lookAngle; //cam rotation
    
     public Transform trans;
    
     public GameObject player;
-
-    
+   
     public float delta;
-    public float dist;
     // Use this for initialization
 
-    protected override void Start () {
+    protected override void Start()
+    {
         base.Start();
         trans = GetComponent<Transform>().transform;
-        
-        animEvents.Init(null, this);
-       
-    }
-	
-	// Update is called once per frame
-	void Update () {
-        
-    }
 
+        animEvents.Init(null, this);
+    }
 
     public void FixedTick(float d)
-    {
-        dist = Vector3.Distance(trans.position, player.transform.position);
+    {      
         activeModel.transform.localPosition = new Vector3(0, 0, 0);
         activeModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
         delta = d;
@@ -60,15 +52,12 @@ public class EnemyController : BaseCharacter {
         {
             canMove = true;
         }
+
         DetectAction();
 
-
-
-        //canMove = anim.GetBool("canMove");
-        //canMove = !inAction;
         if (isInvincible) isInvincible = !canMove;
 
-        if (!canMove)
+        if (!inAction)
         {
             attackTime += delta;
             if (attackTime > resetAtackCount)
@@ -77,14 +66,13 @@ public class EnemyController : BaseCharacter {
                 laCount = 0;
                 haCount = 0;
             }
-            return;
         }
         
         anim.applyRootMotion = false;
         rigidBody.drag = (vertical != 0 || horizontal != 0) ? 0 : 4;
 
         lookAngle += c_h * rotateSpeed;
-        lookAngle=lookAngle % 360;
+        lookAngle = lookAngle % 360;
         trans.rotation = Quaternion.Euler(0, lookAngle, 0);
 
         if (!inAction && canMove)
@@ -106,7 +94,6 @@ public class EnemyController : BaseCharacter {
             anim.SetFloat("vertical", vertical, 0.2f, delta);
             anim.SetFloat("horizontal", horizontal, .2f, delta);
         }
-
     }
 
 
@@ -128,6 +115,7 @@ public class EnemyController : BaseCharacter {
 
         if (rb && !inAction && currStam >= 10)
         {
+            attackTime = 0;
             hardAttack = false;
             inAction = true;
             regenStam = false;
@@ -140,6 +128,7 @@ public class EnemyController : BaseCharacter {
 
         if (rt && !inAction && currStam >= 20)
         {
+            attackTime = 0;
             hardAttack = true;
             inAction = true;
             regenStam = false;
@@ -147,18 +136,14 @@ public class EnemyController : BaseCharacter {
             targetAnim = heavyAttacks[haCount];
             haCount++;
             haCount = haCount % 2;
-            currStam -= 20;
-            
+            currStam -= 20;         
         }
 
         if (string.IsNullOrEmpty(targetAnim))
             return;
-
-        
-        
+       
         anim.SetBool("inAction", inAction);
-        anim.CrossFade(targetAnim, 0.2f);
-        
+        anim.CrossFade(targetAnim, 0.2f);       
     }
 
 

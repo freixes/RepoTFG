@@ -7,7 +7,7 @@ public class BaseCharacter : MonoBehaviour
 
 
     public float vertical, horizontal;
-    public float rotateSpeed = 5.0f; //cam rotation
+    public float rotateSpeed = 3.0f; //cam rotation
     public bool rt, rb, lb;
 
     public float maxHP = 150, curHP;

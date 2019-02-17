@@ -12,7 +12,8 @@ public class EnemyAgent : Agent {
 
     float prevHP;
     float prevPlayerHP;
-    public float prevDistance;
+    float prevMoveAmount;
+    public float distToPlayer, prevDistance;
     float delta;
     public float angle;
     public float maxAngle = 30;
@@ -67,12 +68,12 @@ public class EnemyAgent : Agent {
         Vector3 relativePosition = rival.transform.position - self.transform.position;
         Vector3 lookDir = self.transform.forward;
         float lookDirAngle = Vector3.SignedAngle(lookDir, relativePosition, Vector3.up);
-        float distToPlayer = Vector3.Distance(self.transform.position,
+        float distToPlayerObs = Vector3.Distance(self.transform.position,
                                                  rival.transform.position);
         
         AddVectorObs(lookDirAngle);
-        AddVectorObs(distToPlayer);
-
+        AddVectorObs(distToPlayerObs);
+        AddVectorObs(prevDistance);
         //relative pos to rival
         //floor plane 100x100
         AddVectorObs(relativePosition.x / area);
@@ -88,23 +89,11 @@ public class EnemyAgent : Agent {
         AddVectorObs(rival.isBlocking);
         AddVectorObs(prevHP);
         AddVectorObs(prevPlayerHP);
-
-
-
-
     }
 
     public override void AgentAction(float[] vectorAction, string textAction)
     {
         delta = Time.fixedDeltaTime;
-        float distToPlayer = Vector3.Distance(self.transform.position,
-                                                rival.transform.position);
-        
-        Vector3 lookDir = self.transform.forward;
-        Vector3 lookAtPlayer = rival.transform.position - self.transform.position;
-
-        angle = Vector3.SignedAngle(lookDir, lookAtPlayer, Vector3.up);
-        
         
         //actions to self stats
         self.horizontal = vectorAction[0]; //movement
@@ -113,36 +102,33 @@ public class EnemyAgent : Agent {
         self.rb = vectorAction[3] == 1.0f ? true : false; //light attack
         self.lb = vectorAction[4] == 1.0f ? true : false; //block
         self.c_h = vectorAction[5];  //rotation
-        //if(vectorAction[5] < 0.05f && vectorAction[5] > -0.05f)
-        //{
-        //    self.c_h = 0;
-        //}
 
-        moveAmount = Mathf.Clamp01(Mathf.Abs(vectorAction[0]) + Mathf.Abs(vectorAction[1]));
-       
-
-        //prevDistance = distToPlayer;
-        prevHP = self.curHP;
-        prevPlayerHP = rival.curHP;
-
-
-        self.FixedTick(delta);
         
-        //score and punishments
+        //update agent
+        self.FixedTick(delta);
+        distToPlayer = Vector3.Distance(self.transform.position,
+                                                rival.transform.position);
+        Vector3 lookAtPlayer = rival.transform.position - self.transform.position;
+        angle = Vector3.SignedAngle(self.transform.forward, lookAtPlayer, Vector3.up);
 
+       // Debug.Log(distToPlayer + " : " + prevDistance);
+        
+        moveAmount = self.moveAmount;
+
+        //score and punishments
         //getting hit
         if (prevHP > self.curHP)
         {
-            AddReward(-.8f);
-            score += -.8f;
+            AddReward(-1.0f);
+            score += -1.0f;
             prevHP = self.curHP;
             //Done();
         }
         //hitting rival
         if(prevPlayerHP > rival.curHP)
         {
-            AddReward(.8f);
-            score += .8f;
+            AddReward(1.0f);
+            score += 1.0f;
             prevPlayerHP = rival.curHP;
             //Done();
         }
@@ -150,12 +136,12 @@ public class EnemyAgent : Agent {
 
         //distance
         //getting closer reward
-        if (distToPlayer > 1.5f)
+        if (distToPlayer > 2)
         {
             if (prevDistance > distToPlayer)
             {
-                AddReward(.05f);
-                score += .05f;
+                AddReward(.005f);
+                score += .005f;
                 prevDistance = distToPlayer;
                 //Done();
 
@@ -163,17 +149,44 @@ public class EnemyAgent : Agent {
             //punish for getting farther
             if (prevDistance < distToPlayer)
             {
-                AddReward(-.055f);
-                score += -.055f;
+                AddReward(-.004f);
+                score += -.004f;
                 prevDistance = distToPlayer;
                 //Done();
             }
         }
         else
         {
-            AddReward(.0001f);
-            score += .0001f;
+            AddReward(.001f);
+            score += .001f;
         }
+
+        //speed
+        if (distToPlayer < self.slowingRadius)
+        {
+            if (moveAmount < prevMoveAmount)
+            {
+                AddReward(0.005f);
+                prevMoveAmount = moveAmount;
+                score += .005f;
+            }
+            if (distToPlayer < self.stopRadius)
+            {
+                if (moveAmount < .15f)
+                {
+                    AddReward(0.004f);
+                    score += .004f;
+                }
+                else
+                {
+                    AddReward(-0.001f);
+                    score += -.001f;
+                }
+            }
+        }
+
+
+
 
         if (rival.inAction && self.isBlocking)
         {
@@ -185,53 +198,23 @@ public class EnemyAgent : Agent {
             AddReward(-0.5f);
             score += -0.5f;
         }
+        
+        
 
 
 
 
-        //speed
-        if (distToPlayer < self.slowingRadius)
-        {
-            if (distToPlayer < self.stopRadius)
-            {
-                if (moveAmount < .2f)
-                {
-                    AddReward(0.1f);
-                    score += .1f;
-                }
-                else
-                {
-                    AddReward(-0.001f);
-                    score += -.001f;
-                }
-            }
-            else
-            {
-                if (moveAmount < .8f /*&& moveAmount > .2f*/)
-                {
-                    AddReward(0.25f);
-                    score += .25f;
-                }
-                else
-                {
-                    AddReward(-0.001f);
-                    score += -.001f;
-                }
-            }
-        }
 
         //angle = Mathf.Abs(angle);
         if (angle < maxAngle && angle > -maxAngle)
         {
-            AddReward(.3f);
-            score += .3f;
-            
+            AddReward(.8f);
+            score += .8f;        
         }
         else
         {
-            AddReward(-.4f);
-            score += -.4f;
-
+            AddReward(-.8f);
+            score += -.8f;
         }
 
 

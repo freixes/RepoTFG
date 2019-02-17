@@ -48,6 +48,9 @@ public class PlayerController : BaseCharacter {
     {
         delta = d;
 
+        activeModel.transform.localPosition = new Vector3(0, 0, 0);
+        activeModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
+
         if (!regenStam) regenStam_count += delta;
         if (regenStam_count > regenTime) {
             regenStam_count = 0;

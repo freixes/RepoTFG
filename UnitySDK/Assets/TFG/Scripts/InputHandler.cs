@@ -22,7 +22,6 @@ public class InputHandler : MonoBehaviour {
 
     void Start()
     {
-        Application.targetFrameRate = 60;
         pController = GetComponent<PlayerController>();
         pController.Init();
 
