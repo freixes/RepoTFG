@@ -24886,7 +24886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420b21af2b5204948aa3535d12e91ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSteps: 2500
+  maxSteps: 0
   trainingConfiguration:
     width: 1280
     height: 720
