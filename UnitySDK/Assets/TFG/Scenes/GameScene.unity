@@ -1189,10 +1189,8 @@ MonoBehaviour:
   self: {fileID: 47975328}
   rival: {fileID: 1324387193}
   Arena: {fileID: 2089102081}
-  distToPlayer: 0
   prevDistance: 0
   angle: 0
-  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &47975326
@@ -1431,7 +1429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brainParameters:
-    vectorObservationSize: 13
+    vectorObservationSize: 11
     numStackedVectorObservations: 1
     vectorActionSize: 09000000
     cameraResolutions: []
@@ -1448,11 +1446,11 @@ MonoBehaviour:
     vectorActionSpaceType: 1
   brainType: 2
   CoreBrains:
-  - {fileID: 620564960}
-  - {fileID: 1849110103}
-  - {fileID: 1699936535}
-  - {fileID: 1278689276}
-  instanceID: 4360
+  - {fileID: 1101320554}
+  - {fileID: 1726315896}
+  - {fileID: 324044666}
+  - {fileID: 218818874}
+  instanceID: 4380
 --- !u!1 &70712326
 GameObject:
   m_ObjectHideFlags: 0
@@ -2839,10 +2837,8 @@ MonoBehaviour:
   self: {fileID: 143922298}
   rival: {fileID: 1921682364}
   Arena: {fileID: 228402263}
-  distToPlayer: 0
   prevDistance: 0
   angle: 0
-  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &143922296
@@ -4554,6 +4550,30 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1253265459}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &218818874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b23992c8eb17439887f5e944bf04a40, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  broadcast: 1
+  graphModel: {fileID: 4900000, guid: 2a212aee8a217d544be8fd967255d39a, type: 3}
+  graphScope: 
+  graphPlaceholders: []
+  BatchSizePlaceholderName: batch_size
+  VectorObservationPlacholderName: vector_observation
+  RecurrentInPlaceholderName: recurrent_in
+  RecurrentOutPlaceholderName: recurrent_out
+  VisualObservationPlaceholderName: []
+  ActionPlaceholderName: action
+  PreviousActionPlaceholderName: prev_action
+  brain: {fileID: 69552476}
 --- !u!1 &221272150
 GameObject:
   m_ObjectHideFlags: 0
@@ -6230,6 +6250,19 @@ Transform:
   m_Father: {fileID: 423133681}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &324044666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35813a1be64e144f887d7d5f15b963fa, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  brain: {fileID: 69552476}
 --- !u!1 &324542380
 GameObject:
   m_ObjectHideFlags: 0
@@ -6814,10 +6847,8 @@ MonoBehaviour:
   self: {fileID: 381974936}
   rival: {fileID: 2129500359}
   Arena: {fileID: 1129590589}
-  distToPlayer: 0
   prevDistance: 0
   angle: 0
-  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &381974934
@@ -10331,71 +10362,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0015279, y: 1.4917488, z: 0.1268923}
   m_Center: {x: -0.041074727, y: 0.28619066, z: 0.041992597}
---- !u!114 &620564960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41e9bda8f3cf1492fa74926a530f6f70, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  broadcast: 1
-  keyContinuousPlayerActions:
-  - key: 100
-    index: 0
-    value: 1
-  - key: 97
-    index: 0
-    value: -1
-  - key: 119
-    index: 1
-    value: 1
-  - key: 115
-    index: 1
-    value: -1
-  - key: 114
-    index: 2
-    value: 1
-  - key: 306
-    index: 3
-    value: 1
-  - key: 122
-    index: 4
-    value: 1
-  - key: 113
-    index: 5
-    value: 1
-  - key: 101
-    index: 5
-    value: -1
-  axisContinuousPlayerActions: []
-  discretePlayerActions:
-  - key: 100
-    branchIndex: 0
-    value: 1
-  - key: 97
-    branchIndex: 0
-    value: -1
-  - key: 119
-    branchIndex: 1
-    value: 1
-  - key: 115
-    branchIndex: 1
-    value: -1
-  - key: 114
-    branchIndex: 2
-    value: 1
-  - key: 306
-    branchIndex: 3
-    value: 1
-  - key: 122
-    branchIndex: 4
-    value: 1
-  brain: {fileID: 69552476}
 --- !u!1001 &621156040
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11753,10 +11719,8 @@ MonoBehaviour:
   self: {fileID: 702446861}
   rival: {fileID: 949983594}
   Arena: {fileID: 473718858}
-  distToPlayer: 0
   prevDistance: 0
   angle: 0
-  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &702446859
@@ -13671,10 +13635,8 @@ MonoBehaviour:
   self: {fileID: 817507821}
   rival: {fileID: 1014276722}
   Arena: {fileID: 1774238348}
-  distToPlayer: 0
   prevDistance: 0
   angle: 0
-  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &817507823
@@ -14005,10 +13967,8 @@ MonoBehaviour:
   self: {fileID: 817943900}
   rival: {fileID: 1743149631}
   Arena: {fileID: 1100226536}
-  distToPlayer: 0
   prevDistance: 0
   angle: 0
-  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &817943902
@@ -15937,10 +15897,8 @@ MonoBehaviour:
   self: {fileID: 936741874}
   rival: {fileID: 1937543731}
   Arena: {fileID: 923847336}
-  distToPlayer: 0
   prevDistance: 0
   angle: 0
-  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &936741872
@@ -16456,10 +16414,8 @@ MonoBehaviour:
   self: {fileID: 949983594}
   rival: {fileID: 702446861}
   Arena: {fileID: 473718858}
-  distToPlayer: 0
   prevDistance: 0
   angle: 0
-  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!1 &958173503
@@ -17443,10 +17399,8 @@ MonoBehaviour:
   self: {fileID: 1014276722}
   rival: {fileID: 817507821}
   Arena: {fileID: 1774238348}
-  distToPlayer: 0
   prevDistance: 0
   angle: 0
-  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &1014276720
@@ -18633,6 +18587,71 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100226536}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1101320554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41e9bda8f3cf1492fa74926a530f6f70, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  broadcast: 1
+  keyContinuousPlayerActions:
+  - key: 100
+    index: 0
+    value: 1
+  - key: 97
+    index: 0
+    value: -1
+  - key: 119
+    index: 1
+    value: 1
+  - key: 115
+    index: 1
+    value: -1
+  - key: 114
+    index: 2
+    value: 1
+  - key: 306
+    index: 3
+    value: 1
+  - key: 122
+    index: 4
+    value: 1
+  - key: 113
+    index: 5
+    value: 1
+  - key: 101
+    index: 5
+    value: -1
+  axisContinuousPlayerActions: []
+  discretePlayerActions:
+  - key: 100
+    branchIndex: 0
+    value: 1
+  - key: 97
+    branchIndex: 0
+    value: -1
+  - key: 119
+    branchIndex: 1
+    value: 1
+  - key: 115
+    branchIndex: 1
+    value: -1
+  - key: 114
+    branchIndex: 2
+    value: 1
+  - key: 306
+    branchIndex: 3
+    value: 1
+  - key: 122
+    branchIndex: 4
+    value: 1
+  brain: {fileID: 69552476}
 --- !u!1001 &1102839640
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21739,30 +21758,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 571037010}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1278689276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b23992c8eb17439887f5e944bf04a40, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  broadcast: 1
-  graphModel: {fileID: 4900000, guid: 2a212aee8a217d544be8fd967255d39a, type: 3}
-  graphScope: 
-  graphPlaceholders: []
-  BatchSizePlaceholderName: batch_size
-  VectorObservationPlacholderName: vector_observation
-  RecurrentInPlaceholderName: recurrent_in
-  RecurrentOutPlaceholderName: recurrent_out
-  VisualObservationPlaceholderName: []
-  ActionPlaceholderName: action
-  PreviousActionPlaceholderName: prev_action
-  brain: {fileID: 69552476}
 --- !u!4 &1283308222 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400052, guid: e5cc1318afebc3a4eb290805c34745af,
@@ -22241,10 +22236,8 @@ MonoBehaviour:
   self: {fileID: 1324387193}
   rival: {fileID: 47975328}
   Arena: {fileID: 2089102081}
-  distToPlayer: 0
   prevDistance: 0
   angle: 0
-  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &1324387195
@@ -27022,19 +27015,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2056607348}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1699936535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35813a1be64e144f887d7d5f15b963fa, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  brain: {fileID: 69552476}
 --- !u!4 &1700633849 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: cdde384a95c12904489f4f268f5ee7bf,
@@ -27185,10 +27165,8 @@ MonoBehaviour:
   self: {fileID: 1710215427}
   rival: {fileID: 1878871198}
   Arena: {fileID: 1324437445}
-  distToPlayer: 0
   prevDistance: 0
   angle: 0
-  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &1710215429
@@ -27692,6 +27670,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1718290969}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1726315896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 943466ab374444748a364f9d6c3e2fe2, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  broadcast: 1
+  brain: {fileID: 69552476}
 --- !u!1 &1728518376
 GameObject:
   m_ObjectHideFlags: 0
@@ -27969,10 +27961,8 @@ MonoBehaviour:
   self: {fileID: 1733595121}
   rival: {fileID: 1791872094}
   Arena: {fileID: 2031322098}
-  distToPlayer: 0
   prevDistance: 0
   angle: 0
-  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &1733595119
@@ -28308,10 +28298,8 @@ MonoBehaviour:
   self: {fileID: 1743149631}
   rival: {fileID: 817943900}
   Arena: {fileID: 1100226536}
-  distToPlayer: 0
   prevDistance: 0
   angle: 0
-  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &1743149629
@@ -29315,10 +29303,8 @@ MonoBehaviour:
   self: {fileID: 1791872094}
   rival: {fileID: 1733595121}
   Arena: {fileID: 2031322098}
-  distToPlayer: 0
   prevDistance: 0
   angle: 0
-  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &1791872096
@@ -30432,20 +30418,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1849110103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 943466ab374444748a364f9d6c3e2fe2, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  broadcast: 1
-  brain: {fileID: 69552476}
 --- !u!1 &1854481822
 GameObject:
   m_ObjectHideFlags: 0
@@ -30847,10 +30819,8 @@ MonoBehaviour:
   self: {fileID: 1878871198}
   rival: {fileID: 1710215427}
   Arena: {fileID: 1324437445}
-  distToPlayer: 0
   prevDistance: 0
   angle: 0
-  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &1878871196
@@ -31537,10 +31507,8 @@ MonoBehaviour:
   self: {fileID: 1921682364}
   rival: {fileID: 143922298}
   Arena: {fileID: 228402263}
-  distToPlayer: 0
   prevDistance: 0
   angle: 0
-  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &1921682366
@@ -31818,10 +31786,8 @@ MonoBehaviour:
   self: {fileID: 1937543731}
   rival: {fileID: 936741874}
   Arena: {fileID: 923847336}
-  distToPlayer: 0
   prevDistance: 0
   angle: 0
-  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &1937543733
@@ -35154,10 +35120,8 @@ MonoBehaviour:
   self: {fileID: 2129500359}
   rival: {fileID: 381974936}
   Arena: {fileID: 1129590589}
-  distToPlayer: 0
   prevDistance: 0
   angle: 0
-  maxAngle: 30
   moveAmount: 0
   score: 0
 --- !u!136 &2129500361
