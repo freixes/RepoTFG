@@ -258,6 +258,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6979362221347886401, guid: 4d073388af19b1840993ccdcef677a73,
+        type: 3}
+      propertyPath: brain
+      value: 
+      objectReference: {fileID: 69552476}
+    - target: {fileID: 6979362220617508896, guid: 4d073388af19b1840993ccdcef677a73,
+        type: 3}
+      propertyPath: brain
+      value: 
+      objectReference: {fileID: 69552476}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d073388af19b1840993ccdcef677a73, type: 3}
 --- !u!1 &69552474
@@ -834,6 +844,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6979362221347886401, guid: 4d073388af19b1840993ccdcef677a73,
+        type: 3}
+      propertyPath: brain
+      value: 
+      objectReference: {fileID: 69552476}
+    - target: {fileID: 6979362220617508896, guid: 4d073388af19b1840993ccdcef677a73,
+        type: 3}
+      propertyPath: brain
+      value: 
+      objectReference: {fileID: 69552476}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d073388af19b1840993ccdcef677a73, type: 3}
 --- !u!1 &534669902
@@ -1166,6 +1186,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6979362221347886401, guid: 4d073388af19b1840993ccdcef677a73,
+        type: 3}
+      propertyPath: brain
+      value: 
+      objectReference: {fileID: 69552476}
+    - target: {fileID: 6979362220617508896, guid: 4d073388af19b1840993ccdcef677a73,
+        type: 3}
+      propertyPath: brain
+      value: 
+      objectReference: {fileID: 69552476}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d073388af19b1840993ccdcef677a73, type: 3}
 --- !u!1001 &1174576076
@@ -2329,6 +2359,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6979362221347886401, guid: 4d073388af19b1840993ccdcef677a73,
+        type: 3}
+      propertyPath: brain
+      value: 
+      objectReference: {fileID: 69552476}
+    - target: {fileID: 6979362220617508896, guid: 4d073388af19b1840993ccdcef677a73,
+        type: 3}
+      propertyPath: brain
+      value: 
+      objectReference: {fileID: 69552476}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d073388af19b1840993ccdcef677a73, type: 3}
 --- !u!1 &2079056389
