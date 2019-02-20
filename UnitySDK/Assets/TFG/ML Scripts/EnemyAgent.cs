@@ -167,7 +167,7 @@ public class EnemyAgent : Agent {
 
         //distance
         //getting closer reward
-        if (distToPlayer > 1.5f)
+        if (distToPlayer > 3.0f)
         {
             if (prevDistance > distToPlayer)
             {
@@ -195,16 +195,16 @@ public class EnemyAgent : Agent {
             score += .001f;
         }
 
-        //if(distToPlayer < self.slowingRadius)
-        //{
-        //    AddReward(0.1f);
-        //    score += 0.1f;
-        //}
-        //else
-        //{
-        //    AddReward(-0.01f);
-        //    score += -0.01f;
-        //}
+        if(rival.inAction && self.isBlocking)
+        {
+            AddReward(0.5f);
+            score += 0.5f;
+        }
+        if(rival.inAction && !self.isBlocking)
+        {
+            AddReward(-0.5f);
+            score -= 0.5f;
+        }
 
 
 
