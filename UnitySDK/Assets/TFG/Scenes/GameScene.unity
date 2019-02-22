@@ -630,7 +630,7 @@ Transform:
   m_Father: {fileID: 665825278}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &448384794
+--- !u!114 &455443226
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -639,9 +639,61 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35813a1be64e144f887d7d5f15b963fa, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_Script: {fileID: 11500000, guid: 41e9bda8f3cf1492fa74926a530f6f70, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
+  broadcast: 1
+  keyContinuousPlayerActions:
+  - key: 100
+    index: 0
+    value: 1
+  - key: 97
+    index: 0
+    value: -1
+  - key: 119
+    index: 1
+    value: 1
+  - key: 115
+    index: 1
+    value: -1
+  - key: 114
+    index: 2
+    value: 1
+  - key: 306
+    index: 3
+    value: 1
+  - key: 122
+    index: 4
+    value: 1
+  - key: 113
+    index: 5
+    value: 1
+  - key: 101
+    index: 5
+    value: -1
+  axisContinuousPlayerActions: []
+  discretePlayerActions:
+  - key: 100
+    branchIndex: 0
+    value: 1
+  - key: 97
+    branchIndex: 0
+    value: -1
+  - key: 119
+    branchIndex: 1
+    value: 1
+  - key: 115
+    branchIndex: 1
+    value: -1
+  - key: 114
+    branchIndex: 2
+    value: 1
+  - key: 306
+    branchIndex: 3
+    value: 1
+  - key: 122
+    branchIndex: 4
+    value: 1
   brain: {fileID: 69552476}
 --- !u!1001 &472723113
 PrefabInstance:
@@ -1013,71 +1065,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 798442007}
   m_CullTransparentMesh: 0
---- !u!114 &800562106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41e9bda8f3cf1492fa74926a530f6f70, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  broadcast: 1
-  keyContinuousPlayerActions:
-  - key: 100
-    index: 0
-    value: 1
-  - key: 97
-    index: 0
-    value: -1
-  - key: 119
-    index: 1
-    value: 1
-  - key: 115
-    index: 1
-    value: -1
-  - key: 114
-    index: 2
-    value: 1
-  - key: 306
-    index: 3
-    value: 1
-  - key: 122
-    index: 4
-    value: 1
-  - key: 113
-    index: 5
-    value: 1
-  - key: 101
-    index: 5
-    value: -1
-  axisContinuousPlayerActions: []
-  discretePlayerActions:
-  - key: 100
-    branchIndex: 0
-    value: 1
-  - key: 97
-    branchIndex: 0
-    value: -1
-  - key: 119
-    branchIndex: 1
-    value: 1
-  - key: 115
-    branchIndex: 1
-    value: -1
-  - key: 114
-    branchIndex: 2
-    value: 1
-  - key: 306
-    branchIndex: 3
-    value: 1
-  - key: 122
-    branchIndex: 4
-    value: 1
-  brain: {fileID: 69552476}
 --- !u!114 &818769502 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6979362221347886406, guid: 4d073388af19b1840993ccdcef677a73,
@@ -1102,7 +1089,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1253265459}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1122865659
+--- !u!114 &935075086
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1112,7 +1099,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b23992c8eb17439887f5e944bf04a40, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
   broadcast: 1
   graphModel: {fileID: 4900000, guid: 6b269cb762163054cae4f0b010154cc5, type: 3}
@@ -1126,7 +1113,7 @@ MonoBehaviour:
   ActionPlaceholderName: action
   PreviousActionPlaceholderName: prev_action
   brain: {fileID: 69552476}
---- !u!114 &1129540680
+--- !u!114 &1125718864
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1136,7 +1123,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 943466ab374444748a364f9d6c3e2fe2, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
   broadcast: 1
   brain: {fileID: 69552476}
@@ -1640,6 +1627,19 @@ PrefabInstance:
       objectReference: {fileID: 69552476}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d073388af19b1840993ccdcef677a73, type: 3}
+--- !u!114 &1529717140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35813a1be64e144f887d7d5f15b963fa, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  brain: {fileID: 69552476}
 --- !u!1001 &1839523760
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2497,31 +2497,36 @@ PrefabInstance:
         type: 3}
       propertyPath: CoreBrains.Array.data[0]
       value: 
-      objectReference: {fileID: 800562106}
+      objectReference: {fileID: 455443226}
     - target: {fileID: 8181438982463732359, guid: 507cb8cc4608722469da2916101a0d62,
         type: 3}
       propertyPath: CoreBrains.Array.data[1]
       value: 
-      objectReference: {fileID: 1129540680}
+      objectReference: {fileID: 1125718864}
     - target: {fileID: 8181438982463732359, guid: 507cb8cc4608722469da2916101a0d62,
         type: 3}
       propertyPath: CoreBrains.Array.data[2]
       value: 
-      objectReference: {fileID: 448384794}
+      objectReference: {fileID: 1529717140}
     - target: {fileID: 8181438982463732359, guid: 507cb8cc4608722469da2916101a0d62,
         type: 3}
       propertyPath: CoreBrains.Array.data[3]
       value: 
-      objectReference: {fileID: 1122865659}
+      objectReference: {fileID: 935075086}
     - target: {fileID: 8181438982463732359, guid: 507cb8cc4608722469da2916101a0d62,
         type: 3}
       propertyPath: brainType
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8181438982463732359, guid: 507cb8cc4608722469da2916101a0d62,
         type: 3}
       propertyPath: instanceID
-      value: -10564
+      value: -9796
+      objectReference: {fileID: 0}
+    - target: {fileID: 8181438982463732359, guid: 507cb8cc4608722469da2916101a0d62,
+        type: 3}
+      propertyPath: brainParameters.vectorObservationSize
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8181438981502544611, guid: 507cb8cc4608722469da2916101a0d62,
         type: 3}
