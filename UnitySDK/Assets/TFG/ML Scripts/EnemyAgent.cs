@@ -133,14 +133,14 @@ public class EnemyAgent : Agent
         if (self.curHP < prevHP && rival.hardAttack) //hard attack
         {
             AddReward(Variables.hardDamageReward);
-            score -= Variables.hardDamageReward;
+            score += Variables.hardDamageReward;
             prevHP = self.curHP;
         }
 
         if (self.curHP < prevHP && !rival.hardAttack) //light attack
         {
             AddReward(Variables.lightDamageReward);
-            score -= Variables.lightDamageReward;
+            score += Variables.lightDamageReward;
             prevHP = self.curHP;
         }
 
@@ -167,7 +167,7 @@ public class EnemyAgent : Agent
         else
         {
             AddReward(Variables.notFacingRivalReward);
-            score -= Variables.notFacingRivalReward;
+            score += Variables.notFacingRivalReward;
         }
     }
 
@@ -181,7 +181,7 @@ public class EnemyAgent : Agent
         if (rival.inAction && !self.isBlocking)
         {
             AddReward(Variables.notBlockingReward);
-            score -= Variables.notBlockingReward;
+            score += Variables.notBlockingReward;
         }
     }
 
@@ -196,7 +196,7 @@ public class EnemyAgent : Agent
         if (self.curHP <= 0)
         {
             AddReward(Variables.dyingReward);
-            score -= Variables.dyingReward;
+            score += Variables.dyingReward;
             Done();
         }
     }
