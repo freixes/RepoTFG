@@ -12,19 +12,18 @@ public class EnemyAgent : Agent
     public GameObject Arena;
 
     float prevHP, prevRivalHP;
-    public float prevDistance;
+    public float prevDistance, distToPlayer;
     float delta;
     public float angle;
-    
+
     int max = 20, min = -20, area = 23;
     public float score = 0;
 
     Vector3 initPos;
     Vector3 playerInitPos;
 
-    float distToPlayer;
     public float moveDiff;
-    Vector3 lookAtRival, lookDir, rivalOldPos;
+    Vector3 lookAtRival, lookDir, prevPosition, prevEnemyPosition;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,41 +50,43 @@ public class EnemyAgent : Agent
         //new distance
         prevDistance = Vector3.Distance(self.transform.position,
                                                 rival.transform.position);
-        rivalOldPos = rival.transform.position;
+
+        prevPosition = self.transform.position;
+        prevEnemyPosition = rival.transform.position;
     }
 
     public override void CollectObservations()
-    { 
-        distToPlayer = Vector3.Distance(self.transform.position, rivalOldPos);
+    {
+        distToPlayer = Vector3.Distance(self.transform.position, rival.transform.position);
 
-        lookAtRival = rival.transform.position - self.transform.position;
+        lookAtRival = rival.transform.position - prevEnemyPosition;
         lookDir = self.transform.forward;
         angle = Vector3.SignedAngle(lookDir, lookAtRival, Vector3.up);
+
+        moveDiff = Vector3.Distance(self.transform.position, prevPosition);
 
         //look angle diference
         AddVectorObs(angle);
         AddVectorObs(distToPlayer);//distance
-        AddVectorObs(moveDiff);
+        //AddVectorObs(moveDiff);
+
         AddVectorObs(self.vertical);//agent stats
         AddVectorObs(self.horizontal);
         AddVectorObs(self.curHP);
         AddVectorObs(prevHP);
-        AddVectorObs(self.isBlocking);   
+        AddVectorObs(self.isBlocking);
         AddVectorObs(self.hardAttack);
+
         AddVectorObs(rival.curHP);//enemy stats
         AddVectorObs(rival.isBlocking);
         AddVectorObs(rival.hardAttack);
         AddVectorObs(prevRivalHP);
-
-
-
-
     }
 
     public override void AgentAction(float[] vectorAction, string textAction)
     {
         delta = Time.fixedDeltaTime;
-        
+
         //actions to self stats
         self.horizontal = vectorAction[0]; //movement
         self.vertical = vectorAction[1];   //movement
@@ -93,7 +94,7 @@ public class EnemyAgent : Agent
         self.rb = vectorAction[3] == 1.0f ? true : false; //light attack
         self.lb = vectorAction[4] == 1.0f ? true : false; //block
         self.c_h = vectorAction[5];  //rotation
-        
+
         //prevDistance = distToPlayer;
         prevHP = self.curHP;
         prevRivalHP = rival.curHP;
@@ -107,7 +108,6 @@ public class EnemyAgent : Agent
         BlockingRewards();
         FacingPlayerRewards();
         ObjectiveReachedRewards();
-
     }
 
 
@@ -147,14 +147,22 @@ public class EnemyAgent : Agent
     }
 
     void DistanceRewards()
-    {        
-        moveDiff = prevDistance - distToPlayer;
-        moveDiff = Mathf.Clamp(moveDiff, -1.0f, 1.0f);
+    {
+         
+        if (distToPlayer < prevDistance)
+        {
+            AddReward(Variables.closerReward);
+            score += Variables.closerReward;
+        }
+        if (prevDistance > distToPlayer)
+        {
+            AddReward(Variables.fartherReward);
+            score += Variables.fartherReward;
+        }
+        prevDistance = distToPlayer;
+        prevEnemyPosition = rival.transform.position;
+        prevPosition = self.transform.position;
 
-        AddReward(moveDiff);
-        score = score + moveDiff;
-
-        rivalOldPos = rival.transform.position;
     }
 
     void FacingPlayerRewards()

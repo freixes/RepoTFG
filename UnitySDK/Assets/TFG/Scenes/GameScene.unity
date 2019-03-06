@@ -2526,7 +2526,7 @@ PrefabInstance:
     - target: {fileID: 8181438982463732359, guid: 507cb8cc4608722469da2916101a0d62,
         type: 3}
       propertyPath: brainParameters.vectorObservationSize
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8181438981502544611, guid: 507cb8cc4608722469da2916101a0d62,
         type: 3}
