@@ -1,7 +1,7 @@
 anaconda commands
 
 new training
-mlagents-learn C:\Users\alumno\Desktop\RepoTFG\config\trainer_config.yaml --save-freq=10000 --run-id=test --train
+mlagents-learn C:\Users\alumno\Desktop\RepoTFG\config\trainer_config.yaml --save-freq=10000 --run-id=lessRewards --train
 mlagents-learn C:\Users\-\Desktop\RepoTFG\config\trainer_config.yaml --save-freq=10000 --run-id=test --train
 
 load training 
