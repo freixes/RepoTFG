@@ -1102,7 +1102,7 @@ MonoBehaviour:
   m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
   broadcast: 1
-  graphModel: {fileID: 4900000, guid: 6b269cb762163054cae4f0b010154cc5, type: 3}
+  graphModel: {fileID: 4900000, guid: 390a9db5b4bcd5c4e963eba0815f84da, type: 3}
   graphScope: 
   graphPlaceholders: []
   BatchSizePlaceholderName: batch_size
@@ -2516,7 +2516,7 @@ PrefabInstance:
     - target: {fileID: 8181438982463732359, guid: 507cb8cc4608722469da2916101a0d62,
         type: 3}
       propertyPath: brainType
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8181438982463732359, guid: 507cb8cc4608722469da2916101a0d62,
         type: 3}
@@ -2526,7 +2526,7 @@ PrefabInstance:
     - target: {fileID: 8181438982463732359, guid: 507cb8cc4608722469da2916101a0d62,
         type: 3}
       propertyPath: brainParameters.vectorObservationSize
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8181438981502544611, guid: 507cb8cc4608722469da2916101a0d62,
         type: 3}

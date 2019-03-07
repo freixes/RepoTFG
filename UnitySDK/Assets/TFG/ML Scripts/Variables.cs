@@ -11,8 +11,8 @@ public class Variables
 
     //Rewards
     //distance
-    static public float closerReward = 0.5f;
-    static public float fartherReward = -0.4f;
+    static public float closerReward = 0.7f;
+    static public float fartherReward = -0.7f;
     //objectives
     static public float dyingReward = -1.0f;
     static public float objectiveReward = 1.0f;
@@ -22,8 +22,8 @@ public class Variables
     static public float hardDamageReward = -0.5f;
     static public float lightDamageReward = -0.25f;
     //facing player
-    static public float facingRivalReward = 0.1f;
-    static public float notFacingRivalReward = -0.2f;
+    static public float facingRivalReward = 0.4f;
+    static public float notFacingRivalReward = -0.4f;
     //blocking
     static public float blockingReward = 0.5f;
     static public float notBlockingReward = -0.5f;
