@@ -17,13 +17,12 @@ trained agents or for imitation learning.)
 
 The Brain class abstracts out the decision making logic from the Agent itself so
 that you can use the same Brain in multiple Agents. How a Brain makes its
-decisions depends on the type of Brain it is. An **External** Brain simply
-passes the observations from its Agents to an external process and then passes
-the decisions made externally back to the Agents. An **Internal** Brain uses the
-trained policy parameters to make decisions (and no longer adjusts the
-parameters in search of a better decision). The other types of Brains do not
-directly involve training, but you might find them useful as part of a training
-project. See [Brains](Learning-Environment-Design-Brains.md).
+decisions depends on the kind of Brain it is. A Player Brain allows you
+to directly control the agent. A Heuristic Brain allows you to create a 
+decision script to control the agent with a set of rules. These two Brains
+do not involve neural networks but they can be useful for debugging. The
+Learning Brain allows you to train and use neural network models for
+your Agents. See [Brains](Learning-Environment-Design-Brains.md).
   
 ## Decisions
 
@@ -127,28 +126,14 @@ When you set up an Agent's Brain in the Unity Editor, set the following
 properties to use a continuous vector observation:
 
 * **Space Size** — The state size must match the length of your feature vector.
-* **Brain Type** — Set to **External** during training; set to **Internal** to
-  use the trained model.
 
 The observation feature vector is a list of floating point numbers, which means
 you must convert any other data types to a float or a list of floats.
 
-Integers can be be added directly to the observation vector. You must explicitly
-convert Boolean values to a number:
-
-```csharp
-AddVectorObs(isTrueOrFalse ? 1 : 0);
-```
-
-For entities like positions and rotations, you can add their components to the
-feature list individually.  For example:
-
-```csharp
-Vector3 speed = ball.transform.GetComponent<Rigidbody>().velocity;
-AddVectorObs(speed.x);
-AddVectorObs(speed.y);
-AddVectorObs(speed.z);
-```
+The `AddVectorObs` method provides a number of overloads for adding common types
+of data to your observation vector. You can add Integers and booleans directly to
+the observation vector, as well as some common Unity data types such as `Vector2`,
+`Vector3`, and `Quaternion`.
 
 Type enumerations should be encoded in the _one-hot_ style. That is, add an
 element to the feature vector for each element of enumeration, setting the
@@ -166,6 +151,21 @@ public override void CollectObservations()
     {
         AddVectorObs((int)currentItem == ci ? 1.0f : 0.0f);
     }
+}
+```
+
+`AddVectorObs` also provides a two-argument version as a shortcut for _one-hot_
+style observations. The following example is identical to the previous one.
+
+```csharp
+enum CarriedItems { Sword, Shield, Bow, LastItem }
+const int NUM_ITEM_TYPES = (int)CarriedItems.LastItem;
+
+public override void CollectObservations()
+{
+    // The first argument is the selection index; the second is the
+    // number of possibilities
+    AddVectorObs((int)currentItem, NUM_ITEM_TYPES);
 }
 ```
 
@@ -346,8 +346,8 @@ continuous action spaces.
 #### Masking Discrete Actions
 
 When using Discrete Actions, it is possible to specify that some actions are
-impossible for the next decision. Then the Agent is controlled by an External or
-Internal Brain, the Agent will be unable to perform the specified action. Note
+impossible for the next decision. Then the Agent is controlled by a
+Learning Brain, the Agent will be unable to perform the specified action. Note
 that when the Agent is controlled by a Player or Heuristic Brain, the Agent will
 still be able to decide to perform the masked action. In order to mask an
 action, call the method `SetActionMask` within the `CollectObservation` method :
@@ -478,6 +478,10 @@ if ((ball.transform.position.y - gameObject.transform.position.y) < -2f ||
 The `Ball3DAgent` also assigns a negative penalty when the ball falls off the
 platform.
 
+Note that all of these environments make use of the `Done()` method, which manually
+terminates an episode when a termination condition is reached. This can be 
+called independently of the `Max Step` property.
+
 ## Agent Properties
 
 ![Agent Inspector](images/agent.png)
@@ -507,7 +511,7 @@ platform.
     * `RequestAction()` Signals that the Agent is requesting an action. The
         action provided to the Agent in this case is the same action that was
         provided the last time it requested a decision.
-* `Decision Frequency` - The number of steps between decision requests. Not used
+* `Decision Interval` - The number of steps between decision requests. Not used
   if `On Demand Decision`, is true.
 
 ## Monitoring Agents
