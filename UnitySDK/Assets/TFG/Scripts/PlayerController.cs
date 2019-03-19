@@ -168,26 +168,28 @@ public class PlayerController : BaseCharacter {
 
         if (rb && !inAction && currStam >=10)
         {
+            attackTime = 0;
             hardAttack = false;
             inAction = true;
             regenStam = false;
+            canMove = false;
             targetAnim = ligthAttacks[laCount];
             laCount++;
             laCount = laCount % 3;
-            canMove = false;
-            currStam -= 10; 
+            currStam -= 10;
         }
 
         if (rt && !inAction && currStam >= 20)
         {
+            attackTime = 0;
             hardAttack = true;
             inAction = true;
             regenStam = false;
+            canMove = false;
             targetAnim = heavyAttacks[haCount];
             haCount++;
             haCount = haCount % 2;
-            canMove = false;
-            currStam -= 20;
+            currStam -= 20; ;
         }
 
         if (string.IsNullOrEmpty(targetAnim))

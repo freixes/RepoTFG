@@ -4,7 +4,7 @@ using UnityEngine;
 using MLAgents;
 
 
-public class EnemyAgent : Agent
+public class EnemyAgentIL : Agent
 {
 
     public EnemyController self;
@@ -65,12 +65,12 @@ public class EnemyAgent : Agent
     public override void CollectObservations()
     {
         Vector3 relativePosition = rival.transform.position - self.transform.position;
-        float lookDirAngle = Vector3.SignedAngle(self.transform.forward, relativePosition, Vector3.up);
+        Vector3 lookDir = self.transform.forward;
+        float lookDirAngle = Vector3.SignedAngle(lookDir, relativePosition, Vector3.up);
         float distance = Vector3.Distance(rival.transform.position, self.transform.position);
         
         //self rotation
-        AddVectorObs(self.transform.rotation.y);
-        AddVectorObs(distance);
+        AddVectorObs(self.transform.rotation.y);      
         //look angle diference
         AddVectorObs(lookDirAngle);
         AddVectorObs(rival.isBlocking);

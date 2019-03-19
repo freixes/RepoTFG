@@ -37,9 +37,9 @@ MonoBehaviour:
   - axis: Vertical
     index: 1
     scale: 1
-  - axis: 
+  - axis: Horizontal
     index: 0
-    scale: 0
+    scale: -1
   - axis: 
     index: 0
     scale: 0

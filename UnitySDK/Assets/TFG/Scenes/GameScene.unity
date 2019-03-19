@@ -262,12 +262,14 @@ PrefabInstance:
         type: 3}
       propertyPath: brain
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4,
+        type: 2}
     - target: {fileID: 6979362220617508896, guid: 4d073388af19b1840993ccdcef677a73,
         type: 3}
       propertyPath: brain
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d073388af19b1840993ccdcef677a73, type: 3}
 --- !u!1 &111252536
@@ -695,7 +697,8 @@ PrefabInstance:
         type: 3}
       propertyPath: brain
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d073388af19b1840993ccdcef677a73, type: 3}
 --- !u!1001 &502774828
@@ -769,12 +772,14 @@ PrefabInstance:
         type: 3}
       propertyPath: brain
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4,
+        type: 2}
     - target: {fileID: 6979362220617508896, guid: 4d073388af19b1840993ccdcef677a73,
         type: 3}
       propertyPath: brain
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d073388af19b1840993ccdcef677a73, type: 3}
 --- !u!1 &534669902
@@ -1126,12 +1131,14 @@ PrefabInstance:
         type: 3}
       propertyPath: brain
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4,
+        type: 2}
     - target: {fileID: 6979362220617508896, guid: 4d073388af19b1840993ccdcef677a73,
         type: 3}
       propertyPath: brain
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d073388af19b1840993ccdcef677a73, type: 3}
 --- !u!1001 &1174576076
@@ -1205,12 +1212,14 @@ PrefabInstance:
         type: 3}
       propertyPath: brain
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4,
+        type: 2}
     - target: {fileID: 6979362220617508896, guid: 4d073388af19b1840993ccdcef677a73,
         type: 3}
       propertyPath: brain
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d073388af19b1840993ccdcef677a73, type: 3}
 --- !u!114 &1210198021
@@ -1617,12 +1626,14 @@ PrefabInstance:
         type: 3}
       propertyPath: brain
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4,
+        type: 2}
     - target: {fileID: 6979362220617508896, guid: 4d073388af19b1840993ccdcef677a73,
         type: 3}
       propertyPath: brain
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d073388af19b1840993ccdcef677a73, type: 3}
 --- !u!1001 &1839523760
@@ -1696,12 +1707,14 @@ PrefabInstance:
         type: 3}
       propertyPath: brain
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4,
+        type: 2}
     - target: {fileID: 6979362220617508896, guid: 4d073388af19b1840993ccdcef677a73,
         type: 3}
       propertyPath: brain
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d073388af19b1840993ccdcef677a73, type: 3}
 --- !u!1001 &1859597374
@@ -1859,7 +1872,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35813a1be64e144f887d7d5f15b963fa, type: 3}
   m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
-  brain: {fileID: 0}
 --- !u!1 &2018813520
 GameObject:
   m_ObjectHideFlags: 0
@@ -2268,12 +2280,14 @@ PrefabInstance:
         type: 3}
       propertyPath: brain
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4,
+        type: 2}
     - target: {fileID: 6979362220617508896, guid: 4d073388af19b1840993ccdcef677a73,
         type: 3}
       propertyPath: brain
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d073388af19b1840993ccdcef677a73, type: 3}
 --- !u!1 &2079056389
@@ -2471,12 +2485,14 @@ PrefabInstance:
         type: 3}
       propertyPath: brain
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4,
+        type: 2}
     - target: {fileID: 6979362220617508896, guid: 4d073388af19b1840993ccdcef677a73,
         type: 3}
       propertyPath: brain
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d073388af19b1840993ccdcef677a73, type: 3}
 --- !u!1001 &8181438982399063003
@@ -2580,6 +2596,43 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8181438981502544610, guid: 507cb8cc4608722469da2916101a0d62,
+        type: 3}
+      propertyPath: broadcastHub.broadcastingBrains.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8181438981502544610, guid: 507cb8cc4608722469da2916101a0d62,
+        type: 3}
+      propertyPath: broadcastHub._brainsToControl.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8181438981502544610, guid: 507cb8cc4608722469da2916101a0d62,
+        type: 3}
+      propertyPath: broadcastHub.broadcastingBrains.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4,
+        type: 2}
+    - target: {fileID: 8181438981502544610, guid: 507cb8cc4608722469da2916101a0d62,
+        type: 3}
+      propertyPath: broadcastHub._brainsToControl.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4,
+        type: 2}
+    - target: {fileID: 8181438981502544610, guid: 507cb8cc4608722469da2916101a0d62,
+        type: 3}
+      propertyPath: trainingConfiguration.timeScale
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8181438981502544610, guid: 507cb8cc4608722469da2916101a0d62,
+        type: 3}
+      propertyPath: trainingConfiguration.width
+      value: 720
+      objectReference: {fileID: 0}
+    - target: {fileID: 8181438981502544610, guid: 507cb8cc4608722469da2916101a0d62,
+        type: 3}
+      propertyPath: trainingConfiguration.height
+      value: 480
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 507cb8cc4608722469da2916101a0d62, type: 3}
