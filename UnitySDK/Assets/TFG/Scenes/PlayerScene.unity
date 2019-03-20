@@ -428,6 +428,38 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
+--- !u!1 &174201633 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2381236837683794578, guid: 9b0e040d84df2e04baad2eb2d730936e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6973604859497941832}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &174201634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174201633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8365913b3d1154cb441aef0bf01887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brain: {fileID: 11400000, guid: dc7390c2255a3474aa2b35f10042dd22, type: 2}
+  agentParameters:
+    agentCameras: []
+    maxStep: 0
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
+  self: {fileID: 2072004912}
+  rival: {fileID: 2055963703}
+  Arena: {fileID: 6973604859645464119}
+  prevDistance: 0
+  angle: 0
+  moveAmount: 0
+  score: 0
 --- !u!4 &211167859 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400028, guid: 03330268eeaa51e4189861a54f79e430,
@@ -1071,10 +1103,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   broadcastHub:
     broadcastingBrains:
-    - {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4, type: 2}
+    - {fileID: 11400000, guid: dab3d09386d7d264baad7874f61e8322, type: 2}
     - {fileID: 11400000, guid: dc7390c2255a3474aa2b35f10042dd22, type: 2}
-    _brainsToControl:
-    - {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4, type: 2}
+    _brainsToControl: []
   maxSteps: 0
   trainingConfiguration:
     width: 1280
@@ -1436,8 +1467,6 @@ GameObject:
   - component: {fileID: 2055963701}
   - component: {fileID: 2055963704}
   - component: {fileID: 2055963703}
-  - component: {fileID: 2055963705}
-  - component: {fileID: 2055963706}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -1572,39 +1601,6 @@ MonoBehaviour:
   dist: 0
   pController: {fileID: 2055963703}
   camManager: {fileID: 665825279}
---- !u!114 &2055963705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2055963699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1cf16abc39fb4d6ca81222fc73d1bb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  recordKey: 257
-  resetKey: 258
---- !u!114 &2055963706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2055963699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aba97dacf8a3c9f408b7103ec67acf24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  brain: {fileID: 0}
-  agentParameters:
-    agentCameras: []
-    maxStep: 0
-    resetOnDone: 1
-    onDemandDecision: 0
-    numberOfActionsBetweenDecisions: 1
 --- !u!4 &2072004908 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2381236837683794579, guid: 9b0e040d84df2e04baad2eb2d730936e,
@@ -1617,7 +1613,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 6973604859497941832}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 174201633}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f8e985721a26c24cae60cd8b0239c26, type: 3}
@@ -1938,7 +1934,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4,
         type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2381236837683794583, guid: 9b0e040d84df2e04baad2eb2d730936e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9b0e040d84df2e04baad2eb2d730936e, type: 3}
 --- !u!23 &6973604859520723800
 MeshRenderer:

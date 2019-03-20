@@ -73,7 +73,6 @@ public class EnemyAgentIL : Agent
         AddVectorObs(self.transform.rotation.y);      
         //look angle diference
         AddVectorObs(lookDirAngle);
-        AddVectorObs(rival.isBlocking);
 
         //relative pos to rival
         AddVectorObs(relativePosition.x);

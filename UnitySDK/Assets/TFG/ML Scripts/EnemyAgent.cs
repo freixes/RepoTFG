@@ -68,12 +68,9 @@ public class EnemyAgent : Agent
         float lookDirAngle = Vector3.SignedAngle(self.transform.forward, relativePosition, Vector3.up);
         float distance = Vector3.Distance(rival.transform.position, self.transform.position);
         
-        //self rotation
-        AddVectorObs(self.transform.rotation.y);
         AddVectorObs(distance);
         //look angle diference
         AddVectorObs(lookDirAngle);
-        AddVectorObs(rival.isBlocking);
 
         //relative pos to rival
         AddVectorObs(relativePosition.x);
