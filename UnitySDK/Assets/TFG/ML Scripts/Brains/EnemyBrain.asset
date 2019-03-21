@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyBrain
   m_EditorClassIdentifier: 
   brainParameters:
-    vectorObservationSize: 16
+    vectorObservationSize: 14
     numStackedVectorObservations: 1
     vectorActionSize: 09000000
     cameraResolutions: []
@@ -28,4 +28,4 @@ MonoBehaviour:
     - 
     - 
     vectorActionSpaceType: 1
-  model: {fileID: 4900000, guid: 1ad48b8321c5f4d4a8c17b9fd13cc697, type: 3}
+  model: {fileID: 0}

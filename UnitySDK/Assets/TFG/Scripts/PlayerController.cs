@@ -52,7 +52,7 @@ public class PlayerController : BaseCharacter {
         activeModel.transform.localPosition = new Vector3(0, 0, 0);
         activeModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
-        if (!regenStam) regenStam_count += delta;
+        if (!regenStam && !inAction) regenStam_count += delta;
         if (regenStam_count > regenTime) {
             regenStam_count = 0;
             regenStam = true;
@@ -60,10 +60,11 @@ public class PlayerController : BaseCharacter {
         
         if (currStam < maxStam && !inAction && !running && regenStam) currStam += delta * recSpeed;
         
-        usingItem = anim.GetBool("item");
+       // usingItem = anim.GetBool("item");
         weapon.SetActive(!usingItem);
+        isBlocking = lb;
 
-        DetectItemAction();
+       // DetectItemAction();
         DetectAction();
 
         if (inAction)
@@ -72,6 +73,10 @@ public class PlayerController : BaseCharacter {
             canMove = false;
             return;
 
+        }
+        else
+        {
+            canMove = true;
         }
 
         //canMove = anim.GetBool("canMove");
@@ -82,7 +87,7 @@ public class PlayerController : BaseCharacter {
 
         }
 
-        if (!canMove)
+        if (!inAction)
         {
             attackTime += delta;
             if (attackTime > resetAtackCount)
@@ -91,7 +96,7 @@ public class PlayerController : BaseCharacter {
                 laCount = 0;
                 haCount = 0;
             }
-            return;
+            
         }
 
         anim.applyRootMotion = false;

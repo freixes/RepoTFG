@@ -17,7 +17,7 @@ public class EnemyAgentIL : Agent
     float delta;
     public float angle;
     public float moveAmount;
-    int max = 20, min = -20, area = 23;
+    int max = 20, min = -20;
     public float score = 0;
 
 

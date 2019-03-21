@@ -4,6 +4,10 @@ new training
 mlagents-learn C:\Users\alumno\Desktop\RepoTFG\config\trainer_config.yaml --save-freq=10000 --run-id=lessRewards --train
 mlagents-learn C:\Users\-\Desktop\RepoTFG\config\trainer_config.yaml --save-freq=10000 --run-id=test --train
 
+train from build
+mlagents-learn C:\Users\-\Desktop\RepoTFG\config\trainer_config.yaml  --env=C:\Users\-\Desktop\TrainingBuilds/Training.app --save-freq=10000 --run-id=RL_v1 --train
+mlagents-learn C:\Users\alumno\Desktop\RepoTFG\config\trainer_config.yaml --save-freq=10000 --run-id=lessRewards --train
+
 load training 
 mlagents-learn C:\Users\alumno\Desktop\RepoTFG\config\trainer_config.yaml --save-freq=10000 --load --run-id=Training2 --train
 mlagents-learn C:\Users\-\Desktop\RepoTFG\config\trainer_config.yaml --save-freq=10000 --load --run-id=longTest --train

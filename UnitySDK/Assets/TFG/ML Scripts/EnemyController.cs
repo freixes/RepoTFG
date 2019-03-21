@@ -91,8 +91,8 @@ public class EnemyController : BaseCharacter {
         if (canMove)
         {
             inAction = false;
-            anim.SetFloat("vertical", vertical, 0.2f, delta);
-            anim.SetFloat("horizontal", horizontal, .2f, delta);
+            anim.SetFloat("vertical", moveAmount, 0.2f, delta); 
+            anim.SetFloat("horizontal", moveAmount, .2f, delta);
         }
     }
 
