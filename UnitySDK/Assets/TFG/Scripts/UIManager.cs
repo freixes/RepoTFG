@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
 
-    public PlayerController player;
-    public EnemyController enemy;
+    public BaseCharacter player;
+    public BaseCharacter enemy;
     public GameObject HPBar;
     public GameObject staminaBar;
     // Use this for initialization

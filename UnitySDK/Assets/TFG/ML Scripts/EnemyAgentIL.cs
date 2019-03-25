@@ -12,13 +12,11 @@ public class EnemyAgentIL : Agent
     public GameObject Arena;
 
     float prevHP;
-    float prevPlayerHP;
+    float prevRivalHP;
     public float prevDistance;
     float delta;
-    public float angle;
     public float moveAmount;
     int max = 20, min = -20;
-    public float score = 0;
 
 
     Vector3 initPos;
@@ -43,7 +41,6 @@ public class EnemyAgentIL : Agent
         prevHP = self.curHP;
         self.isDead = false;
         rival.isDead = false;
-        score = 0;
 
         //agent new pos
         float x = Random.Range(Arena.transform.position.x + min, Arena.transform.position.x + max);
@@ -69,27 +66,24 @@ public class EnemyAgentIL : Agent
         float lookDirAngle = Vector3.SignedAngle(lookDir, relativePosition, Vector3.up);
         float distance = Vector3.Distance(rival.transform.position, self.transform.position);
         
-        //self rotation
-        AddVectorObs(self.transform.rotation.y);      
+        AddVectorObs(distance);      
         //look angle diference
         AddVectorObs(lookDirAngle);
-
-        //relative pos to rival
-        AddVectorObs(relativePosition.x);
-        AddVectorObs(relativePosition.z);
-
+        
         //stats
         AddVectorObs(self.curHP);
         AddVectorObs(self.currStam);
         AddVectorObs(self.isBlocking);
-        AddVectorObs(rival.inAction);
+        AddVectorObs(self.inAction);
         AddVectorObs(self.moveAmount);
+        AddVectorObs(self.hardAttack);
+        AddVectorObs(prevHP);
 
         AddVectorObs(rival.curHP);
         AddVectorObs(rival.isBlocking);
         AddVectorObs(rival.inAction);
-        AddVectorObs(prevHP);
-        AddVectorObs(prevPlayerHP);
+        AddVectorObs(rival.hardAttack);   
+        AddVectorObs(prevRivalHP);
 
     }
 
@@ -102,8 +96,6 @@ public class EnemyAgentIL : Agent
         Vector3 lookDir = self.transform.forward;
         Vector3 lookAtPlayer = rival.transform.position - self.transform.position;
 
-        angle = Vector3.SignedAngle(lookDir, lookAtPlayer, Vector3.up);
-
         //actions to self stats
         self.horizontal = vectorAction[0]; //movement
         self.vertical = vectorAction[1];   //movement
@@ -114,41 +106,16 @@ public class EnemyAgentIL : Agent
         
         //prevDistance = distToPlayer;
         prevHP = self.curHP;
-        prevPlayerHP = rival.curHP;
+        prevRivalHP = rival.curHP;
 
 
         self.FixedTick(delta);
 
-        //getting hit
-        if (prevHP > self.curHP)
-        {
-            //Debug.Log("ouch");
-            AddReward(-.8f);
-            score -= .8f;
-            prevHP = self.curHP;
-        }
-        //hitting rival
-        if (prevPlayerHP > rival.curHP)
-        {
-            //Debug.Log("hit");
-            AddReward(.8f);
-            score += .8f;
-            prevPlayerHP = rival.curHP;
-        }
-
         //objective reached
-        if (rival.curHP <= 0)
+        if (rival.curHP <= 0 || self.curHP <= 0)
         {
-            AddReward(1.0f);
-            score += 1.0f;
-            Done();
+            AgentReset();
         }
-        //Death
-        if (self.curHP <= 0)
-        {
-            AddReward(-1.0f);
-            score -= 1.0f;
-            Done();
-        }
+        
     }
 }
