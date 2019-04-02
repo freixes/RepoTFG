@@ -605,22 +605,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2381236837683794576, guid: 9b0e040d84df2e04baad2eb2d730936e,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 174201633}
-    - target: {fileID: 2381236837683794576, guid: 9b0e040d84df2e04baad2eb2d730936e,
-        type: 3}
-      propertyPath: agentParameters.numberOfActionsBetweenDecisions
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2381236837683794576, guid: 9b0e040d84df2e04baad2eb2d730936e,
-        type: 3}
-      propertyPath: brain
-      value: 
-      objectReference: {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4,
-        type: 2}
     - target: {fileID: 2381236837683794583, guid: 9b0e040d84df2e04baad2eb2d730936e,
         type: 3}
       propertyPath: rival
@@ -632,6 +616,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6973604859645464119}
     - target: {fileID: 2381236837683794583, guid: 9b0e040d84df2e04baad2eb2d730936e,
+        type: 3}
+      propertyPath: brain
+      value: 
+      objectReference: {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4,
+        type: 2}
+    - target: {fileID: 2381236837683794576, guid: 9b0e040d84df2e04baad2eb2d730936e,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 174201633}
+    - target: {fileID: 2381236837683794576, guid: 9b0e040d84df2e04baad2eb2d730936e,
+        type: 3}
+      propertyPath: agentParameters.numberOfActionsBetweenDecisions
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2381236837683794576, guid: 9b0e040d84df2e04baad2eb2d730936e,
         type: 3}
       propertyPath: brain
       value: 
@@ -1368,7 +1368,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: dab3d09386d7d264baad7874f61e8322, type: 2}
     _brainsToControl:
     - {fileID: 11400000, guid: dab3d09386d7d264baad7874f61e8322, type: 2}
-  maxSteps: 0
+  maxSteps: 1000
   trainingConfiguration:
     width: 1280
     height: 720
@@ -2220,22 +2220,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2381236837683794576, guid: 9b0e040d84df2e04baad2eb2d730936e,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 174201633}
-    - target: {fileID: 2381236837683794576, guid: 9b0e040d84df2e04baad2eb2d730936e,
-        type: 3}
-      propertyPath: agentParameters.numberOfActionsBetweenDecisions
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2381236837683794576, guid: 9b0e040d84df2e04baad2eb2d730936e,
-        type: 3}
-      propertyPath: brain
-      value: 
-      objectReference: {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4,
-        type: 2}
     - target: {fileID: 2381236837683794583, guid: 9b0e040d84df2e04baad2eb2d730936e,
         type: 3}
       propertyPath: rival
@@ -2247,6 +2231,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6973604859645464119}
     - target: {fileID: 2381236837683794583, guid: 9b0e040d84df2e04baad2eb2d730936e,
+        type: 3}
+      propertyPath: brain
+      value: 
+      objectReference: {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4,
+        type: 2}
+    - target: {fileID: 2381236837683794576, guid: 9b0e040d84df2e04baad2eb2d730936e,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 174201633}
+    - target: {fileID: 2381236837683794576, guid: 9b0e040d84df2e04baad2eb2d730936e,
+        type: 3}
+      propertyPath: agentParameters.numberOfActionsBetweenDecisions
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2381236837683794576, guid: 9b0e040d84df2e04baad2eb2d730936e,
         type: 3}
       propertyPath: brain
       value: 

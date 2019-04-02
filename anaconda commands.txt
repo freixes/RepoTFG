@@ -1,16 +1,16 @@
 anaconda commands
 
 new training
-mlagents-learn C:\Users\alumno\Desktop\RepoTFG\config\trainer_config.yaml --save-freq=10000 --run-id=lessRewards --train
-mlagents-learn C:\Users\-\Desktop\RepoTFG\config\trainer_config.yaml --save-freq=10000 --run-id=test --train
+mlagents-learn C:\Users\alumno\Desktop\RepoTFG\config\trainer_config.yaml --save-freq=10000 --run-id=RL_v2 --train
+mlagents-learn C:\Users\-\Desktop\RepoTFG\config\trainer_config.yaml --save-freq=10000 --run-id=RL_v3 --train
 
 train from build
-mlagents-learn C:\Users\-\Desktop\RepoTFG\config\trainer_config.yaml  --env=C:\Users\-\Desktop\TrainingBuilds/Training.app --save-freq=10000 --run-id=RL_v1 --train
-mlagents-learn C:\Users\alumno\Desktop\RepoTFG\config\trainer_config.yaml --save-freq=10000 --run-id=lessRewards --train
+mlagents-learn C:\Users\-\Desktop\RepoTFG\config\trainer_config.yaml  --env=C:\Users\-\Desktop\TrainingBuilds/Training.app --save-freq=10000 --run-id=RL_v3 --train
+mlagents-learn C:\Users\alumno\Desktop\RepoTFG\config\trainer_config.yaml --save-freq=10000 --run-id=RL_v2 --train
 
 imitation leaning
-mlagents-learn C:\Users\-\Desktop\RepoTFG\config\online_bc_config.yaml --save-freq=10000 --run-id=IL_v1 --train --slow
+mlagents-learn C:\Users\-\Desktop\RepoTFG\config\online_bc_config.yaml --save-freq=10000 --run-id=IL_v2 --train --slow
 
 load training 
-mlagents-learn C:\Users\alumno\Desktop\RepoTFG\config\trainer_config.yaml --save-freq=10000 --load --run-id=Training2 --train
-mlagents-learn C:\Users\-\Desktop\RepoTFG\config\trainer_config.yaml --save-freq=10000 --load --run-id=longTest --train
+mlagents-learn C:\Users\alumno\Desktop\RepoTFG\config\trainer_config.yaml --save-freq=10000 --load --run-id=RL_v2 --train
+mlagents-learn C:\Users\-\Desktop\RepoTFG\config\trainer_config.yaml --save-freq=10000 --load --run-id=RL_v2 --train

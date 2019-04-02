@@ -1281,13 +1281,13 @@ MonoBehaviour:
     - {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4, type: 2}
     _brainsToControl:
     - {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4, type: 2}
-  maxSteps: 5000
+  maxSteps: 0
   trainingConfiguration:
     width: 300
     height: 300
     qualityLevel: 1
-    timeScale: 50
-    targetFrameRate: -1
+    timeScale: 10
+    targetFrameRate: 60
   inferenceConfiguration:
     width: 1280
     height: 720
