@@ -37,10 +37,10 @@ public class EnemyAgentIL : Agent
     public override void AgentReset()
     {
         self.curHP = self.maxHP;
-        rival.curHP = rival.maxHP;
+        self.currStam = self.maxStam;
         prevHP = self.curHP;
         self.isDead = false;
-        rival.isDead = false;
+ 
 
         //agent new pos
         float x = Random.Range(Arena.transform.position.x + min, Arena.transform.position.x + max);
@@ -48,11 +48,6 @@ public class EnemyAgentIL : Agent
         self.transform.position = new Vector3(x, self.transform.position.y, z);
         float newAngle = Random.Range(0, 360);
         self.trans.rotation = Quaternion.Euler(0, newAngle, 0);
-
-        //rival new pos
-        x = Random.Range(Arena.transform.position.x + min, Arena.transform.position.x + max);
-        z = Random.Range(Arena.transform.position.z + min, Arena.transform.position.z + max);
-        rival.transform.position = new Vector3(x, rival.transform.position.y, z);
 
         //new distance
         prevDistance = Vector3.Distance(self.transform.position,
