@@ -17,7 +17,7 @@ public class EnemyAgent : Agent
     float delta;
     public float angle;
     public float moveAmount;
-    int max = 20, min = -20;
+    int max = 22, min = -22, area ;
     float distance;
 
     Vector3 initPos;
@@ -27,7 +27,7 @@ public class EnemyAgent : Agent
     {
         initPos = self.transform.position;
         playerInitPos = rival.transform.position;
-
+        area = max * 2;
     }
 
     private void Update()
@@ -61,21 +61,18 @@ public class EnemyAgent : Agent
         float lookDirAngle = Vector3.SignedAngle(lookDir, relativePosition, Vector3.up);
         distance = Vector3.Distance(rival.transform.position, self.transform.position);
 
-        //look angle diference
         AddVectorObs(lookDirAngle);
-        AddVectorObs(distance);
-        AddVectorObs(prevDistance);
 
-        AddVectorObs(relativePosition.x);
-        AddVectorObs(relativePosition.y);
+
+        //relative pos to rival
+        //floor plane 100x100
+        AddVectorObs(relativePosition.x / area);
+        AddVectorObs(relativePosition.z / area);
 
         //stats
         AddVectorObs(self.curHP);
         AddVectorObs(self.currStam);
-        AddVectorObs(self.isBlocking);
-        AddVectorObs(rival.inAction);
-        AddVectorObs(self.moveAmount);
-        
+
         AddVectorObs(rival.curHP);
         AddVectorObs(rival.isBlocking);
         AddVectorObs(rival.inAction);
@@ -123,8 +120,46 @@ public class EnemyAgent : Agent
         //hitting rival
         if (prevPlayerHP > rival.curHP)
         {
-            AddReward(.75f);
+            AddReward(.85f);
             prevPlayerHP = rival.curHP;
+        }
+
+        if (distToPlayer > 1.5f)
+        {
+            if (prevDistance > distToPlayer)
+            {
+                //Debug.Log("closer");
+                AddReward(.05f);
+                //Done();
+
+            }
+            //punish for getting farther
+            if (prevDistance < distToPlayer)
+            {
+                //Debug.Log("farther");
+                AddReward(-.1f);
+                //Done();
+            }
+        }
+        else
+        {
+            //Debug.Log("near");
+            AddReward(.0001f);
+        }
+
+
+        //angle = Mathf.Abs(angle);
+        if (angle < 20 && angle > -20)
+        {
+            //Debug.Log("looking at");
+            AddReward(.01f);
+            //Done();
+        }
+        else
+        {
+            //Debug.Log("not looking");
+            AddReward(-.05f);
+
         }
 
         //objective reached
@@ -137,19 +172,10 @@ public class EnemyAgent : Agent
         if (self.curHP <= 0)
         {
             AddReward(-1.0f);
+            Done();
         }
 
-        if(distance > 2)
-        {
-            if(prevDistance > distance)
-            {
-                AddReward(0.1f);             
-            }
-            if (prevDistance < distance)
-            {
-                AddReward(-0.1f);
-            }
-        }
+       
         prevDistance = distance;
 
 
