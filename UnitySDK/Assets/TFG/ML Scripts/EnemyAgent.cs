@@ -17,7 +17,7 @@ public class EnemyAgent : Agent
     float delta;
     public float angle;
     public float moveAmount;
-    int max = 20, min = -20, area = 23;
+    int max = 20, min = -20;
     float distance;
 
     Vector3 initPos;
@@ -66,16 +66,16 @@ public class EnemyAgent : Agent
         AddVectorObs(distance);
         AddVectorObs(prevDistance);
 
+        AddVectorObs(relativePosition.x);
+        AddVectorObs(relativePosition.y);
+
         //stats
         AddVectorObs(self.curHP);
         AddVectorObs(self.currStam);
         AddVectorObs(self.isBlocking);
         AddVectorObs(rival.inAction);
         AddVectorObs(self.moveAmount);
-        AddVectorObs(self.rt);
-        AddVectorObs(self.rb);
-        AddVectorObs(self.lb);
-
+        
         AddVectorObs(rival.curHP);
         AddVectorObs(rival.isBlocking);
         AddVectorObs(rival.inAction);
@@ -137,7 +137,6 @@ public class EnemyAgent : Agent
         if (self.curHP <= 0)
         {
             AddReward(-1.0f);
-            Done();
         }
 
         if(distance > 2)

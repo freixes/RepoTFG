@@ -23,7 +23,7 @@ namespace MLAgents
         // Use this for initialization
         void Start()
         {
-            recordExperiences = true;
+            recordExperiences = false;
             resetBuffer = false;
             myAgent = GetComponent<Agent>();
             bufferResetTime = Time.time;

@@ -1368,7 +1368,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: dab3d09386d7d264baad7874f61e8322, type: 2}
     _brainsToControl:
     - {fileID: 11400000, guid: dab3d09386d7d264baad7874f61e8322, type: 2}
-  maxSteps: 1000
+  maxSteps: 0
   trainingConfiguration:
     width: 1280
     height: 720
@@ -4332,8 +4332,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6973604860896226129}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.4959677, y: 0.5577841, z: 1.1055048}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.4959677, y: -0.2, z: 1.1055048}
+  m_LocalScale: {x: 1, y: 0.3, z: 1}
   m_Children:
   - {fileID: 6973604860447220214}
   - {fileID: 6973604860314675912}
