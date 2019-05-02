@@ -40,7 +40,6 @@ public class EnemyAgent : Agent
         self.curHP = self.maxHP;
         rival.curHP = rival.maxHP;
         prevHP = self.curHP;
-        self.isDead = false;
 
         //agent new pos
         float x = Random.Range(Arena.transform.position.x + min, Arena.transform.position.x + max);
@@ -123,44 +122,7 @@ public class EnemyAgent : Agent
             AddReward(.85f);
             prevPlayerHP = rival.curHP;
         }
-
-        if (distToPlayer > 1.5f)
-        {
-            if (prevDistance > distToPlayer)
-            {
-                //Debug.Log("closer");
-                AddReward(.05f);
-                //Done();
-
-            }
-            //punish for getting farther
-            if (prevDistance < distToPlayer)
-            {
-                //Debug.Log("farther");
-                AddReward(-.1f);
-                //Done();
-            }
-        }
-        else
-        {
-            //Debug.Log("near");
-            AddReward(.0001f);
-        }
-
-
-        //angle = Mathf.Abs(angle);
-        if (angle < 20 && angle > -20)
-        {
-            //Debug.Log("looking at");
-            AddReward(.01f);
-            //Done();
-        }
-        else
-        {
-            //Debug.Log("not looking");
-            AddReward(-.05f);
-
-        }
+        
 
         //objective reached
         if (rival.curHP <= 0)
@@ -169,13 +131,7 @@ public class EnemyAgent : Agent
             Done();
         }
         //Death
-        if (self.curHP <= 0)
-        {
-            AddReward(-1.0f);
-            Done();
-        }
-
-       
+               
         prevDistance = distance;
 
 
