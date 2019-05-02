@@ -5,7 +5,7 @@ mlagents-learn C:\Users\alumno\Desktop\RepoTFG\config\trainer_config.yaml --save
 mlagents-learn C:\Users\-\Desktop\RepoTFG\config\trainer_config.yaml --save-freq=10000 --run-id=RL_v9 --train
 
 train from build
-mlagents-learn C:\Users\-\Desktop\RepoTFG\config\trainer_config.yaml  --env=C:\Users\-\Desktop\TrainingBuilds\RL_v11/Training.app --save-freq=10000 --run-id=RL_v11 --train
+mlagents-learn C:\Users\-\Desktop\RepoTFG\config\trainer_config.yaml  --env=C:\Users\-\Desktop\TrainingBuilds\RL_v14/Training.app --save-freq=10000 --run-id=RL_v14 --train
 mlagents-learn C:\Users\alumno\Desktop\RepoTFG\config\trainer_config.yaml --save-freq=10000 --run-id=RL_v2 --train
 
 imitation leaning
@@ -14,3 +14,6 @@ mlagents-learn C:\Users\-\Desktop\RepoTFG\config\online_bc_config.yaml --save-fr
 load training 
 mlagents-learn C:\Users\alumno\Desktop\RepoTFG\config\trainer_config.yaml --save-freq=10000 --load --run-id=RL_v2 --train
 mlagents-learn C:\Users\-\Desktop\RepoTFG\config\trainer_config.yaml --save-freq=10000 --load --run-id=RL_v2 --train
+
+
+tensorboard --logdir=summaries

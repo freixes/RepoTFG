@@ -880,7 +880,7 @@ MonoBehaviour:
     width: 650
     height: 300
     qualityLevel: 1
-    timeScale: 10
+    timeScale: 1
     targetFrameRate: 60
   inferenceConfiguration:
     width: 1280
@@ -1788,6 +1788,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 6cbb31f192ecd3d4c90ff2fa41803b1d,
         type: 2}
+    - target: {fileID: 4742420972646655952, guid: 4d073388af19b1840993ccdcef677a73,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3
+      objectReference: {fileID: 0}
     - target: {fileID: 6979362220617508901, guid: 4d073388af19b1840993ccdcef677a73,
         type: 3}
       propertyPath: m_IsActive
