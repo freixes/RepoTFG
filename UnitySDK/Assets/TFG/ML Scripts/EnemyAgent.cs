@@ -11,7 +11,7 @@ public class EnemyAgent : Agent
     public BaseCharacter rival;
     public GameObject Arena;
 
-    float prevHP;
+    float prevHP, prevStam;
     float prevPlayerHP;
     public float prevDistance;
     float delta;
@@ -75,14 +75,17 @@ public class EnemyAgent : Agent
 
         //stats
         AddVectorObs(self.curHP);
-        AddVectorObs(self.currStam);
-        AddVectorObs(self.isBlocking);
-        AddVectorObs(self.moveAmount);
-
-        AddVectorObs(rival.curHP);
-        AddVectorObs(rival.isBlocking);
         AddVectorObs(prevHP);
+        AddVectorObs(self.currStam);
+        AddVectorObs(prevStam);
+        
+        
+        AddVectorObs(rival.curHP);
         AddVectorObs(prevPlayerHP);
+        AddVectorObs(rival.isBlocking);
+        AddVectorObs(rival.inAction);
+        
+        
     }
 
     public override void AgentAction(float[] vectorAction, string textAction)
@@ -111,35 +114,34 @@ public class EnemyAgent : Agent
 
         //score and punishments
 
-        //getting hit
-        if (prevHP > self.curHP)
-        {
-            AddReward(-.8f);
-            score -= .8f;
-        }
+        
         //hitting rival
         if (prevPlayerHP > rival.curHP)
         {
             AddReward(.8f);
             score += .8f;
         }
-
+        //block
+        if (rival.inAction && self.isBlocking)
+        {
+            AddReward(0.1f);
+        }
 
         //distance
         //getting closer reward
-        if (distToPlayer > 1.5f)
+        if (distToPlayer > 2.0f)
         {
             if (prevDistance > distToPlayer)
             {
-                AddReward(.3f);
-                score += .3f;
+                AddReward(.15f);
+                score += .15f;
                 prevDistance = distToPlayer;
             }
             //punish for getting farther
             if (prevDistance < distToPlayer)
             {
-                AddReward(-.7f);
-                score -= .7f;
+                AddReward(-.3f);
+                score -= .3f;
                 prevDistance = distToPlayer;
             }
         }
@@ -149,36 +151,38 @@ public class EnemyAgent : Agent
             score += .001f;
         }
 
-        //speed
-        if (distToPlayer < self.slowingRadius)
-        {
-            if (distToPlayer < self.stopRadius)
-            {
-                if (moveAmount < .2f)
-                {
-                    AddReward(0.1f);
-                    score += .1f;
-                }
-                else
-                {
-                    AddReward(-0.001f);
-                    score -= .001f;
-                }
-            }
-            else
-            {
-                if (moveAmount < .8f && moveAmount > .2f)
-                {
-                    AddReward(0.1f);
-                    score += .1f;
-                }
-                else
-                {
-                    AddReward(-0.001f);
-                    score -= .001f;
-                }
-            }
-        }
+        
+
+        ////speed
+        //if (distToPlayer < self.slowingRadius)
+        //{
+        //    if (distToPlayer < self.stopRadius)
+        //    {
+        //        if (moveAmount < .2f)
+        //        {
+        //            AddReward(0.1f);
+        //            score += .1f;
+        //        }
+        //        else
+        //        {
+        //            AddReward(-0.001f);
+        //            score -= .001f;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        if (moveAmount < .8f && moveAmount > .2f)
+        //        {
+        //            AddReward(0.1f);
+        //            score += .1f;
+        //        }
+        //        else
+        //        {
+        //            AddReward(-0.001f);
+        //            score -= .001f;
+        //        }
+        //    }
+        //}
 
         //angle = Mathf.Abs(angle);
         if (lookDirAngle < 20 && lookDirAngle > -20)
@@ -188,8 +192,8 @@ public class EnemyAgent : Agent
         }
         else
         {
-            AddReward(-.15f);
-            score -= .15f;
+            AddReward(-.05f);
+            score -= .05f;
         }
 
 
