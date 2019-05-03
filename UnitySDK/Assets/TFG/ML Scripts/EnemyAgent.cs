@@ -110,6 +110,7 @@ public class EnemyAgent : Agent
         //prevDistance = distToPlayer;
         prevHP = self.curHP;
         prevPlayerHP = rival.curHP;
+        prevStam = self.currStam;
 
 
         self.FixedTick(delta);
@@ -125,7 +126,7 @@ public class EnemyAgent : Agent
         //getting hit
         if (prevHP > self.curHP)
         {
-            AddReward(-.6f);
+            AddReward(-.9f);
         }
         //block
 
@@ -136,23 +137,23 @@ public class EnemyAgent : Agent
         {
             if (prevDistance > distToPlayer)
             {
-                AddReward(.015f);
+                AddReward(.001f);
 
                 
             }
             //punish for getting farther
             if (prevDistance < distToPlayer)
             {
-                AddReward(-.03f);
+                AddReward(-.003f);
             }
         }
         else
         {
-            if (rival.inAction && self.isBlocking)
-            {
-                AddReward(0.05f);
-            }
-            AddReward(.001f);
+            //if (rival.inAction && self.isBlocking)
+            //{
+            //    AddReward(0.05f);
+            //}
+            AddReward(.0001f);
         }
 
         
