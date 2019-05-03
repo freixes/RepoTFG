@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ReinforcementBrain2
   m_EditorClassIdentifier: 
   brainParameters:
-    vectorObservationSize: 11
-    numStackedVectorObservations: 1
+    vectorObservationSize: 12
+    numStackedVectorObservations: 4
     vectorActionSize: 09000000
     cameraResolutions: []
     vectorActionDescriptions:
@@ -28,4 +28,4 @@ MonoBehaviour:
     - 
     - 
     vectorActionSpaceType: 1
-  model: {fileID: 4900000, guid: 45b5b3ec2e01a36428e547b1d4b09c0d, type: 3}
+  model: {fileID: 4900000, guid: 89d050818f888444b9677821becaf476, type: 3}

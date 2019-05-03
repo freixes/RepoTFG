@@ -22,6 +22,7 @@ public class EnemyAgent : Agent
 
     Vector3 initPos;
     Vector3 playerInitPos;
+    float distToPlayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +59,7 @@ public class EnemyAgent : Agent
         //new distance
         prevDistance = Vector3.Distance(self.transform.position,
                                                 rival.transform.position);
+
     }
 
     public override void CollectObservations()
@@ -65,14 +67,16 @@ public class EnemyAgent : Agent
         Vector3 relativePosition = rival.transform.position - self.transform.position;
         Vector3 lookDir = self.transform.forward;
         lookDirAngle = Vector3.SignedAngle(lookDir, relativePosition, Vector3.up);
-      
+        distToPlayer = Vector3.Distance(self.transform.position,
+                                                rival.transform.position);
+
         //look angle diference
         AddVectorObs(lookDirAngle);
 
         //relative pos to rival
         AddVectorObs(relativePosition.x / area);
         AddVectorObs(relativePosition.z / area);
-
+        AddVectorObs(distToPlayer);
         //stats
         AddVectorObs(self.curHP);
         AddVectorObs(prevHP);
@@ -91,9 +95,7 @@ public class EnemyAgent : Agent
     public override void AgentAction(float[] vectorAction, string textAction)
     {
         delta = Time.fixedDeltaTime;
-        float distToPlayer = Vector3.Distance(self.transform.position,
-                                                rival.transform.position);
-
+        
         //actions to self stats
         self.horizontal = vectorAction[0]; //movement
         self.vertical = vectorAction[1];   //movement
@@ -119,13 +121,14 @@ public class EnemyAgent : Agent
         if (prevPlayerHP > rival.curHP)
         {
             AddReward(.8f);
-            score += .8f;
+        }
+        //getting hit
+        if (prevHP > self.curHP)
+        {
+            AddReward(-.6f);
         }
         //block
-        if (rival.inAction && self.isBlocking)
-        {
-            AddReward(0.1f);
-        }
+
 
         //distance
         //getting closer reward
@@ -133,22 +136,23 @@ public class EnemyAgent : Agent
         {
             if (prevDistance > distToPlayer)
             {
-                AddReward(.15f);
-                score += .15f;
-                prevDistance = distToPlayer;
+                AddReward(.015f);
+
+                
             }
             //punish for getting farther
             if (prevDistance < distToPlayer)
             {
-                AddReward(-.3f);
-                score -= .3f;
-                prevDistance = distToPlayer;
+                AddReward(-.03f);
             }
         }
         else
         {
+            if (rival.inAction && self.isBlocking)
+            {
+                AddReward(0.05f);
+            }
             AddReward(.001f);
-            score += .001f;
         }
 
         
@@ -187,13 +191,11 @@ public class EnemyAgent : Agent
         //angle = Mathf.Abs(angle);
         if (lookDirAngle < 20 && lookDirAngle > -20)
         {
-            AddReward(.01f);
-            score += .01f;
+            AddReward(.001f);
         }
         else
         {
-            AddReward(-.05f);
-            score -= .05f;
+            AddReward(-.005f);
         }
 
 
@@ -201,14 +203,8 @@ public class EnemyAgent : Agent
         if (rival.curHP <= 0)
         {
             AddReward(1.0f);
-            score += 1.0f;
             Done();
         }
-        //Death
-        if (self.curHP <= 0)
-        {
-            AddReward(-1.0f);
-            score -= 1.0f;
-        }
+        prevDistance = distToPlayer;
     }
 }
