@@ -99,20 +99,23 @@ public class InputHandler : MonoBehaviour {
         pController.rt = rt_input;
         pController.lt = lt_input;
 
-        
 
-        //Lock of target
-        if (camManager.lockOnTarget != null)
-        {
-            if (camManager.lockOnTarget.isDead)
-            {
-                camManager.lockOn = false;
-                camManager.lockOnTarget = null;
-            }
-        }
+        if (camManager.lockOnTarget == null) return;
+         
+            ////Lock of target
+            //if (camManager.lockOnTarget != null)
+            //{
 
-        //Lock on target
-        if (rightAxis_down)
+
+            //    //if (camManager.lockOnTarget.isDead)
+            //    //{
+            //    //    camManager.lockOn = false;
+            //    //    camManager.lockOnTarget = null;
+            //    //}
+            //}
+
+            //Lock on target
+            if (rightAxis_down)
         {
 
             camManager.lockOn = !camManager.lockOn;

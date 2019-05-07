@@ -72,13 +72,13 @@ public class BaseCharacter : MonoBehaviour
         //delta = Time.deltaTime;
         //canMove = anim.GetBool("canMove");
 
-        if (curHP <= 0)
-        {
-            if (!isDead)
-            {
-                isDead = true;
-            }
-        }
+        //if (curHP <= 0)
+        //{
+        //    if (!isDead)
+        //    {
+        //        isDead = true;
+        //    }
+        //}
 
         //if (isInvincible)
         //{
@@ -117,7 +117,7 @@ public class BaseCharacter : MonoBehaviour
 
     public void CloseDamageColliders()
     {
-
+        Debug.Log("close collider");
         wCollider.SetActive(false);
         canMove = true;
         inAction = false;

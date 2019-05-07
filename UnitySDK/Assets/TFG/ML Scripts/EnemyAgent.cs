@@ -137,14 +137,16 @@ public class EnemyAgent : Agent
         {
             if (prevDistance > distToPlayer)
             {
-                AddReward(.001f);
-
-                
+                AddReward(.001f);         
             }
             //punish for getting farther
             if (prevDistance < distToPlayer)
             {
                 AddReward(-.003f);
+            }
+            if (self.inAction)
+            {
+                AddReward(-0.3f);
             }
         }
         else
@@ -155,7 +157,7 @@ public class EnemyAgent : Agent
             //}
             if (self.inAction)
             {
-                AddReward(0.5f);
+                AddReward(0.2f);
             }
             AddReward(.0001f);
         }
@@ -196,11 +198,11 @@ public class EnemyAgent : Agent
         //angle = Mathf.Abs(angle);
         if (lookDirAngle < 20 && lookDirAngle > -20)
         {
-            AddReward(.001f);
+            AddReward(.01f);
         }
         else
         {
-            AddReward(-.005f);
+            AddReward(-.05f);
         }
 
 

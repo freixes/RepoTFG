@@ -7,13 +7,13 @@ public class PlayerWeaponCollider : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
      
-        EnemyController enemy = other.transform.GetComponentInParent<EnemyController>();
-        PlayerController player = GetComponentInParent<PlayerController>();
+        BaseCharacter enemy = other.transform.GetComponentInParent<BaseCharacter>();
+        PlayerController self = GetComponentInParent<PlayerController>();
         if (enemy == null)
         {
             return;
         }
-        if (player.hardAttack) enemy.DoDamage(15);
+        if (self.hardAttack) enemy.DoDamage(15);
 
         else enemy.DoDamage(8);
         
