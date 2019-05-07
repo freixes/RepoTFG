@@ -153,6 +153,10 @@ public class EnemyAgent : Agent
             //{
             //    AddReward(0.05f);
             //}
+            if (self.inAction)
+            {
+                AddReward(0.5f);
+            }
             AddReward(.0001f);
         }
 
