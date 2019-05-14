@@ -757,7 +757,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 4742420972708009344}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1958766154}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f8e985721a26c24cae60cd8b0239c26, type: 3}
@@ -873,7 +873,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   broadcastHub:
     broadcastingBrains:
-    - {fileID: 11400000, guid: d752e26a8ce01fb41b78091bb494f0f4, type: 2}
+    - {fileID: 11400000, guid: dab3d09386d7d264baad7874f61e8322, type: 2}
     _brainsToControl: []
   maxSteps: 0
   trainingConfiguration:
@@ -1243,6 +1243,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1915488147}
   m_CullTransparentMesh: 0
+--- !u!1 &1958766154 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6979362221347886404, guid: 4d073388af19b1840993ccdcef677a73,
+    type: 3}
+  m_PrefabInstance: {fileID: 4742420972708009344}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1958766159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958766154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8365913b3d1154cb441aef0bf01887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brain: {fileID: 11400000, guid: dab3d09386d7d264baad7874f61e8322, type: 2}
+  agentParameters:
+    agentCameras: []
+    maxStep: 0
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
+  self: {fileID: 818769502}
+  rival: {fileID: 2055963703}
+  Arena: {fileID: 2069806921}
+  prevDistance: 0
+  moveAmount: 0
 --- !u!1 &2018813520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1580,6 +1610,12 @@ MonoBehaviour:
   dist: 0
   pController: {fileID: 2055963703}
   camManager: {fileID: 665825279}
+--- !u!1 &2069806921 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4742420974077756073, guid: 4d073388af19b1840993ccdcef677a73,
+    type: 3}
+  m_PrefabInstance: {fileID: 4742420972708009344}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2079056389
 GameObject:
   m_ObjectHideFlags: 0
@@ -1782,6 +1818,11 @@ PrefabInstance:
       propertyPath: rival
       value: 
       objectReference: {fileID: 2055963703}
+    - target: {fileID: 6979362221347886401, guid: 4d073388af19b1840993ccdcef677a73,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6979362220617508896, guid: 4d073388af19b1840993ccdcef677a73,
         type: 3}
       propertyPath: brain
