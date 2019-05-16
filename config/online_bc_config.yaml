@@ -115,8 +115,8 @@ EnemyLearning:
     summary_freq: 1000
     brain_to_imitate: TeacherPlayer
     batch_size: 16
-    batches_per_epoch: 5
-    num_layers: 4
-    hidden_units: 64
+    batches_per_epoch: 3
+    num_layers: 3
+    hidden_units: 32
     use_recurrent: false
     sequence_length: 16
