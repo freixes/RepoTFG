@@ -16,7 +16,7 @@ public class EnemyAgent : Agent
     public float prevDistance;
     float delta;
     public float moveAmount;
-    int max = 20, min = -20, area = 40;
+    int max = 10, min = -10, area;
     public float score = 0;
     float lookDirAngle;
 
@@ -26,9 +26,7 @@ public class EnemyAgent : Agent
     // Start is called before the first frame update
     void Start()
     {
-        initPos = self.transform.position;
-        playerInitPos = rival.transform.position;
-
+        area = 2 * max;
     }
 
     private void Update()
@@ -42,8 +40,6 @@ public class EnemyAgent : Agent
         rival.curHP = rival.maxHP;
         prevHP = self.curHP;
  
-        score = 0;
-
         //agent new pos
         float x = Random.Range(Arena.transform.position.x + min, Arena.transform.position.x + max);
         float z = Random.Range(Arena.transform.position.z + min, Arena.transform.position.z + max);
@@ -114,9 +110,6 @@ public class EnemyAgent : Agent
 
 
         self.FixedTick(delta);
-
-        //score and punishments
-
         
         //hitting rival
         if (prevPlayerHP > rival.curHP)
@@ -131,13 +124,13 @@ public class EnemyAgent : Agent
         //block
 
 
-        //distance
-        //getting closer reward
+        ////distance
+        ////getting closer reward
         if (distToPlayer > 2.0f)
         {
             if (prevDistance > distToPlayer)
             {
-                AddReward(.001f);         
+                AddReward(.001f);
             }
             //punish for getting farther
             if (prevDistance < distToPlayer)
@@ -155,14 +148,14 @@ public class EnemyAgent : Agent
             //{
             //    AddReward(0.05f);
             //}
-            if (self.inAction)
+            if (!self.inAction)
             {
-                AddReward(0.2f);
+                AddReward(-0.2f);
             }
             AddReward(.0001f);
         }
 
-        
+
 
         ////speed
         //if (distToPlayer < self.slowingRadius)
@@ -196,14 +189,14 @@ public class EnemyAgent : Agent
         //}
 
         //angle = Mathf.Abs(angle);
-        if (lookDirAngle < 20 && lookDirAngle > -20)
-        {
-            AddReward(.01f);
-        }
-        else
-        {
-            AddReward(-.05f);
-        }
+        //if (lookDirAngle < 20 && lookDirAngle > -20)
+        //{
+        //    AddReward(.01f);
+        //}
+        //else
+        //{
+        //    AddReward(-.05f);
+        //}
 
 
         //objective reached

@@ -11,12 +11,12 @@ public class EnemyAgentIL : Agent
     public BaseCharacter rival;
     public GameObject Arena;
 
-    float prevHP;
+    float prevHP, prevStam;
     float prevRivalHP;
     public float prevDistance;
     float delta;
     public float moveAmount;
-    int max = 20, min = -20;
+    int max = 20, min = -20, area;
 
 
     Vector3 initPos;
@@ -24,14 +24,12 @@ public class EnemyAgentIL : Agent
     // Start is called before the first frame update
     void Start()
     {
-        initPos = self.transform.position;
-        playerInitPos = rival.transform.position;
-
+        area = 2 * max;
     }
 
     private void Update()
     {
-
+        
     }
 
     public override void AgentReset()
@@ -39,8 +37,6 @@ public class EnemyAgentIL : Agent
         self.curHP = self.maxHP;
         self.currStam = self.maxStam;
         prevHP = self.curHP;
-        self.isDead = false;
- 
 
         //agent new pos
         float x = Random.Range(Arena.transform.position.x + min, Arena.transform.position.x + max);
@@ -64,16 +60,18 @@ public class EnemyAgentIL : Agent
         //AddVectorObs(distance);      
         //look angle diference
         AddVectorObs(lookDirAngle);
-        AddVectorObs(relativePosition.x);
-        AddVectorObs(relativePosition.y);
-
+        AddVectorObs(relativePosition.x / area);
+        AddVectorObs(relativePosition.y / area);
+        AddVectorObs(distance);
         //stats
-        AddVectorObs(prevHP);
         AddVectorObs(self.curHP);
+        AddVectorObs(prevHP);
+        AddVectorObs(self.currStam);
+        AddVectorObs(prevStam);
+
         AddVectorObs(rival.curHP);
         AddVectorObs(rival.isBlocking);
         AddVectorObs(rival.inAction);
-        AddVectorObs(rival.hardAttack);   
         AddVectorObs(prevRivalHP);
 
     }
@@ -97,6 +95,7 @@ public class EnemyAgentIL : Agent
         
         //prevDistance = distToPlayer;
         prevHP = self.curHP;
+        prevStam = self.currStam;
         prevRivalHP = rival.curHP;
 
 
@@ -107,6 +106,6 @@ public class EnemyAgentIL : Agent
         {
             AgentReset();
         }
-        
+        prevDistance = distToPlayer;
     }
 }
